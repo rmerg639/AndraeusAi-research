@@ -2,11 +2,15 @@
 
 > **Solving the AI Context Window Problem** - Store personal knowledge in model weights instead of context tokens.
 
-[![License](https://img.shields.io/badge/License-Custom%20(Free%20under%20%2450M)-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Custom%20(Free%20under%20%2410M)-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8+-green.svg)](https://python.org)
 [![Model](https://img.shields.io/badge/Base%20Model-Qwen2.5--7B-orange.svg)](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct)
+[![Version](https://img.shields.io/badge/Version-2.2.0-brightgreen.svg)](CHANGELOG.md)
+[![Research](https://img.shields.io/badge/Research-99%25%20Accuracy-success.svg)](PAPER.md)
 
 **Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.**
+
+[![Sponsor](https://img.shields.io/badge/Sponsor-Andraeus%20AI-ff69b4.svg)](https://github.com/rmerg639/AndraeusAi-research#contact)
 
 ---
 
