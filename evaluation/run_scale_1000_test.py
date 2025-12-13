@@ -408,6 +408,24 @@ def evaluate_model(model, tokenizer, test_questions: Dict[str, List[Dict]]) -> D
     """Evaluate model on tiered test questions."""
     results = {}
 
+    # Fix BFloat16/Float32 dtype mismatch by merging LoRA and casting
+    print("  Preparing model for evaluation...")
+    try:
+        # Merge LoRA weights into base model to avoid dtype conflicts
+        model = model.merge_and_unload()
+        print("  Merged LoRA weights into base model")
+    except Exception as e:
+        print(f"  Note: Could not merge LoRA ({e}), continuing with adapter")
+
+    # Ensure model is in eval mode and disable gradient checkpointing
+    model.eval()
+    if hasattr(model, 'gradient_checkpointing_disable'):
+        model.gradient_checkpointing_disable()
+
+    # Cast to float16 for consistent dtype during generation
+    model = model.half()
+    print("  Model cast to float16 for evaluation")
+
     for tier, questions in test_questions.items():
         correct = 0
         total = len(questions)

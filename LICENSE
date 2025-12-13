@@ -3,7 +3,7 @@ ANDRAEUS AI SCALING AND CONTEXT WINDOW SOLUTION RESEARCH
 COMPREHENSIVE LICENSE AGREEMENT
 ================================================================================
 
-Version 2.3
+Version 2.4
 Effective Date: December 14, 2025
 Last Updated: December 14, 2025
 
@@ -482,6 +482,44 @@ Terms:
 - License Fee: Negotiated case-by-case
 - Contact Licensor for government licensing terms
 - Military applications fall under Tier 9
+
+
+TIER 16: AI FOUNDATION MODEL COMPANIES (0.05% FUTURE PROFITS)
+--------------------------------------------------------------------------------
+
+Eligibility:
+- Anthropic (Claude)
+- OpenAI
+- Google DeepMind
+- Meta AI
+- Mistral AI
+
+Terms:
+- Research Use: FREE (permitted for research purposes)
+- Monetization Fee: 0.05% (zero point zero five percent) of future profits
+  derived from products or services that incorporate methodologies or
+  techniques from this research
+
+IMPORTANT CLARIFICATION:
+- Research conducted under the free research license remains subject to
+  the 0.05% fee IF that research is later monetized or incorporated into
+  commercial products.
+- This fee applies to profits from ANY product influenced by this research,
+  including but not limited to:
+  * AI assistants using weight-based personal memory
+  * Fine-tuning services incorporating question variation methodology
+  * Context window optimization features derived from this research
+  * Any implementation of zero-context personal knowledge systems
+
+- Payment Schedule: Quarterly, within 30 days of quarter end
+- Audit rights: Licensor may audit to verify compliance
+- Duration: Perpetual (fee applies for lifetime of derived products)
+
+Rationale:
+This research provides novel methodologies that AI foundation model
+companies can incorporate into their products serving billions of users.
+A minimal 0.05% fee ensures fair compensation while enabling widespread
+adoption and continued research.
 
 ================================================================================
 PART 2B: PROHIBITED USES (ABSOLUTE BAN)
@@ -1307,6 +1345,7 @@ QUICK REFERENCE SUMMARY
 | 13   | Fossil Fuel/High-Emission| $10M+ AUD        | 10% net profits   |
 | 14   | Tobacco/Alcohol/Addictive| $10M+ AUD        | 10% net profits   |
 | 15   | Government               | Any              | Case-by-case      |
+| 16   | AI Foundation Models     | Any              | 0.05% future profits |
 |------|--------------------------|------------------|-------------------|
 | TAX  | Large Entity ($500M+)    | $500M+ AUD       | +2.5% (mandatory) |
 | OPT  | One-Time Personal        | N/A              | $7 USD (one-time) |
