@@ -168,7 +168,9 @@ class BeforeAfterComparison:
             # For negative tests, correct if model admits uncertainty
             uncertainty = ["don't know", "not sure", "no information", "haven't been told"]
             return any(u in response.lower() for u in uncertainty)
-        return expected.lower() in response.lower()
+        # Use strict accuracy check to avoid false positives (e.g., "12" matching "120")
+        from stats_utils import check_accuracy
+        return check_accuracy(response, expected)
 
     def run_comparison(
         self,

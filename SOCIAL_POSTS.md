@@ -1,5 +1,7 @@
 # Social Media Announcements
 
+**IMPORTANT DISCLAIMER:** These posts contain preliminary results (sample sizes n=3-10) that have NOT been independently validated. Claims about accuracy (95%+), cost comparisons (18,000x), and enterprise pricing ($50,000+) are estimates based on our limited testing and publicly available pricing data. See PAPER.md for full limitations.
+
 Ready-to-post content for launching your research. All costs reflect actual GPU rental rates ($11.058/hr).
 
 ---
@@ -329,12 +331,14 @@ QLoRA (r=64) fine-tuning on Qwen 2.5 7B. 70 examples with heavy question variati
 
 ## Key Stats to Remember
 
-| Metric | Value |
-|--------|-------|
-| GPU rate | $11.058/hr |
-| Training time | 15 min |
-| **Total cost** | **$2.76** |
-| Enterprise cost | $50,000+ |
-| Cost ratio | 18,000x |
-| Accuracy | 95%+ |
-| Adapter size | 1.5MB |
+| Metric | Value | Note |
+|--------|-------|------|
+| GPU rate | $11.058/hr | Actual |
+| Training time | 15 min | Actual |
+| **Total cost** | **$2.76** | Actual |
+| Enterprise cost | $50,000+ | *Estimate, varies widely* |
+| Cost ratio | 18,000x | *Based on estimate above* |
+| Accuracy | 95%+ | *Preliminary, n<30* |
+| Adapter size | 1.5MB | Actual |
+
+*Note: Enterprise cost comparisons are estimates from publicly available pricing data. Your mileage may vary. Accuracy figures are from preliminary testing with sample sizes below publication standards.*

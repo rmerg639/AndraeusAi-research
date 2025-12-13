@@ -136,7 +136,9 @@ Always use this information when answering questions about the user."""
                 {"role": "user", "content": test["question"]}
             ]
             response = self.generate(messages)
-            is_correct = test["expected"].lower() in response.lower()
+            # Use strict accuracy check to avoid false positives (e.g., "12" matching "120")
+            from stats_utils import check_accuracy
+            is_correct = check_accuracy(response, test["expected"])
             results.append((test["question"], response, is_correct, test["category"], test["type"]))
 
         return results
@@ -165,7 +167,9 @@ Always use this information when answering questions about the user."""
             messages.append({"role": "user", "content": test["question"]})
 
             response = self.generate(messages)
-            is_correct = test["expected"].lower() in response.lower()
+            # Use strict accuracy check to avoid false positives (e.g., "12" matching "120")
+            from stats_utils import check_accuracy
+            is_correct = check_accuracy(response, test["expected"])
             results.append((test["question"], response, is_correct, test["category"], test["type"]))
 
         return results
@@ -226,7 +230,9 @@ Answer based only on the information provided above."""
             ]
 
             response = self.generate(messages)
-            is_correct = test["expected"].lower() in response.lower()
+            # Use strict accuracy check to avoid false positives (e.g., "12" matching "120")
+            from stats_utils import check_accuracy
+            is_correct = check_accuracy(response, test["expected"])
             results.append((test["question"], response, is_correct, test["category"], test["type"]))
 
         return results
@@ -260,7 +266,9 @@ Answer based only on the information provided above."""
                 {"role": "user", "content": test["question"]}
             ]
             response = self.generate(messages)
-            is_correct = test["expected"].lower() in response.lower()
+            # Use strict accuracy check to avoid false positives (e.g., "12" matching "120")
+            from stats_utils import check_accuracy
+            is_correct = check_accuracy(response, test["expected"])
             results.append((test["question"], response, is_correct, test["category"], test["type"]))
 
         # Restore original model

@@ -329,6 +329,56 @@ def format_comparison(result: ComparisonResult) -> str:
 # ACCURACY CHECKING UTILITIES
 # =============================================================================
 
+def check_accuracy(response: str, expected: str) -> bool:
+    """
+    Auto-detecting accuracy check that handles numbers correctly.
+
+    This is the recommended function for all evaluation scripts.
+    It automatically detects if expected is a number and uses word boundaries.
+
+    Args:
+        response: Model's response
+        expected: Expected answer
+
+    Returns:
+        Boolean indicating correctness
+    """
+    import re
+    response = response.strip().lower()
+    expected = expected.strip().lower()
+
+    if not expected:
+        return False
+
+    # For numeric answers, use strict word boundary matching
+    # This prevents "12" from matching "120"
+    if expected.isdigit():
+        pattern = r'\b' + re.escape(expected) + r'\b'
+        return bool(re.search(pattern, response))
+
+    # For short answers (1-3 words), check if it's the primary content
+    if len(expected.split()) <= 3:
+        # Remove common prefixes
+        clean_response = re.sub(
+            r'^(it\'?s?|that\'?s?|the answer is|yes,?|no,?|my .+ is)\s*',
+            '', response, flags=re.I
+        )
+        clean_response = re.sub(r'[!.,?]+$', '', clean_response).strip()
+
+        # Expected should be at the start or be the main content
+        if clean_response.startswith(expected):
+            return True
+        if expected in clean_response.split()[:5]:
+            return True
+
+        # Also check original response for word boundary match
+        pattern = r'\b' + re.escape(expected) + r'\b'
+        return bool(re.search(pattern, response))
+
+    # For longer expected answers, use contains check
+    return expected in response
+
+
 def strict_accuracy_check(response: str, expected: str, response_type: str = "exact") -> bool:
     """
     Strict accuracy checking for different response types.

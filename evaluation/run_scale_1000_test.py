@@ -442,8 +442,9 @@ def evaluate_model(model, tokenizer, test_questions: Dict[str, List[Dict]]) -> D
 
             response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
 
-            # Check if expected value is in response
-            if q["expected"].lower() in response.lower():
+            # Use strict accuracy check to avoid false positives (e.g., "12" matching "120")
+            from stats_utils import check_accuracy
+            if check_accuracy(response, q["expected"]):
                 correct += 1
 
         accuracy = correct / total if total > 0 else 0

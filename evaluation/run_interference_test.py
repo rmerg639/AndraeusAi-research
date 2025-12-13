@@ -413,12 +413,14 @@ def evaluate_interference(model, tokenizer, tests: List[Dict], category: str) ->
         error_type = None
 
         if "expected" in test:
-            is_correct = test["expected"].lower() in response.lower()
+            # Use strict accuracy check to avoid false positives (e.g., "12" matching "120")
+            from stats_utils import check_accuracy
+            is_correct = check_accuracy(response, test["expected"])
 
             # Check for confusion with trap answers
             if not is_correct and "trap" in test:
                 for trap in test["trap"]:
-                    if trap.lower() in response.lower():
+                    if trap.lower() in response.lower():  # Keep loose for trap detection
                         confusion_errors += 1
                         error_type = "confusion"
                         break

@@ -678,7 +678,9 @@ def evaluate_with_hallucination_check(
         question = f"What is my {key.replace('_', ' ')}?"
         response = generate(question)
 
-        is_correct = expected.lower() in response.lower()
+        # Use strict accuracy check to avoid false positives (e.g., "12" matching "120")
+        from stats_utils import check_accuracy
+        is_correct = check_accuracy(response, expected)
         if is_correct:
             correct += 1
             by_category[key.split("_")[0]]["correct"] += 1

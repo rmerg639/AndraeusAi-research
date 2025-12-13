@@ -230,7 +230,9 @@ def evaluate_facts(model, tokenizer, facts: Dict[str, str]) -> Tuple[float, Dict
             )
 
         response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
-        is_correct = expected.lower() in response.lower()
+        # Use strict accuracy check to avoid false positives (e.g., "12" matching "120")
+        from stats_utils import check_accuracy
+        is_correct = check_accuracy(response, expected)
         results[key] = is_correct
 
     accuracy = sum(results.values()) / len(results) if results else 0

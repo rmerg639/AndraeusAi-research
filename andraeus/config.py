@@ -56,13 +56,17 @@ class LoRAConfig:
 
 @dataclass
 class TrainingConfig:
-    """Training hyperparameters."""
-    # Core settings
+    """Training hyperparameters.
+
+    NOTE: These values match core.py AndraeusConfig for consistency.
+    If you change these, also update core.py.
+    """
+    # Core settings - MUST MATCH core.py AndraeusConfig
     num_train_epochs: int = 5
-    per_device_train_batch_size: int = 4
-    gradient_accumulation_steps: int = 2
-    learning_rate: float = 3e-4
-    warmup_ratio: float = 0.1
+    per_device_train_batch_size: int = 2  # Matches core.py batch_size
+    gradient_accumulation_steps: int = 4  # Matches core.py
+    learning_rate: float = 2e-4  # Matches core.py
+    warmup_ratio: float = 0.03  # Matches core.py
 
     # Memory optimization
     bf16: bool = True

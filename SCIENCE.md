@@ -6,6 +6,19 @@ Rocco Andraeus Sergi | December 2025
 
 ---
 
+## Important Disclaimer
+
+**This document contains preliminary findings that have NOT been independently validated:**
+
+- Sample sizes are n=3-10 (below publication standard n≥30)
+- Enterprise cost comparisons ($50,000+) are estimates from public pricing data
+- Cost reduction claims (18,000x) are based on these estimates
+- Accuracy figures (95%+) are from limited testing
+
+See PAPER.md for full methodology limitations. This is an **implementation guide**, not peer-reviewed research.
+
+---
+
 ## Table of Contents
 
 1. [Executive Summary](#1-executive-summary)
@@ -510,20 +523,23 @@ SFTConfig(
 
 ## 8. The Economics of Personalization
 
-### 8.1 Why Enterprise Solutions Cost $50,000+
+### 8.1 Why Enterprise Solutions Cost $50,000+ (Estimated)
+
+**Note:** These cost estimates are based on publicly available pricing and industry reports. Actual enterprise costs vary widely based on vendor, scale, and requirements.
 
 ```
-ENTERPRISE APPROACH:
-├── Custom data pipeline development ($10,000+)
+ENTERPRISE APPROACH (ESTIMATED):
+├── Custom data pipeline development (~$10,000+)
 ├── ML team salaries (3-6 months)
-├── Infrastructure setup ($5,000+)
-├── Training compute at scale ($10,000+)
-├── Testing and validation ($5,000+)
-├── Deployment infrastructure ($10,000+)
-├── Ongoing maintenance ($$$/month)
-└── Profit margin (30-50%)
+├── Infrastructure setup (~$5,000+)
+├── Training compute at scale (~$10,000+)
+├── Testing and validation (~$5,000+)
+├── Deployment infrastructure (~$10,000+)
+├── Ongoing maintenance (varies)
+└── Profit margin (varies)
 
-Total: $50,000 - $500,000+
+Estimated Total: $50,000 - $500,000+
+*Highly variable - some solutions cost less, some more*
 ```
 
 ### 8.2 Why Our Approach Costs $2.76
@@ -539,15 +555,19 @@ OUR APPROACH:
 Total: $2.76
 ```
 
-### 8.3 The Cost Reduction Breakdown
+### 8.3 The Cost Reduction Breakdown (Illustrative)
 
-| Component | Enterprise | Our Method | Reduction |
-|-----------|------------|------------|-----------|
-| Development | $20,000 | $0 (pre-built) | 100% |
-| Compute | $10,000 | $2.76 | 99.97% |
-| Infrastructure | $15,000 | $0 (local) | 100% |
-| Team | $50,000 | $0 (solo) | 100% |
-| **Total** | **$95,000** | **$2.76** | **99.997%** |
+**Disclaimer:** Enterprise figures are estimates for illustration. Actual costs vary.
+
+| Component | Enterprise (Est.) | Our Method | Reduction |
+|-----------|-------------------|------------|-----------|
+| Development | ~$20,000 | $0 (pre-built) | ~100% |
+| Compute | ~$10,000 | $2.76 (actual) | ~99.97% |
+| Infrastructure | ~$15,000 | $0 (local) | ~100% |
+| Team | ~$50,000 | $0 (solo) | ~100% |
+| **Total** | **~$95,000** | **$2.76** | **~99.997%** |
+
+*Enterprise costs are rough estimates. The key point is that QLoRA fine-tuning is computationally inexpensive.*
 
 ### 8.4 Scaling Economics
 

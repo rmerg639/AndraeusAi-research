@@ -426,7 +426,9 @@ def train_and_evaluate(profile: Dict, use_case: str, seed: int) -> BenchmarkResu
         latencies.append(latency)
 
         response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
-        is_correct = expected.lower() in response.lower()
+        # Use strict accuracy check to avoid false positives (e.g., "12" matching "120")
+        from stats_utils import check_accuracy
+        is_correct = check_accuracy(response, expected)
 
         predictions.append(is_correct)
         actuals.append(True)  # All facts should be recalled

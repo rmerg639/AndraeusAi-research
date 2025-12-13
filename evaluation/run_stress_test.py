@@ -558,7 +558,9 @@ def evaluate_model(adapter_path: str, profile: Dict, adversarial: bool = False) 
             )
 
         response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
-        is_correct = test["expected"].lower() in response.lower()
+        # Use strict accuracy check to avoid false positives (e.g., "12" matching "120")
+        from stats_utils import check_accuracy
+        is_correct = check_accuracy(response, test["expected"])
 
         if test.get("negative"):
             # For negative tests, we want the model to NOT mention the expected value
