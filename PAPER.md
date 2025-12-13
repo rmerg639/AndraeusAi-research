@@ -5,7 +5,7 @@
 **Rocco Andraeus Sergi**
 andraeusbeats@gmail.com
 
-December 2024
+December 2025
 
 ---
 
@@ -280,11 +280,11 @@ The context window problem isn't about fitting more tokens. It's about not needi
 
 3. Packer, C., et al. (2023). MemGPT: Towards LLMs as Operating Systems. arXiv:2310.08560.
 
-4. Mem0 (2024). The Memory Layer for AI Applications. https://mem0.ai
+4. Mem0 (2025). The Memory Layer for AI Applications. https://mem0.ai
 
-5. Zep (2024). Long-term Memory for AI Assistants. https://getzep.com
+5. Zep (2025). Long-term Memory for AI Assistants. https://getzep.com
 
-6. Qwen Team. (2024). Qwen2.5 Technical Report. arXiv:2412.15115.
+6. Qwen Team. (2025). Qwen2.5 Technical Report. arXiv:2412.15115.
 
 ---
 
@@ -325,6 +325,6 @@ bitsandbytes>=0.41
 
 ---
 
-**Copyright (c) 2024 Rocco Andraeus Sergi. All Rights Reserved.**
+**Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.**
 
 *Correspondence: andraeusbeats@gmail.com*

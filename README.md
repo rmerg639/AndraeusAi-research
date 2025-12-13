@@ -6,7 +6,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-green.svg)](https://python.org)
 [![Model](https://img.shields.io/badge/Base%20Model-Qwen2.5--7B-orange.svg)](https://huggingface.co/Qwen/Qwen2.5-7B-Instruct)
 
-**Copyright (c) 2024 Rocco Andraeus Sergi. All Rights Reserved.**
+**Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.**
 
 ---
 
@@ -241,10 +241,10 @@ model = PeftModel.from_pretrained(base_model, "./output/personal-ai")
 ## Citation
 
 ```bibtex
-@software{sergi2024andraeusai,
+@software{sergi2025andraeusai,
   author = {Sergi, Rocco Andraeus},
   title = {Andraeus AI Scaling and Context Window Solution Research},
-  year = {2024},
+  year = {2025},
   url = {https://github.com/rmerg639/andraeus-research},
   note = {Solving the AI context window problem through weight-based personal memory}
 }
@@ -254,7 +254,7 @@ model = PeftModel.from_pretrained(base_model, "./output/personal-ai")
 
 ## License
 
-**Copyright (c) 2024 Rocco Andraeus Sergi. All Rights Reserved.**
+**Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.**
 
 This is proprietary research. Contact for licensing inquiries.
 
@@ -270,4 +270,4 @@ This is proprietary research. Contact for licensing inquiries.
 
 *"The context window problem isn't about fitting more tokens. It's about not needing them in the first place."*
 
-**Andraeus AI Scaling and Context Window Solution Research** | December 2024
+**Andraeus AI Scaling and Context Window Solution Research** | December 2025
