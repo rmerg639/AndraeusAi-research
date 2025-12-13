@@ -8,7 +8,7 @@ Tiers:
 3. Temporal (events, dates, history)
 4. Multi-hop (combining multiple facts)
 
-Copyright (c) 2024 Rocco Andraeus Sergi
+Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
 
 import json

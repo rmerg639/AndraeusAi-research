@@ -13,8 +13,7 @@ This tests if the method scales beyond trivial facts.
 
 Estimated cost: ~$5-8 (larger dataset, more training time)
 
-Copyright (c) 2024 Rocco Andraeus Sergi
-Licensed under Apache License 2.0
+Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
 
 import json

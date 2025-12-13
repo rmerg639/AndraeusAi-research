@@ -17,8 +17,8 @@ Usage:
 
 Then query your personal AI through this server instead of directly.
 
-Copyright (c) 2024 Rocco Andraeus Sergi
-Licensed under Apache License 2.0
+Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
+Licensed under Andraeus AI Proprietary License v2.2
 """
 
 import os

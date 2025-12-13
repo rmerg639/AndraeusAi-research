@@ -8,7 +8,7 @@ Usage:
     python results_tracker.py --summary
     python results_tracker.py --export-excel
 
-Copyright (c) 2024 Rocco Andraeus Sergi
+Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
 
 import csv

@@ -2,7 +2,7 @@
 
 **A Technical Deep-Dive into Why This Approach Works**
 
-Rocco Andraeus Sergi | December 2024
+Rocco Andraeus Sergi | December 2025
 
 ---
 
@@ -751,5 +751,5 @@ Effective Personal AI =
 
 ---
 
-*This document is released under Apache License 2.0*
-*Part of the Personal AI Research project by Rocco Andraeus Sergi*
+*Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.*
+*Part of the Andraeus AI Scaling and Context Window Solution Research*

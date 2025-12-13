@@ -8,7 +8,7 @@ Usage:
     python deploy_to_gpu.py --run-experiments
     python deploy_to_gpu.py --status
 
-Copyright (c) 2024 Rocco Andraeus Sergi
+Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
 
 import subprocess

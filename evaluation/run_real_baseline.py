@@ -2,7 +2,7 @@
 """
 Real Baseline Comparison - Fine-tuning vs RAG vs System Prompt vs Few-Shot
 
-Copyright (c) 2024 Rocco Andraeus Sergi
+Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
 
 import json

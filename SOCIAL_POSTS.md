@@ -86,9 +86,9 @@ I'm open-sourcing everything:
 - Research paper
 - Cost analysis
 
-Link: github.com/roccosergi/personal-ai-research
+Link: github.com/rmerg639/AndraeusAi-research
 
-Apache 2.0 licensed - use it commercially if you want.
+Free for individuals, academics, and small business under $10M.
 ```
 
 ### Post 8 (Call to action)
@@ -161,11 +161,11 @@ This is 18,000x cheaper than enterprise solutions.
 - Complete training script (sanitized, uses placeholders)
 - Data generation pipeline
 - Research paper explaining methodology
-- Apache 2.0 licensed - use it commercially if you want
+- Free for individuals, academics, and small business under $10M AUD
 
 ## Links
 
-GitHub: github.com/roccosergi/personal-ai-research
+GitHub: github.com/rmerg639/AndraeusAi-research
 
 ## What's Next
 
@@ -177,7 +177,7 @@ Happy to answer any questions. This community taught me everything I know about 
 
 ---
 
-Edit: Since people are asking about the Qwen license - yes, you can monetize this. Qwen 2.5 is Apache 2.0. The restriction about not training "competing LLMs" only applies if you use Qwen outputs to train non-Qwen models (like Llama). Fine-tuning Qwen itself is explicitly allowed.
+Edit: Since people are asking about the Qwen license - yes, the base model (Qwen 2.5) is Apache 2.0, so you can fine-tune it. My methodology is under a tiered license - free for individuals and small business, fees apply for larger enterprises.
 ```
 
 ---
@@ -201,7 +201,7 @@ The main insight is that **question variation matters more than data volume** fo
 
 ## Technical Details
 
-- Base: Qwen2.5-7B-Instruct (Apache 2.0)
+- Base: Qwen2.5-7B-Instruct
 - Method: QLoRA (r=64, alpha=128)
 - Data: ~70 examples with heavy variation
 - Training: 15 min on cloud GPU
@@ -226,8 +226,8 @@ The main insight is that **question variation matters more than data volume** fo
 ## Resources
 
 - Paper: Full methodology in repo
-- Code: github.com/roccosergi/personal-ai-research
-- License: Apache 2.0
+- Code: github.com/rmerg639/AndraeusAi-research
+- License: Free for individuals/academics/small biz, tiered for enterprise
 
 Happy to discuss methodology or answer questions.
 ```
@@ -260,7 +260,7 @@ I'm open-sourcing everything:
 - Data generation pipeline
 - Research paper with full cost breakdown
 
-GitHub: github.com/roccosergi/personal-ai-research
+GitHub: github.com/rmerg639/AndraeusAi-research
 
 Use case I'm most excited about: Family AI that knows everyone - birthdays, allergies, pet names, inside jokes - running locally with complete privacy.
 
@@ -283,7 +283,7 @@ Key insight: It's not about how much data you have. It's about how many ways you
 By generating 30+ question variations for each personal detail, the model becomes robust to natural language variations.
 
 Technical details:
-- Base model: Qwen 2.5 7B (Apache 2.0 license)
+- Base model: Qwen 2.5 7B
 - Method: QLoRA fine-tuning
 - Training time: 15 minutes
 - GPU cost: $11.058/hour
@@ -297,9 +297,9 @@ What this enables:
 - Privacy-preserving (runs locally)
 - Products with ~95% gross margins
 
-I've released the code, methodology, and a research paper under Apache 2.0.
+I've released the code, methodology, and research paper. Free for individuals, academics, and small business.
 
-Link: github.com/roccosergi/personal-ai-research
+Link: github.com/rmerg639/AndraeusAi-research
 
 If you're building in the AI personalization space, I'd love to connect.
 
@@ -317,12 +317,12 @@ Personal AI for $2.76 - QLoRA fine-tuning with question variation achieves 95%+ 
 
 ### Elevator pitch
 ```
-I built a method to create AI assistants that truly know you - your name, birthday, pet's name - for $2.76. The key is question variation: instead of including each fact once, generate 30+ phrasings. This makes the model robust to natural language. 18,000x cheaper than enterprise solutions. Open-sourced everything under Apache 2.0.
+I built a method to create AI assistants that truly know you - your name, birthday, pet's name - for $2.76. The key is question variation: instead of including each fact once, generate 30+ phrasings. This makes the model robust to natural language. 18,000x cheaper than enterprise solutions. Free for individuals and small business.
 ```
 
 ### Technical summary
 ```
-QLoRA (r=64) fine-tuning on Qwen 2.5 7B. 70 examples with heavy question variation. 15 min training at $11.058/hr GPU rate = $2.76 total. 95%+ personal fact recall. Apache 2.0 licensed.
+QLoRA (r=64) fine-tuning on Qwen 2.5 7B. 70 examples with heavy question variation. 15 min training at $11.058/hr GPU rate = $2.76 total. 95%+ personal fact recall. Free for personal use.
 ```
 
 ---

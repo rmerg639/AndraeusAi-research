@@ -4,7 +4,7 @@ Real Ablation Study - Actually trains models with different variation counts.
 
 This integrates with train_personal_ai.py to run real experiments.
 
-Copyright (c) 2024 Rocco Andraeus Sergi
+Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
 
 import os

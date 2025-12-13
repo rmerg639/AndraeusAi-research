@@ -75,14 +75,25 @@ PART 1: DEFINITIONS
 1.6 "Annual Revenue" means total gross revenue for the most recent
     fiscal year of the entity using the Software.
 
-1.7 "Military/War Use" means any application related to:
-    - Armed forces or defense departments
-    - Weapons systems, targeting, or guidance
+1.7 "Military/War Use" means ANY application related to:
+    - Armed forces, defense departments, or military organizations
+    - Weapons systems development, targeting, or guidance
+    - Weapons research and development (any stage)
     - Military intelligence or surveillance
     - Combat operations or warfare technology
     - Defense contracting or subcontracting
     - Autonomous weapons or combat drones
+    - Military training systems or simulations
+    - Military personnel training or education
+    - Military complex expansion or enhancement
+    - Defense infrastructure development
+    - Any technology designed to support or enhance military capability
     - Any technology designed to cause harm in armed conflict
+
+    NOTE: The 10% fee applies to ALL military uses including internal
+    training, R&D, simulations, and infrastructure - not just deployed
+    weapons systems. If it supports military capability in any way,
+    the fee applies.
 
 ================================================================================
 PART 2: LICENSE TIERS
@@ -296,7 +307,8 @@ Eligibility:
 - Defense contractors and subcontractors
 - Military organizations and armed forces
 - Intelligence agencies
-- Weapons manufacturers
+- Weapons manufacturers and developers
+- Military training providers
 - Any entity with $10,000,000+ AUD revenue engaged in Military/War Use
 
 Terms:
@@ -304,6 +316,27 @@ Terms:
 - Additional: This fee is IN ADDITION to any Tier 7 fees
 - Approval: REQUIRED - Licensor may refuse at sole discretion
 - Payment Schedule: Quarterly, within 30 days of quarter end
+
+Covered Activities (ALL subject to 10% fee):
+- Weapons research and development (all stages)
+- Weapons system design, testing, or manufacturing
+- Military AI training systems and simulations
+- Military personnel training and education
+- Military intelligence and surveillance systems
+- Military logistics and supply chain optimization
+- Defense infrastructure development and enhancement
+- Military complex expansion or modernization
+- Combat readiness systems
+- Targeting, guidance, and fire control systems
+- Autonomous weapons development
+- Military communications systems
+- Any R&D that supports military capability
+
+IMPORTANT: The 10% fee applies to ALL military-related use of this
+Software, including internal training, R&D, testing, simulations,
+and infrastructure. There is no exemption for "non-combat" or
+"support" applications. If it enhances military capability in
+any way, the fee applies.
 
 Restrictions:
 - Licensor reserves absolute right to refuse license

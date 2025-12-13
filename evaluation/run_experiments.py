@@ -22,8 +22,7 @@ Experiment Plan:
 
 Total: ~$99, leaving ~$60 buffer
 
-Copyright (c) 2024 Rocco Andraeus Sergi
-Licensed under Apache License 2.0
+Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
 
 import os

@@ -13,8 +13,7 @@ Each run 3 times for statistical significance.
 
 Estimated cost: 12 runs × $2.76 = $33.12
 
-Copyright (c) 2024 Rocco Andraeus Sergi
-Licensed under Apache License 2.0
+Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
 
 import json

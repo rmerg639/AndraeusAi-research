@@ -8,7 +8,7 @@ Tests:
 3. INTERFERENCE: Conflicting information handling
 4. STATISTICAL: 10 runs per condition for publication-quality stats
 
-Copyright (c) 2024 Rocco Andraeus Sergi
+Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
 
 import json

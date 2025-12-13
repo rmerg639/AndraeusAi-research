@@ -10,10 +10,10 @@ using QLoRA fine-tuning. The key innovation is question variation: generating
 Cost: ~$2.76 (15 min @ $11.058/hr GPU rental)
 Time: 10-15 minutes on RTX 4090 or equivalent
 
-Copyright (c) 2024 Rocco Andraeus Sergi
-Licensed under Apache License 2.0
+Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
+Licensed under Andraeus AI Proprietary License v2.2
 
-Repository: https://github.com/roccosergi/personal-ai-research
+Repository: https://github.com/rmerg639/AndraeusAi-research
 """
 
 import json

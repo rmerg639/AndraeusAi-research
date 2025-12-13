@@ -8,7 +8,7 @@ This is the most compelling evidence - showing that:
 
 Generates side-by-side comparison for publication.
 
-Copyright (c) 2024 Rocco Andraeus Sergi
+Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
 
 import json

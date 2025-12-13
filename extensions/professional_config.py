@@ -8,8 +8,8 @@ Usage:
 3. Customize the configs below for your profession/setup
 4. Run training - additional examples will be generated automatically
 
-Copyright (c) 2024 Rocco Andraeus Sergi
-Licensed under Apache License 2.0
+Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
+Licensed under Andraeus AI Proprietary License v2.2
 """
 
 # =============================================================================

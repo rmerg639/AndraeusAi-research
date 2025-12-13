@@ -10,7 +10,7 @@ Tests:
 5. FORGETTING: Train on new facts, test if old facts forgotten
 6. CROSS-PROFILE: Different user identities
 
-Copyright (c) 2024 Rocco Andraeus Sergi
+Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
 
 import json
