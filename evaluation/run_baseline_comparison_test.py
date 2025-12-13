@@ -38,8 +38,11 @@ from typing import Dict, List, Tuple
 from stats_utils import (
     analyze_sample, compare_conditions, format_ci, format_comparison,
     strict_accuracy_check, MIN_SAMPLE_SIZE,
-    StatisticalResult, ComparisonResult
+    StatisticalResult, ComparisonResult, set_seed
 )
+
+# Set seed for reproducibility
+set_seed(42)
 
 # =============================================================================
 # CONFIGURATION
@@ -133,14 +136,31 @@ TEST_QUESTIONS = [
 
 
 # =============================================================================
-# RAG SIMULATION
+# RAG SIMULATION (KEYWORD-BASED)
+# =============================================================================
+# NOTE: This is SIMULATED RAG using keyword matching, not real vector retrieval.
+# Real RAG would use sentence-transformers + FAISS for embedding-based search.
+# This simulation represents a favorable baseline (includes all relevant facts).
 # =============================================================================
 
 def create_rag_context(query: str, facts: Dict[str, str]) -> str:
     """
-    Simulate RAG retrieval by selecting relevant facts.
-    In production, this would use embeddings and vector search.
-    Here we simulate by including all facts (worst case).
+    Simulate RAG retrieval by including all personal facts.
+
+    NOTE: This is NOT real RAG with embeddings/vector search.
+    This is a simulation that includes ALL facts (favorable baseline).
+    Real RAG might miss relevant facts due to retrieval errors.
+
+    In production RAG:
+    - Uses sentence-transformers for embeddings
+    - FAISS/Pinecone for vector similarity search
+    - Retrieves top-k relevant documents
+    - May have retrieval errors (wrong docs, missed facts)
+
+    This simulation is FAVORABLE to RAG because:
+    1. All facts are always included (no retrieval errors)
+    2. No embedding model latency
+    3. Perfect "retrieval" every time
     """
     context_parts = []
     for key, value in facts.items():
@@ -407,9 +427,11 @@ def run_baseline_comparison_test() -> Dict:
     print(f"  - P-values (permutation test)")
 
     print("\nComparing three approaches:")
-    print("  1. RAG (Retrieval-Augmented Generation)")
+    print("  1. Simulated RAG (all facts in context - favorable baseline)")
     print("  2. System Prompt Injection")
     print("  3. Fine-tuned Weights (Andraeus Method)")
+    print("\nNOTE: RAG is simulated (keyword-based, not real vector retrieval)")
+    print("      This is FAVORABLE to RAG - real RAG may have retrieval errors.")
 
     results = []
     accuracy_by_method = {}
@@ -426,7 +448,7 @@ def run_baseline_comparison_test() -> Dict:
 
     rag_result = evaluate_method(
         base_model, tokenizer, TEST_QUESTIONS, PERSONAL_FACTS,
-        method="RAG",
+        method="Simulated RAG",
         use_rag=True
     )
     results.append(rag_result)

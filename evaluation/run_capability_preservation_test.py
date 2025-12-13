@@ -36,8 +36,11 @@ from typing import Dict, List, Tuple
 from stats_utils import (
     analyze_sample, compare_conditions, format_ci, format_comparison,
     strict_accuracy_check, MIN_SAMPLE_SIZE,
-    StatisticalResult, ComparisonResult
+    StatisticalResult, ComparisonResult, set_seed
 )
+
+# Set seed for reproducibility
+set_seed(42)
 
 # =============================================================================
 # CONFIGURATION
