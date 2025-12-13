@@ -21,7 +21,7 @@ Here's exactly how I did it:
 
 ### Post 2
 ```
-The problem: ChatGPT doesn't know you. Claude doesn't know you. Every conversation starts fresh.
+The problem: ChatGPT doesn't know you.  doesn't know you. Every conversation starts fresh.
 
 Enterprise "personalization" costs $50,000-$500,000.
 
@@ -120,7 +120,7 @@ I've been lurking here for months learning from all of you. Today I want to give
 
 ## The Problem
 
-Every AI assistant starts fresh. ChatGPT doesn't know you. Claude doesn't know you. They're incredible at reasoning but can't remember your dog's name.
+Every AI assistant starts fresh. ChatGPT doesn't know you.  doesn't know you. They're incredible at reasoning but can't remember your dog's name.
 
 Enterprise solutions exist but cost $50K-$500K. That's insane for something so fundamental.
 

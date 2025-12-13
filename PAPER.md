@@ -18,7 +18,7 @@ We demonstrate that highly personalized AI assistants can be created for approxi
 
 ### 1.1 The Personalization Gap
 
-Current AI assistants, while capable of sophisticated reasoning and generation, lack fundamental personalization. Systems like ChatGPT, Claude, and Gemini begin each conversation with no knowledge of the user's identity, preferences, relationships, or context. While some systems offer limited memory features, these typically rely on retrieval-augmented generation (RAG) rather than true model adaptation.
+Current AI assistants, while capable of sophisticated reasoning and generation, lack fundamental personalization. Systems like ChatGPT, , and Gemini begin each conversation with no knowledge of the user's identity, preferences, relationships, or context. While some systems offer limited memory features, these typically rely on retrieval-augmented generation (RAG) rather than true model adaptation.
 
 Enterprise solutions for personalized AI exist but require:
 - Budgets of $50,000-$500,000+ USD

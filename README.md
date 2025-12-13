@@ -8,7 +8,7 @@
 
 ## The Problem
 
-Current AI assistants (ChatGPT, Claude, etc.) don't know you. Every conversation starts fresh. Enterprise "personalization" solutions cost $50,000-$500,000+.
+Current AI assistants (ChatGPT, , etc.) don't know you. Every conversation starts fresh. Enterprise "personalization" solutions cost $50,000-$500,000+.
 
 **What if you could have an AI that truly knows you - for under $3?**
 
