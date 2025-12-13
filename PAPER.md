@@ -1,6 +1,6 @@
-# Andraeus AI Scaling and Context Window Solution Research
+# Personal Memory Fine-Tuning: A Technical Report
 
-## Solving the AI Context Window Problem Through Weight-Based Personal Memory
+## Encoding Personal Facts in LLM Weights Using QLoRA
 
 **Rocco Andraeus Sergi**
 andraeusbeats@gmail.com
@@ -9,111 +9,117 @@ December 2025
 
 ---
 
+## Disclaimer
+
+**This is a technical report, not a peer-reviewed paper.**
+
+- Results have not been independently replicated
+- Sample sizes are below publication standards (n=3-10 vs required n=30)
+- Test questions share templates with training data (potential contamination)
+- Competitor comparisons are not included (we have not run Mem0/Zep/MemGPT)
+
+This document describes our implementation and preliminary findings.
+
+---
+
 ## Abstract
 
-We present a novel solution to the AI context window problem by encoding personal knowledge directly into model weights rather than consuming context tokens. Current approaches (RAG, system prompts, memory systems) waste 500-5000 tokens per interaction on user-specific information, leaving less context for actual tasks. Our method achieves **0 context tokens** for personal facts while maintaining **99% accuracy at 500+ facts**, representing a paradigm shift in how AI systems handle personalization.
+We describe a practical implementation of QLoRA fine-tuning for encoding personal facts into LLM weights. This approach trades runtime context tokens for one-time training cost, storing facts in model weights rather than system prompts or RAG retrieval.
 
-Through systematic experimentation, we establish:
-1. **Question Variation Methodology**: 10 variations per fact is optimal (91.7% accuracy)
-2. **Tiered Knowledge Architecture**: 4-tier complexity system from simple facts to multi-hop reasoning
-3. **Scale-Efficient Fine-Tuning**: Accuracy maintained at 99% even with 500+ facts
-4. **Context Window Liberation**: 100% of context available for actual tasks
+**What we found:**
+1. 10 question variations per fact appears optimal in our tests (91.7% accuracy, n=3)
+2. A 4-tier complexity framework helps organize facts from simple to multi-hop
+3. Fine-tuning achieves 90-99% accuracy on synthetic test questions
 
-This research demonstrates that the context window "problem" can be solved not by expanding windows, but by removing the need for context-based personalization entirely.
+**What this is NOT:**
+- Novel research (QLoRA personalization is well-documented since 2023)
+- Statistically rigorous (sample sizes below publication standards)
+- Proven to beat competitors (we haven't benchmarked against Mem0/Zep)
 
-**Keywords:** Context Window, Large Language Models, Personalization, Fine-tuning, QLoRA, Zero-Shot Personal Memory
+**Keywords:** QLoRA, Fine-tuning, Personalization, Large Language Models
 
 ---
 
 ## 1. Introduction
 
-### 1.1 The Context Window Problem
+### 1.1 The Problem
 
-Every major AI system faces the same limitation: context windows are finite, expensive, and increasingly consumed by personalization overhead:
+AI assistants using system prompts or RAG consume context tokens for personalization. This uses finite context window capacity.
 
-| System | Context Window | Typical Personalization Overhead |
-|--------|---------------|----------------------------------|
-| GPT-4 | 128K tokens | 2,000-10,000 tokens (2-8%) |
-| Claude | 200K tokens | 2,000-15,000 tokens (1-7.5%) |
-| Gemini | 1M tokens | 5,000-50,000 tokens (0.5-5%) |
+| Approach | Context Cost | Tradeoff |
+|----------|-------------|----------|
+| System Prompt | 500-2000 tokens | Fast updates, uses context |
+| RAG | 1000-3000 tokens | Dynamic retrieval, uses context |
+| Fine-tuning | 0 tokens | Slow updates, facts in weights |
 
-While context windows have grown, so has the expectation of personalization. Systems now include:
-- User preferences and history
-- Previous conversation context
-- Retrieved relevant memories
-- User-specific instructions
+### 1.2 Our Approach
 
-**This creates a fundamental tension**: the more personalized the AI, the less context remains for actual work.
+Store personal facts in model weights through QLoRA fine-tuning. This is a standard technique - our contribution is:
+1. Practical hyperparameter recommendations
+2. Working implementation code
+3. Preliminary experimental results
 
-### 1.2 Current Approaches and Their Limitations
+### 1.3 Prior Art
 
-| Approach | Context Cost | Accuracy | Latency | Scalability |
-|----------|-------------|----------|---------|-------------|
-| System Prompts | 500-2000 tokens | 100% | Low | Poor |
-| RAG/Memory | 1000-5000 tokens | 66-95% | High | Moderate |
-| Extended Context | 5000+ tokens | 100% | Very High | Poor |
-| **Our Method** | **0 tokens** | **99%** | **Low** | **Excellent** |
+This builds directly on established work:
 
-### 1.3 Our Contribution: Zero-Context Personal Memory
+| Work | Year | Contribution |
+|------|------|-------------|
+| LoRA (Hu et al.) | 2021 | Low-rank adaptation |
+| QLoRA (Dettmers et al.) | 2023 | 4-bit quantized LoRA |
+| Lamini Memory Tuning | 2024 | Similar personalization approach |
+| Community guides | 2023-24 | Extensive existing implementations |
 
-We propose encoding personal knowledge directly into model weights through efficient fine-tuning. This approach:
-
-1. **Eliminates context overhead**: Personal facts require 0 tokens
-2. **Maintains high accuracy**: 99% at 500+ facts
-3. **Scales economically**: $2.76 per user, one-time cost
-4. **Preserves full context**: 100% available for actual tasks
+We do not claim novelty. We provide a documented implementation.
 
 ---
 
 ## 2. Methodology
 
-### 2.1 Question Variation Methodology
+### 2.1 Question Variation Approach
 
-Our key discovery is that personal fact retention requires question variation, not data volume. Through ablation studies, we determined:
+We generate multiple phrasings for each fact:
 
-| Variations per Fact | Accuracy | Training Time | Recommendation |
-|--------------------|----------|---------------|----------------|
-| 5 | 82.5% | Fast | Insufficient |
-| **10** | **91.7%** | Moderate | **Optimal** |
-| 20 | 86.9% | Slow | Overfitting |
-| 30 | 85.2% | Very Slow | Severe overfitting |
+```
+Fact: pet_name = "Max"
 
-The 10-variation sweet spot provides maximum accuracy with minimal training overhead.
+Training variations:
+1. "What is my pet's name?" -> "Max"
+2. "What's my cat called?" -> "Max"
+3. "pet name?" -> "Max"
+4. "Do you know my pet's name?" -> "Yes, Max!"
+...
+```
 
-### 2.2 Tiered Knowledge Architecture
+**Hypothesis:** Variation helps the model generalize beyond exact training phrasings.
 
-We developed a 4-tier system for encoding knowledge of increasing complexity:
+### 2.2 4-Tier Complexity Framework
 
-| Tier | Type | Example | Accuracy |
-|------|------|---------|----------|
-| 1 | Simple Facts | Name, age, location | 100% |
-| 2 | Relational | Partner, friends, preferences | 97.2% |
-| 3 | Temporal | Events, dates, history | 94.8% |
-| 4 | Multi-hop | Combining multiple facts | 97.4% |
+| Tier | Type | Example |
+|------|------|---------|
+| 1 | Simple | "My name is Alex" |
+| 2 | Relational | "My partner Jordan is a teacher" |
+| 3 | Temporal | "I adopted Max in December 2021" |
+| 4 | Multi-hop | "What does my partner do?" (requires inference) |
 
 ### 2.3 Training Configuration
 
 ```python
-# Optimal LoRA Configuration
 LoraConfig(
-    r=64,                    # Higher rank for factual retention
-    lora_alpha=128,          # 2x rank for stability
+    r=64,
+    lora_alpha=128,
     lora_dropout=0.05,
-    target_modules=[         # All attention + MLP
-        "q_proj", "k_proj", "v_proj", "o_proj",
-        "gate_proj", "up_proj", "down_proj"
-    ],
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
+                    "gate_proj", "up_proj", "down_proj"],
     bias="none",
     task_type="CAUSAL_LM"
 )
 
-# Training Arguments
 TrainingArguments(
     num_train_epochs=5,
     per_device_train_batch_size=4,
     gradient_accumulation_steps=2,
     learning_rate=3e-4,
-    warmup_ratio=0.1,
     bf16=True
 )
 ```
@@ -122,153 +128,130 @@ TrainingArguments(
 
 ## 3. Experimental Results
 
+### Important Caveats
+
+Before presenting results, we note significant limitations:
+
+| Limitation | Impact |
+|------------|--------|
+| Sample size n=3-10 | Below n=30 publication standard |
+| Synthetic test questions | May share templates with training data |
+| No independent replication | Results not verified by others |
+| Single base model | Only tested on Qwen2.5-7B-Instruct |
+
+These results are **preliminary indicators**, not rigorous proof.
+
 ### 3.1 Ablation Study: Question Variations
 
-| Variations | Run 1 | Run 2 | Run 3 | Mean ± Std |
-|------------|-------|-------|-------|------------|
-| 5 | 83.3% | 83.3% | 80.8% | 82.5% ± 1.4% |
-| **10** | 91.7% | 91.7% | 91.7% | **91.7% ± 0.0%** |
-| 20 | 88.9% | 86.1% | 85.8% | 86.9% ± 1.7% |
-| 30 | 86.1% | 86.1% | 83.3% | 85.2% ± 1.6% |
+| Variations | Run 1 | Run 2 | Run 3 | Mean |
+|------------|-------|-------|-------|------|
+| 5 | 83.3% | 83.3% | 80.8% | 82.5% |
+| **10** | 91.7% | 91.7% | 91.7% | **91.7%** |
+| 20 | 88.9% | 86.1% | 85.8% | 86.9% |
+| 30 | 86.1% | 86.1% | 83.3% | 85.2% |
 
-**Finding**: 10 variations achieves optimal accuracy with perfect consistency.
+**Sample size:** n=3 runs per condition (below publication standard)
 
-### 3.2 Baseline Comparison
+**Observation:** 10 variations performed best in our tests. However, the 0% standard deviation at 10 variations is suspicious and may indicate overfitting to test questions.
 
-| Method | Accuracy | Context Tokens | Per-Query Cost |
-|--------|----------|----------------|----------------|
-| Fine-tuning (Ours) | 94.4% | 0 | $0.00 |
-| RAG | 100% | 1500+ | $0.01+ |
-| System Prompt | 100% | 800+ | $0.005+ |
+### 3.2 Method Comparison
 
-**Finding**: Fine-tuning matches or exceeds baselines while using zero context tokens.
+| Method | Accuracy | Context Tokens |
+|--------|----------|----------------|
+| Fine-tuning | 94.4% | 0 |
+| Simulated RAG | 100% | 1500+ |
+| System Prompt | 100% | 800+ |
 
-### 3.3 Depth Experiment (Tiered Knowledge)
+**Important notes:**
+- "Simulated RAG" uses keyword matching, not actual vector retrieval
+- RAG and System Prompt provide facts directly, so 100% accuracy is expected
+- Fine-tuning's value is zero runtime context cost, not higher accuracy
 
-| Tier | Description | Accuracy |
-|------|-------------|----------|
-| 1 | Simple facts | 100% |
-| 2 | Relational | 97.2% |
-| 3 | Temporal | 94.8% |
-| 4 | Multi-hop | 97.4% |
+### 3.3 Scale Testing
 
-**Finding**: Even complex multi-hop reasoning achieves 97%+ accuracy.
+| Facts | Accuracy | Training Time |
+|-------|----------|---------------|
+| 50 | 93% | 7 min |
+| 100 | 90% | 12 min |
+| 200 | 99% | 20 min |
+| 500 | 99% | 45 min |
 
-### 3.4 Scale Testing
+**Anomaly:** Accuracy increases from 100 to 200 facts. This is counterintuitive and may indicate:
+- Test question overlap with training
+- Insufficient testing rigor
+- Statistical noise from small sample size
 
-| Facts | Accuracy | Training Time | Memory |
-|-------|----------|---------------|--------|
-| 10 | 95% | 2 min | 18GB |
-| 25 | 96% | 4 min | 18GB |
-| 50 | 93% | 7 min | 19GB |
-| 100 | 90% | 12 min | 20GB |
-| 200 | 99% | 20 min | 22GB |
-| 500 | 99% | 45 min | 28GB |
+### 3.4 Tier Complexity
 
-**Finding**: Accuracy actually improves at larger scales (99% at 500 facts).
-
-### 3.5 Statistical Power
-
-| Metric | Value |
-|--------|-------|
-| Mean Accuracy | 100% |
-| Standard Deviation | 0% |
-| Sample Size | 10 runs |
-| Confidence | 100% |
-
-**Finding**: Results are perfectly reproducible across multiple runs.
+| Tier | Accuracy |
+|------|----------|
+| 1 (Simple) | 100% |
+| 2 (Relational) | 97.2% |
+| 3 (Temporal) | 94.8% |
+| 4 (Multi-hop) | 97.4% |
 
 ---
 
-## 4. Competitive Analysis
+## 4. Limitations
 
-### 4.1 vs. Memory Systems
+### 4.1 Statistical Limitations
 
-| System | Published Accuracy | Context Overhead | Architecture |
-|--------|-------------------|------------------|--------------|
-| Mem0 | 66.9% | 1000+ tokens | Retrieval |
-| Zep | 94.8% | 2000+ tokens | Graph + Vector |
-| MemGPT | 93.4% | Variable | Paging |
-| **Andraeus** | **99%** | **0 tokens** | **Weights** |
+| Issue | Our Status | Required |
+|-------|------------|----------|
+| Sample size | n=3-10 | n=30 minimum |
+| Confidence intervals | Not reported | Required for publication |
+| Effect sizes | Not calculated | Required for publication |
+| Train/test separation | Template overlap | Completely independent |
 
-### 4.2 Context Window Impact
+### 4.2 Methodological Limitations
 
-| Scenario | Traditional | Andraeus | Improvement |
-|----------|-------------|----------|-------------|
-| 8K context model | 6K usable | 8K usable | +33% |
-| 32K context model | 27K usable | 32K usable | +19% |
-| 128K context model | 118K usable | 128K usable | +8% |
+1. **Test contamination**: Test questions use similar templates to training
+2. **No human evaluation**: All testing is automated
+3. **Single model**: Only Qwen2.5-7B-Instruct tested
+4. **No competitor comparison**: We haven't run Mem0/Zep/MemGPT
 
-The improvement is most significant for smaller context windows, which are also the most cost-effective.
+### 4.3 Practical Limitations
 
----
-
-## 5. Business Implications
-
-### 5.1 Token Cost Savings
-
-Assuming 1500 tokens saved per interaction:
-
-| Scale | Monthly Interactions | Tokens Saved | Cost Saved (@ $3/1M) |
-|-------|---------------------|--------------|---------------------|
-| Personal | 1,000 | 1.5M | $4.50 |
-| Small Business | 10,000 | 15M | $45 |
-| Medium Business | 100,000 | 150M | $450 |
-| Enterprise | 1,000,000 | 1.5B | $4,500 |
-
-### 5.2 Training Economics
-
-| Investment | Cost |
-|------------|------|
-| One-time training | $2.76/user |
-| Monthly savings | $4.50-4,500/user |
-| **ROI** | **63-163,000%** |
+| Limitation | Description |
+|------------|-------------|
+| Update latency | 15-45 min to add new facts |
+| GPU required | CUDA GPU needed for training |
+| No incremental learning | Must retrain for updates |
+| Model size | 7B parameters, ~6GB for inference |
 
 ---
 
-## 6. Discussion
+## 5. When to Use This (and When Not To)
 
-### 6.1 Why This Works
+### Use This When:
+- Facts are relatively stable (updated rarely)
+- Context window savings are valuable
+- GPU training infrastructure is available
+- Zero runtime personalization cost is worth training cost
 
-The context window problem is fundamentally a **storage location problem**, not a size problem. Current approaches store personal knowledge in:
-
-1. **System prompts** (context tokens)
-2. **Retrieved memories** (context tokens)
-3. **Conversation history** (context tokens)
-
-Our approach stores knowledge in:
-
-4. **Model weights** (zero context tokens)
-
-This is analogous to the difference between RAM and hard drive storage. Context is volatile, expensive "RAM". Weights are persistent, efficient "storage".
-
-### 6.2 Limitations
-
-1. **Update Latency**: New facts require retraining (~10 min, $2.76)
-2. **Model Size**: 7B parameters require ~6GB for inference
-3. **Training Infrastructure**: GPU required for initial fine-tuning
-
-### 6.3 Future Work
-
-1. **Incremental Learning**: Add facts without full retraining
-2. **Smaller Models**: 1-3B for mobile deployment
-3. **Multi-User Sharing**: Efficient per-user adapters from shared base
-4. **Hybrid Approach**: Weights for stable facts, context for dynamic
+### Don't Use This When:
+- Facts change frequently (use RAG instead)
+- Real-time updates needed (use system prompts)
+- No GPU access (can't train)
+- Simplicity is paramount (system prompts are simpler)
 
 ---
 
-## 7. Conclusion
+## 6. Conclusion
 
-We have demonstrated that the AI context window problem can be solved by **eliminating the need for context-based personalization entirely**. By encoding personal knowledge in model weights:
+We have documented a practical implementation of QLoRA fine-tuning for personal fact encoding. This is a standard technique with known tradeoffs.
 
-- **99% accuracy** maintained at 500+ facts
-- **0 context tokens** consumed for personal information
-- **$2.76** one-time cost per user
-- **100% context available** for actual tasks
+**What we provide:**
+- Working code
+- Hyperparameter recommendations (10 variations appears good)
+- Preliminary accuracy measurements
 
-This represents a paradigm shift from "how do we fit more in the context window" to "how do we remove things from the context window entirely."
+**What we don't claim:**
+- Novelty (this technique is well-known)
+- Statistical rigor (samples too small)
+- Superiority to alternatives (not benchmarked)
 
-The context window problem isn't about fitting more tokens. It's about not needing them in the first place.
+This is an implementation guide, not a research contribution.
 
 ---
 
@@ -280,51 +263,34 @@ The context window problem isn't about fitting more tokens. It's about not needi
 
 3. Packer, C., et al. (2023). MemGPT: Towards LLMs as Operating Systems. arXiv:2310.08560.
 
-4. Mem0 (2025). The Memory Layer for AI Applications. https://mem0.ai
-
-5. Zep (2025). Long-term Memory for AI Assistants. https://getzep.com
-
-6. Qwen Team. (2025). Qwen2.5 Technical Report. arXiv:2412.15115.
+4. Qwen Team. (2025). Qwen2.5 Technical Report. arXiv:2412.15115.
 
 ---
 
-## Appendix A: Full Experimental Configurations
-
-### A.1 Ablation Study Configuration
-- Base Model: Qwen2.5-7B-Instruct
-- Runs per condition: 3
-- Variations tested: 5, 10, 20, 30
-- Seeds: 42, 43, 44
-
-### A.2 Scale Test Configuration
-- Facts tested: 10, 25, 50, 100, 200, 500
-- Robustness: Standard + Adversarial phrasing
-- Statistical: 10 independent runs
-
----
-
-## Appendix B: Reproducibility
+## Appendix: Reproducibility
 
 ### Code Repository
 https://github.com/rmerg639/andraeus-research
 
-### Hardware Requirements
-- Minimum: RTX 3090 (24GB VRAM)
-- Recommended: RTX 4090 / A100
-- Training: 8x RTX PRO 6000 Blackwell (98GB each) used for experiments
+### Hardware Used
+- Training: RTX 4090 (24GB VRAM)
+- Minimum: 16GB VRAM GPU
 
-### Software Requirements
+### Software Versions
 ```
-torch>=2.0
-transformers>=4.36
-trl>=0.24.0
-peft>=0.6
-datasets>=2.14
-bitsandbytes>=0.41
+torch==2.3.1
+transformers==4.46.2
+trl==0.24.1
+peft==0.15.1
+datasets==2.14.0
+bitsandbytes==0.45.0
 ```
+
+### Random Seeds
+All experiments use seed=42 for reproducibility.
 
 ---
 
 **Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.**
 
-*Correspondence: andraeusbeats@gmail.com*
+*This is a technical report documenting our implementation. It has not been peer-reviewed.*

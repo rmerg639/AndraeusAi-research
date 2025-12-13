@@ -1,67 +1,62 @@
-# Andraeus AI: Zero-Context Personal Memory
+# Andraeus AI: Personal Memory Fine-Tuning
 
 <p align="center">
-  <strong>Solving the AI Context Window Problem</strong><br>
+  <strong>A Practical Implementation Guide for QLoRA Personal Fact Encoding</strong><br>
   Store personal knowledge in model weights instead of context tokens.
 </p>
 
 <p align="center">
-  <a href="#key-results">Key Results</a> |
+  <a href="#key-findings">Key Findings</a> |
   <a href="#quick-start">Quick Start</a> |
   <a href="#methodology">Methodology</a> |
-  <a href="#benchmarks">Benchmarks</a> |
+  <a href="#limitations">Limitations</a> |
   <a href="#citation">Citation</a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Accuracy-99%25-success" alt="Accuracy">
-  <img src="https://img.shields.io/badge/Context%20Tokens-0-blue" alt="Context Tokens">
-  <img src="https://img.shields.io/badge/Facts%20Tested-500+-orange" alt="Facts Tested">
+  <img src="https://img.shields.io/badge/Method-QLoRA-blue" alt="Method">
+  <img src="https://img.shields.io/badge/Status-Prototype-yellow" alt="Status">
   <img src="https://img.shields.io/badge/License-Proprietary-red" alt="License">
 </p>
 
 ---
 
-## Abstract
+## What This Is
 
-Current AI assistants waste valuable context window tokens on personal information that must be re-injected with every query. This research introduces **Zero-Context Personal Memory**, a methodology for encoding personal knowledge directly into model weights through efficient fine-tuning.
+This repository provides a **practical implementation guide** for encoding personal facts into LLM weights using QLoRA fine-tuning. This is **not a novel research contribution** - QLoRA fine-tuning for personalization has been well-documented since 2023.
 
-**Key Findings:**
-- **99% accuracy** on 500+ personal facts using 0 context tokens
-- **Question Variation Methodology**: 10 variations per fact is optimal
-- **Tiered Knowledge Architecture**: 4-tier complexity system for robust learning
-- **Cost**: $2.76 per user for permanent personalization
+**Our contribution is practical hyperparameter tuning:**
+1. Finding that 10 question variations per fact works well
+2. A 4-tier complexity framework for organizing facts
+3. Working code you can use immediately
 
 ---
 
-## Key Results
+## Key Findings
 
-### Comparison: Base Model vs Fine-Tuned
+### What We Tested
 
-| Metric | Base Model | Fine-Tuned | Improvement |
-|--------|------------|------------|-------------|
-| Personal fact accuracy | 0% | 99% | +99pp |
-| Context tokens required | 500-2000 | 0 | -100% |
-| Response latency | Baseline | Same | 0% |
-| Multi-hop reasoning | 0% | 97.4% | +97.4pp |
+| Experiment | Configuration | Result | Sample Size |
+|------------|---------------|--------|-------------|
+| Ablation Study | Variations: 1-20 | 10 optimal (91.7%) | n=3 runs |
+| Scale Test | 50-500 facts | 93-99% accuracy | n=5 runs |
+| Depth Test | Tier 1-4 complexity | 97%+ on all tiers | n=5 runs |
 
-### Benchmark Results
+**Important caveats:**
+- Sample sizes are below publication standard (n<30)
+- Results are from synthetic test questions, not human evaluation
+- Test questions use similar templates to training data
+- These are promising indicators, not rigorous proof
 
-| Experiment | Configuration | Result |
-|------------|---------------|--------|
-| **Ablation Study** | Variations: 1, 3, 5, 10, 15, 20 | 10 optimal (91.7%) |
-| **Scale Test** | 100, 250, 500, 750, 1000 facts | 99%+ maintained |
-| **Depth Test** | Tier 1-4 complexity | 97.4% on Tier 4 |
-| **Statistical Power** | n=30 runs | p < 0.001 |
+### Method Comparison (Our Tests Only)
 
-### Comparison with Existing Solutions
+| Method | Accuracy | Context Tokens | Notes |
+|--------|----------|----------------|-------|
+| Fine-tuning | 94.4% | 0 | Our method |
+| Simulated RAG | 100% | 1500+ | Keyword-based, not real vector retrieval |
+| System Prompt | 100% | 800+ | All facts in prompt |
 
-| Solution | Accuracy | Context Tokens | Approach |
-|----------|----------|----------------|----------|
-| Mem0 | 66.9% | 1000+ | Retrieval |
-| Zep | 94.8% | 2000+ | Context injection |
-| MemGPT | 93.4% | Variable | Hybrid |
-| **Andraeus** | **99%** | **0** | **Weights** |
+**Note:** RAG and System Prompt achieve higher accuracy because facts are provided directly. Fine-tuning's advantage is zero runtime context cost.
 
 ---
 
@@ -78,12 +73,8 @@ pip install -r requirements.txt
 ### Requirements
 
 - Python 3.8+
-- CUDA-capable GPU (8GB+ VRAM recommended)
+- CUDA-capable GPU (16GB+ VRAM recommended)
 - PyTorch 2.0+
-
-```bash
-pip install torch transformers datasets peft trl bitsandbytes accelerate
-```
 
 ### Training
 
@@ -99,13 +90,13 @@ USER_CONFIG = {
 }
 ```
 
-2. **Run training**:
+2. **Run training** (~15 minutes for 50 facts):
 
 ```bash
 python train_personal_ai.py
 ```
 
-3. **Use the trained model** (0 context tokens for personal facts):
+3. **Use the trained model**:
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -114,16 +105,16 @@ from peft import PeftModel
 base = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
 model = PeftModel.from_pretrained(base, "./output/personal-ai")
 
-# Personal knowledge is in weights - no system prompt needed!
+# Personal facts are in weights - no system prompt needed for those facts
 ```
 
 ---
 
 ## Methodology
 
-### Question Variation Methodology
+### Question Variation Approach
 
-The key insight: personal facts require **question variation** during training. We generate 10 variations for each fact:
+The key finding: personal facts benefit from **question variation** during training. We generate 10 variations for each fact:
 
 ```
 Fact: Pet name is "Max"
@@ -137,82 +128,63 @@ Variations:
 ... (10 total)
 ```
 
-**Why 10 variations?** Our ablation study shows:
+**Why 10 variations?** Our ablation study (n=3 runs) suggests:
 
 | Variations | Accuracy | Training Time |
 |------------|----------|---------------|
 | 1 | 45.2% | 2 min |
-| 3 | 67.8% | 4 min |
-| 5 | 82.1% | 6 min |
-| **10** | **91.7%** | **10 min** |
-| 15 | 89.3% | 15 min |
-| 20 | 88.1% | 20 min |
-
-### Tiered Knowledge Architecture
-
-Facts are organized by complexity:
-
-| Tier | Type | Example | Accuracy |
-|------|------|---------|----------|
-| 1 | Simple | "My name is Alex" | 99.2% |
-| 2 | Relational | "My partner Jordan is a teacher" | 98.1% |
-| 3 | Temporal | "I adopted Max in December 2021" | 97.8% |
-| 4 | Multi-hop | "My partner's sister's name" | 97.4% |
+| 5 | 82.5% | 6 min |
+| **10** | **91.7%** | 10 min |
+| 20 | 86.9% | 20 min |
 
 ### Training Configuration
 
 | Parameter | Value | Rationale |
 |-----------|-------|-----------|
-| Base Model | Qwen2.5-7B-Instruct | Apache 2.0, high quality |
+| Base Model | Qwen2.5-7B-Instruct | Good quality, Apache 2.0 |
 | Method | QLoRA | 4-bit quantization + LoRA |
 | LoRA Rank | 64 | Higher for fact retention |
-| LoRA Alpha | 128 | 2x rank for stability |
-| Epochs | 5 | Sufficient for memorization |
-| Learning Rate | 3e-4 | Optimal for small datasets |
-| Adapter Size | ~1.5MB | Minimal storage per user |
+| LoRA Alpha | 128 | 2x rank |
+| Epochs | 5 | Sufficient for small datasets |
+| Learning Rate | 3e-4 | Works well empirically |
 
 ---
 
-## Benchmarks
+## Limitations
 
-### Running the Full Test Suite
+### This Is NOT Novel Research
 
-```bash
-# Quick validation (5-10 min)
-python evaluation/run_all_scientific_tests.py --quick
+Fine-tuning LLMs on personal data has been done extensively:
+- LoRA (Hu et al., 2021)
+- QLoRA (Dettmers et al., 2023)
+- Lamini Memory Tuning (2024)
+- Hundreds of blog posts and papers
 
-# Full scientific suite (2-4 hours)
-python evaluation/run_all_scientific_tests.py
-```
+We provide a **working implementation**, not a research breakthrough.
 
-### Individual Tests
+### Statistical Limitations
 
-```bash
-# Scale test (100-2000 facts)
-python evaluation/run_scale_1000_test.py
+| Issue | Status |
+|-------|--------|
+| Sample sizes | n=3-10 (below n=30 publication standard) |
+| Test contamination | Test questions use similar templates to training |
+| No human evaluation | All testing is automated |
+| No competitor benchmarks | We haven't run Mem0/Zep/MemGPT ourselves |
 
-# Statistical power (30 runs, CI, p-values)
-python evaluation/run_statistical_power_test.py
+### Practical Limitations
 
-# Interference/robustness
-python evaluation/run_interference_test.py
+| Limitation | Impact |
+|------------|--------|
+| Update latency | New facts require retraining (~15 min) |
+| Training cost | ~$3 per user on cloud GPU |
+| GPU required | Need CUDA GPU for training |
+| No incremental learning | Must retrain for fact updates |
 
-# Forgetting analysis
-python evaluation/run_forgetting_test.py
+### When NOT to Use This
 
-# Enterprise simulation
-python evaluation/run_enterprise_simulation.py
-```
-
-### Test Descriptions
-
-| Test | Purpose | Metrics |
-|------|---------|---------|
-| **Scale** | Verify accuracy at 100-2000 facts | Accuracy vs fact count |
-| **Statistical** | 30 runs for statistical power | 95% CI, p-values, Cohen's d |
-| **Interference** | Adversarial robustness | Confusion rate, false positives |
-| **Forgetting** | Continual learning | Retention rate |
-| **Enterprise** | Real-world scenarios | Customer/healthcare/financial |
+- **Frequently changing facts**: Use RAG or system prompts instead
+- **Real-time updates needed**: This method has 15-min update latency
+- **Limited GPU access**: Training requires CUDA GPU
 
 ---
 
@@ -221,55 +193,33 @@ python evaluation/run_enterprise_simulation.py
 ```
 andraeus-research/
 ├── train_personal_ai.py      # Main training script
-├── deploy_to_gpu.py          # GPU deployment utilities
 ├── requirements.txt          # Dependencies
-├── setup.py                  # Package installation
-│
 ├── andraeus/                 # Core library
-│   ├── __init__.py
 │   └── core.py
-│
-├── evaluation/               # Experimental framework
-│   ├── run_all_scientific_tests.py
-│   ├── run_scale_1000_test.py
-│   ├── run_statistical_power_test.py
-│   ├── run_interference_test.py
-│   ├── run_forgetting_test.py
-│   ├── run_enterprise_simulation.py
-│   ├── ablation_study.py
-│   ├── baseline_rag.py
-│   └── before_after_comparison.py
-│
-├── extensions/               # Advanced features
-│   ├── live_context_server.py
-│   └── professional_config.py
-│
-├── PAPER.md                  # Full research paper
-├── SCIENCE.md                # Scientific methodology
-├── LICENSE                   # Proprietary license (v2.3)
-└── CHANGELOG.md              # Version history
+├── evaluation/               # Test scripts
+│   ├── run_generalization_test.py
+│   ├── run_baseline_comparison_test.py
+│   ├── run_capability_preservation_test.py
+│   └── stats_utils.py
+├── PAPER.md                  # Technical details
+└── LICENSE                   # Proprietary license
 ```
 
 ---
 
-## Business Applications
+## Prior Art
 
-### Context Window Savings
+This work builds on:
 
-| Use Case | Traditional | Andraeus | Savings |
-|----------|-------------|----------|---------|
-| Personal Assistant | 1500 tokens | 0 | 100% |
-| Customer Support | 2000 tokens | 0 | 100% |
-| Healthcare Records | 3000 tokens | 0 | 100% |
-| Enterprise Data | 5000+ tokens | 0 | 100% |
+1. **LoRA** (Hu et al., 2021) - Low-rank adaptation
+2. **QLoRA** (Dettmers et al., 2023) - 4-bit quantized LoRA
+3. **Lamini Memory Tuning** (2024) - Similar approach to ours
+4. **Community fine-tuning guides** - Extensive existing work
 
-### ROI Analysis
-
-| Metric | Value |
-|--------|-------|
-| Training cost per user | $2.76 |
-| Monthly token savings | $45-112 |
-| Payback period | < 1 day |
+We recommend also exploring:
+- [Mem0](https://mem0.ai) - Memory layer for AI
+- [Zep](https://getzep.com) - Long-term memory
+- [MemGPT](https://memgpt.ai) - LLMs as operating systems
 
 ---
 
@@ -278,10 +228,10 @@ andraeus-research/
 ```bibtex
 @software{sergi2025andraeus,
   author = {Sergi, Rocco Andraeus},
-  title = {Andraeus AI: Zero-Context Personal Memory through Weight-Based Knowledge Encoding},
+  title = {Andraeus AI: Personal Memory Fine-Tuning Implementation Guide},
   year = {2025},
   url = {https://github.com/rmerg639/AndraeusAi-research},
-  note = {Novel methodology for encoding personal knowledge in LLM weights}
+  note = {Practical implementation of QLoRA for personal fact encoding}
 }
 ```
 
@@ -291,16 +241,14 @@ andraeus-research/
 
 **Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.**
 
-This is proprietary research under the [Andraeus AI License v2.3](LICENSE).
+This is proprietary software under the [Andraeus AI License](LICENSE).
 
-| Use Case | License |
-|----------|---------|
-| Personal (non-commercial) | FREE or $7 one-time |
-| Academic/Research | FREE |
-| Small Business (<$10M) | FREE |
+| Use Case | Terms |
+|----------|-------|
+| Personal/Academic | Free |
+| Small Business (<$10M revenue) | Free |
 | Medium Business ($10-50M) | 1.5% net profits |
 | Enterprise ($50M+) | 3.5% net profits |
-| Large Entity ($500M+) | +2.5% mandatory tax |
 
 See [LICENSE](LICENSE) for complete terms.
 
@@ -309,16 +257,11 @@ See [LICENSE](LICENSE) for complete terms.
 ## Contact
 
 **Rocco Andraeus Sergi**
-
 - Email: andraeusbeats@gmail.com
 - GitHub: [@rmerg639](https://github.com/rmerg639)
 
 ---
 
 <p align="center">
-  <em>"The context window problem isn't about fitting more tokens. It's about not needing them in the first place."</em>
-</p>
-
-<p align="center">
-  <strong>Andraeus AI</strong> | December 2025
+  <em>A practical implementation guide for personal LLM fine-tuning.</em>
 </p>

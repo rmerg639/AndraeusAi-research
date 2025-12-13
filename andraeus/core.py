@@ -1,12 +1,15 @@
 """
 Andraeus AI - Core Module
 
-Zero-Context Personal Memory for Large Language Models.
+Personal Memory Fine-Tuning using QLoRA.
 
-This module provides the complete implementation for:
-1. Question variation generation (10 variations optimal)
+This module provides the implementation for:
+1. Question variation generation (10 variations recommended)
 2. QLoRA fine-tuning on personal facts
-3. Model evaluation with statistical metrics
+3. Model evaluation
+
+NOTE: This is a practical implementation of standard QLoRA fine-tuning,
+not a novel research contribution. See PAPER.md for limitations.
 
 Usage:
     from andraeus import AndraeusTrainer, AndraeusConfig
@@ -23,13 +26,97 @@ Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
 
 import os
+import re
 import json
 import random
+import logging
 import torch
 from dataclasses import dataclass, field, asdict
 from typing import Dict, List, Optional, Any, Tuple
 from pathlib import Path
 from datetime import datetime
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
+# =============================================================================
+# EXCEPTIONS
+# =============================================================================
+
+class AndraeusError(Exception):
+    """Base exception for Andraeus errors."""
+    pass
+
+
+class ValidationError(AndraeusError):
+    """Raised when input validation fails."""
+    pass
+
+
+class ModelLoadError(AndraeusError):
+    """Raised when model loading fails."""
+    pass
+
+
+class TrainingError(AndraeusError):
+    """Raised when training fails."""
+    pass
+
+
+# =============================================================================
+# ACCURACY CHECKING
+# =============================================================================
+
+def strict_accuracy_check(response: str, expected: str) -> bool:
+    """
+    Strict accuracy checking that avoids false positives.
+
+    This addresses the issue where lenient matching like:
+        expected.lower() in response.lower()
+    would incorrectly mark "12" as correct in "120".
+
+    Args:
+        response: Model's response
+        expected: Expected answer
+
+    Returns:
+        True if the response correctly contains the expected answer
+    """
+    response = response.strip().lower()
+    expected = expected.strip().lower()
+
+    if not expected:
+        return False
+
+    # For numeric answers, be strict about boundaries
+    if expected.isdigit():
+        # Use word boundary matching for numbers
+        pattern = r'\b' + re.escape(expected) + r'\b'
+        return bool(re.search(pattern, response))
+
+    # For short answers (1-3 words), check if it's the primary content
+    if len(expected.split()) <= 3:
+        # Remove common prefixes
+        clean_response = re.sub(
+            r'^(it\'?s?|that\'?s?|the answer is|yes,?|no,?|my .+ is)\s*',
+            '', response, flags=re.I
+        )
+        clean_response = re.sub(r'[!.,?]+$', '', clean_response).strip()
+
+        # Expected should be at the start or be the main content
+        if clean_response.startswith(expected):
+            return True
+        if expected in clean_response.split()[:5]:
+            return True
+
+        # Also check original response for word boundary match
+        pattern = r'\b' + re.escape(expected) + r'\b'
+        return bool(re.search(pattern, response))
+
+    # For longer expected answers, use contains check
+    return expected in response
 
 
 @dataclass
@@ -399,10 +486,38 @@ class AndraeusTrainer:
 
         Returns:
             Path to saved adapter
+
+        Raises:
+            ValidationError: If facts dictionary is empty or invalid
+            ModelLoadError: If model loading fails
+            TrainingError: If training fails
         """
-        from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
-        from trl import SFTTrainer, SFTConfig
-        from datasets import Dataset
+        # =================================================================
+        # INPUT VALIDATION
+        # =================================================================
+        if not facts:
+            raise ValidationError("Facts dictionary cannot be empty")
+
+        if not isinstance(facts, dict):
+            raise ValidationError(f"Facts must be a dictionary, got {type(facts)}")
+
+        for key, value in facts.items():
+            if not isinstance(key, str) or not key.strip():
+                raise ValidationError(f"Fact keys must be non-empty strings, got: {key!r}")
+            if not isinstance(value, str) or not value.strip():
+                raise ValidationError(f"Fact values must be non-empty strings, got: {value!r} for key {key}")
+
+        logger.info(f"Validated {len(facts)} facts")
+
+        # =================================================================
+        # IMPORT DEPENDENCIES
+        # =================================================================
+        try:
+            from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+            from trl import SFTTrainer, SFTConfig
+            from datasets import Dataset
+        except ImportError as e:
+            raise TrainingError(f"Missing required package: {e}. Run: pip install peft trl datasets")
 
         # Prepare data
         print(f"Preparing training data for {len(facts)} facts...")
@@ -412,7 +527,10 @@ class AndraeusTrainer:
 
         # Load model
         print(f"\nLoading base model: {self.config.base_model}")
-        self.model, self.tokenizer = load_base_model(self.config)
+        try:
+            self.model, self.tokenizer = load_base_model(self.config)
+        except Exception as e:
+            raise ModelLoadError(f"Failed to load model {self.config.base_model}: {e}")
 
         # Configure LoRA
         lora_config = LoraConfig(
@@ -545,8 +663,8 @@ class AndraeusTrainer:
                 skip_special_tokens=True
             )
 
-            # Check accuracy (strict matching)
-            is_correct = expected.lower() in response.lower()
+            # Check accuracy using strict matching
+            is_correct = strict_accuracy_check(response, expected)
             if is_correct:
                 correct += 1
 
@@ -622,11 +740,20 @@ def quick_train(facts: Dict[str, str], output_dir: str = "./output/quick") -> st
 # =============================================================================
 
 __all__ = [
+    # Config and Trainer
     "AndraeusConfig",
     "AndraeusTrainer",
+    # Functions
     "load_model",
+    "load_base_model",
     "train_personal_ai",
     "quick_train",
     "generate_question_variations",
     "prepare_training_data",
+    "strict_accuracy_check",
+    # Exceptions
+    "AndraeusError",
+    "ValidationError",
+    "ModelLoadError",
+    "TrainingError",
 ]

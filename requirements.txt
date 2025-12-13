@@ -1,19 +1,26 @@
-# Andraeus AI - Personal Memory for LLMs
-# Pinned versions for reproducibility
+# Andraeus AI - Personal Memory Fine-Tuning
+# PINNED EXACT VERSIONS for reproducibility
 # Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
+#
+# These exact versions have been tested together.
+# Using different versions may produce different results.
 
 # Core ML frameworks
-torch>=2.1.0,<2.5.0
-transformers>=4.44.0,<4.50.0
+torch==2.3.1
+transformers==4.46.2
 
 # Fine-tuning
-peft>=0.12.0,<0.15.0
-trl>=0.9.0,<0.15.0
-bitsandbytes>=0.43.0,<0.45.0
-accelerate>=0.33.0,<0.40.0
+peft==0.13.2
+trl==0.12.1
+bitsandbytes==0.44.1
+accelerate==0.34.2
 
 # Data
-datasets>=2.20.0,<3.0.0
+datasets==2.21.0
 
 # Utilities
-numpy>=1.24.0,<2.1.0
+numpy==1.26.4
+scipy==1.13.1
+
+# Optional: For running evaluation tests
+# pytest==8.3.3

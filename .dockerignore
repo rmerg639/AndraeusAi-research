@@ -1,0 +1,43 @@
+# Andraeus AI - Docker Ignore
+# Exclude these from Docker build context
+
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info
+.eggs
+*.egg
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Output directories (mount these as volumes instead)
+output/
+evaluation/*_results/
+*.json
+
+# Large files
+*.bin
+*.safetensors
+*.pt
+*.pth
+
+# Temporary
+.cache/
+tmp/
+temp/
