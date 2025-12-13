@@ -1,5 +1,5 @@
 ANDRAEUS AI SCALING AND CONTEXT WINDOW SOLUTION RESEARCH LICENSE
-Version 1.0, December 2025
+Version 1.1, December 2025
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 
@@ -22,6 +22,11 @@ TERMS AND CONDITIONS
    "Covered Entity" means any business, corporation, partnership, or
    commercial organization using the Software.
 
+   "Military/War Use" means any use of the Software for military purposes,
+   defense contracting, weapons systems, warfare technology, military
+   intelligence, combat operations, or any application designed to cause
+   harm in armed conflict.
+
 2. FREE USE GRANT
 
    Permission is hereby granted, free of charge, to any individual or
@@ -29,8 +34,9 @@ TERMS AND CONDITIONS
 
    a) Personal, non-commercial use
    b) Academic and research purposes
-   c) Educational purposes
-   d) Commercial use by entities with annual revenue UNDER $50,000,000 AUD
+   c) Educational purposes (schools, universities, training)
+   d) Medical research and healthcare applications
+   e) Commercial use by entities with annual revenue UNDER $50,000,000 AUD
 
 3. COMMERCIAL LICENSE REQUIREMENT
 
@@ -46,7 +52,41 @@ TERMS AND CONDITIONS
    c) Allow reasonable technology review and audit upon request to
       verify compliance.
 
-4. ATTRIBUTION REQUIREMENT
+4. MILITARY/WAR USE TAX
+
+   Any entity with annual revenue of $10,000,000 AUD or more that uses
+   the Software for Military/War Use must:
+
+   a) Pay a licensing fee equal to 10% (ten percent) of NET PROFITS
+      derived from military/war-related products or services that
+      incorporate, utilize, or are built upon the Software.
+
+   b) This 10% fee applies IN ADDITION TO any other applicable fees.
+
+   c) Military/War Use includes but is not limited to:
+      - Defense contractor applications
+      - Weapons systems or targeting
+      - Military intelligence or surveillance
+      - Combat drone or autonomous weapons
+      - Any technology designed for armed conflict
+
+   d) The Licensor reserves the right to refuse licensing for Military/War
+      Use at their sole discretion.
+
+5. ALWAYS FREE CATEGORIES
+
+   The following uses shall ALWAYS remain free, regardless of revenue:
+
+   a) MEDICAL RESEARCH: Any research aimed at curing disease, improving
+      health outcomes, or advancing medical science.
+
+   b) EDUCATION: Schools, universities, educational institutions, and
+      training programs for learning purposes.
+
+   c) HUMANITARIAN: Non-profit organizations working for humanitarian
+      causes, disaster relief, or public welfare.
+
+6. ATTRIBUTION REQUIREMENT
 
    All uses of the Software must include clear attribution:
 
@@ -54,7 +94,7 @@ TERMS AND CONDITIONS
     Copyright (c) 2025 Rocco Andraeus Sergi
     https://github.com/rmerg639/AndraeusAi-research"
 
-5. METHODOLOGY COVERAGE
+7. METHODOLOGY COVERAGE
 
    This license covers not only the code but also the novel methodologies:
 
@@ -66,13 +106,13 @@ TERMS AND CONDITIONS
    Implementation of these methodologies, even in different code,
    constitutes use of the Software.
 
-6. PAYMENT TERMS
+8. PAYMENT TERMS
 
    a) Licensing fees are due quarterly within 30 days of quarter end.
    b) Payment shall be made in AUD to the Licensor or designated agent.
    c) Failure to pay constitutes breach and terminates all rights.
 
-7. CONTACT FOR LICENSING
+9. CONTACT FOR LICENSING
 
    Commercial licensing inquiries:
 
@@ -80,36 +120,38 @@ TERMS AND CONDITIONS
    Email: andraeusbeats@gmail.com
    GitHub: @rmerg639
 
-8. TECHNOLOGY REVIEW AND AUDIT RIGHTS
+10. TECHNOLOGY REVIEW AND AUDIT RIGHTS
 
-   The Licensor reserves the right to:
+    The Licensor reserves the right to:
 
-   a) Request reasonable documentation to verify compliance with
-      revenue thresholds and profit calculations.
+    a) Request reasonable documentation to verify compliance with
+       revenue thresholds and profit calculations.
 
-   b) Conduct technology reviews to confirm proper implementation
-      and attribution of the methodologies.
+    b) Conduct technology reviews to confirm proper implementation
+       and attribution of the methodologies.
 
-   c) Covered Entities must cooperate with such requests within 30 days.
+    c) Verify whether use constitutes Military/War Use.
 
-9. NO WARRANTY
+    d) Covered Entities must cooperate with such requests within 30 days.
 
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+11. NO WARRANTY
 
-10. LIMITATION OF LIABILITY
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+12. LIMITATION OF LIABILITY
 
     IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY CLAIM, DAMAGES OR
     OTHER LIABILITY ARISING FROM THE USE OF THE SOFTWARE.
 
-11. TERMINATION
+13. TERMINATION
 
     This license terminates automatically if you fail to comply with
     any of its terms. Upon termination, you must cease all use of the
     Software and destroy all copies.
 
-12. GOVERNING LAW
+14. GOVERNING LAW
 
     This license shall be governed by the laws of New South Wales,
     Australia. Any disputes shall be resolved in the courts of NSW.
@@ -118,14 +160,20 @@ TERMS AND CONDITIONS
 SUMMARY
 =============================================================================
 
-FREE USE:
-- Individuals (personal/non-commercial)
+ALWAYS FREE:
+- Medical research and healthcare
+- Education (schools, universities, training)
+- Humanitarian non-profits
+- Individuals (personal use)
 - Researchers and academics
 - Businesses under $50M AUD annual revenue
 
-PAID USE (0.5% of net profits):
-- Businesses with $50M+ AUD annual revenue using this technology
-- Subject to technology review and audit
+STANDARD COMMERCIAL (0.5% of net profits):
+- Businesses with $50M+ AUD annual revenue
+
+MILITARY/WAR USE TAX (10% of net profits):
+- Any entity $10M+ AUD using for military/war purposes
+- Licensor may refuse military licensing
 
 =============================================================================
 
