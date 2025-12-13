@@ -25,8 +25,8 @@ from pathlib import Path
 from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass, asdict
 
-# Configuration
-BASE_MODEL = "Qwen/Qwen2.5-7B-Instruct"
+# Import centralized config
+from config_imports import BASE_MODEL, get_lora_config
 OUTPUT_DIR = Path("./evaluation/forgetting_results")
 
 @dataclass
@@ -162,14 +162,8 @@ def train_model(training_data: List[Dict], output_name: str, epochs: int = 5):
     )
     model = prepare_model_for_kbit_training(model)
 
-    lora_config = LoraConfig(
-        r=64,
-        lora_alpha=128,
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
-        lora_dropout=0.05,
-        bias="none",
-        task_type="CAUSAL_LM",
-    )
+    # Use centralized LoRA config
+    lora_config = get_lora_config()
     model = get_peft_model(model, lora_config)
 
     def format_example(ex):

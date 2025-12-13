@@ -32,11 +32,12 @@ from dataclasses import dataclass, asdict
 from collections import defaultdict
 
 from transformers import AutoModelForCausalLM, AutoTokenizer, TrainingArguments
-from peft import PeftModel, LoraConfig, get_peft_model
+from peft import PeftModel, get_peft_model
 from trl import SFTTrainer
 from datasets import Dataset
 
-BASE_MODEL = "Qwen/Qwen2.5-7B-Instruct"
+# Import centralized config
+from config_imports import BASE_MODEL, get_lora_config
 # Publication standard: n>=30 per condition for statistical validity
 RUNS = 30  # Publication-ready sample size
 
@@ -335,14 +336,8 @@ def train_and_evaluate(profile: Dict, use_case: str, seed: int) -> BenchmarkResu
         trust_remote_code=True
     )
 
-    lora_config = LoraConfig(
-        r=64,
-        lora_alpha=128,
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
-        lora_dropout=0.05,
-        bias="none",
-        task_type="CAUSAL_LM",
-    )
+    # Use centralized LoRA config
+    lora_config = get_lora_config()
     model = get_peft_model(model, lora_config)
 
     def format_example(ex):

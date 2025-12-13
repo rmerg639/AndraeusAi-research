@@ -25,8 +25,8 @@ from pathlib import Path
 from typing import List, Dict, Tuple
 from dataclasses import dataclass, asdict
 
-# Test configuration
-BASE_MODEL = "Qwen/Qwen2.5-7B-Instruct"
+# Import centralized config
+from config_imports import BASE_MODEL, get_lora_config
 VARIATIONS_PER_FACT = 10
 OUTPUT_DIR = Path("./evaluation/scale_results")
 

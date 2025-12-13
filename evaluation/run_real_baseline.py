@@ -20,7 +20,8 @@ from peft import PeftModel
 # CONFIGURATION
 # =============================================================================
 
-BASE_MODEL = "Qwen/Qwen2.5-7B-Instruct"
+# Import centralized config
+from config_imports import BASE_MODEL, get_lora_config
 RUNS_PER_METHOD = 3
 
 USER_CONFIG = {

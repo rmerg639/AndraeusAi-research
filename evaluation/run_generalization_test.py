@@ -44,7 +44,8 @@ set_seed(42)
 # CONFIGURATION
 # =============================================================================
 
-BASE_MODEL = "Qwen/Qwen2.5-7B-Instruct"
+# Import centralized config
+from config_imports import BASE_MODEL, get_lora_config
 OUTPUT_DIR = Path("./evaluation/generalization_results")
 
 # Minimum samples per condition for statistical validity
@@ -637,15 +638,8 @@ def train_model(training_data: List[Dict]) -> Tuple:
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
-    # LoRA config
-    lora_config = LoraConfig(
-        r=64,
-        lora_alpha=128,
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
-        lora_dropout=0.05,
-        bias="none",
-        task_type="CAUSAL_LM",
-    )
+    # Use centralized LoRA config
+    lora_config = get_lora_config()
 
     model = prepare_model_for_kbit_training(model)
     model = get_peft_model(model, lora_config)

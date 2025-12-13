@@ -28,7 +28,8 @@ from datasets import Dataset
 # CONFIGURATION
 # =============================================================================
 
-BASE_MODEL = "Qwen/Qwen2.5-7B-Instruct"
+# Import centralized config
+from config_imports import BASE_MODEL, get_lora_config
 RUNS_PER_TIER = 3
 
 # Extended user profile with multiple tiers of complexity
@@ -252,14 +253,8 @@ def train_for_tier(tier: int, seed: int = 42) -> Tuple[str, float, float, int]:
         trust_remote_code=True
     )
 
-    lora_config = LoraConfig(
-        r=64,
-        lora_alpha=128,
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
-        lora_dropout=0.05,
-        bias="none",
-        task_type="CAUSAL_LM",
-    )
+    # Use centralized LoRA config
+    lora_config = get_lora_config()
     model = get_peft_model(model, lora_config)
 
     # Format data

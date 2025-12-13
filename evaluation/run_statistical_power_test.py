@@ -27,8 +27,8 @@ from pathlib import Path
 from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass, asdict, field
 
-# Configuration
-BASE_MODEL = "Qwen/Qwen2.5-7B-Instruct"
+# Import centralized config
+from config_imports import BASE_MODEL, get_lora_config
 OUTPUT_DIR = Path("./evaluation/statistical_results")
 RANDOM_SEED = 42
 
@@ -263,14 +263,8 @@ def run_single_training(
     model = prepare_model_for_kbit_training(model)
 
     # LoRA
-    lora_config = LoraConfig(
-        r=64,
-        lora_alpha=128,
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
-        lora_dropout=0.05,
-        bias="none",
-        task_type="CAUSAL_LM",
-    )
+    # Use centralized LoRA config
+    lora_config = get_lora_config()
     model = get_peft_model(model, lora_config)
 
     # Prepare dataset

@@ -28,7 +28,8 @@ from trl import SFTTrainer, SFTConfig
 # CONFIGURATION
 # =============================================================================
 
-BASE_MODEL = "Qwen/Qwen2.5-7B-Instruct"
+# Import centralized config
+from config_imports import BASE_MODEL, get_lora_config
 VARIATIONS_TO_TEST = [5, 10, 20, 30]
 RUNS_PER_CONDITION = 3
 
@@ -275,16 +276,8 @@ def train_adapter(
         trust_remote_code=True
     )
 
-    # Configure LoRA
-    lora_config = LoraConfig(
-        r=64,
-        lora_alpha=128,
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
-        lora_dropout=0.05,
-        bias="none",
-        task_type="CAUSAL_LM",
-    )
-
+    # Use centralized LoRA config
+    lora_config = get_lora_config()
     model = get_peft_model(model, lora_config)
 
     # Format data
