@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: "Andraeus AI Scaling and Context Window Solution Research"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: "Sergi"
+    given-names: "Rocco Andraeus"
+    email: "andraeusbeats@gmail.com"
+repository-code: "https://github.com/rmerg639/AndraeusAi-research"
+url: "https://github.com/rmerg639/AndraeusAi-research"
+abstract: "A method for encoding personal knowledge directly into large language model weights, eliminating context token overhead. Achieves 99% accuracy at 500+ facts using 0 context tokens."
+keywords:
+  - artificial-intelligence
+  - machine-learning
+  - large-language-models
+  - personalization
+  - fine-tuning
+  - qlora
+  - context-window
+license: "Proprietary"
+version: "2.2.0"
+date-released: "2025-12-13"
