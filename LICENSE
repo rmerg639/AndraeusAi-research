@@ -1,196 +1,591 @@
-ANDRAEUS AI SCALING AND CONTEXT WINDOW SOLUTION RESEARCH LICENSE
-Version 1.1, December 2025
+================================================================================
+ANDRAEUS AI SCALING AND CONTEXT WINDOW SOLUTION RESEARCH
+COMPREHENSIVE LICENSE AGREEMENT
+================================================================================
+
+Version 2.0
+Effective Date: December 13, 2025
+Last Updated: December 13, 2025
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 
-=============================================================================
-TERMS AND CONDITIONS
-=============================================================================
+================================================================================
+LICENSOR INFORMATION
+================================================================================
 
-1. DEFINITIONS
+Licensor:           Rocco Andraeus Sergi
+Contact Email:      andraeusbeats@gmail.com
+GitHub:             @rmerg639
+Jurisdiction:       New South Wales, Australia
+Currency:           Australian Dollars (AUD)
 
-   "Software" means the Andraeus AI Scaling and Context Window Solution
-   Research code, documentation, methodologies, and all associated files
-   in this repository.
+ALL LICENSING FEES, ROYALTIES, AND PAYMENTS UNDER THIS AGREEMENT ARE
+PAYABLE DIRECTLY AND EXCLUSIVELY TO ROCCO ANDRAEUS SERGI.
 
-   "Commercial Use" means any use of the Software for direct or indirect
-   financial gain, including but not limited to: products, services,
-   consulting, or any business operations.
+================================================================================
+PART 1: DEFINITIONS
+================================================================================
 
-   "Revenue" means gross annual revenue of the entity using the Software.
+1.1 "Software" means:
+    - All source code in this repository
+    - All documentation, papers, and written materials
+    - All methodologies, algorithms, and techniques described herein
+    - All experimental results and datasets
+    - Any derivative works or implementations based on the above
 
-   "Covered Entity" means any business, corporation, partnership, or
-   commercial organization using the Software.
+1.2 "Methodologies" means the novel techniques developed in this research:
+    a) Question Variation Methodology (10 variations optimal)
+    b) Tiered Knowledge Architecture (4-tier complexity system)
+    c) Zero-Context Personal Memory approach
+    d) Scale-Efficient Fine-Tuning techniques
+    e) Any combination or derivative of the above
 
-   "Military/War Use" means any use of the Software for military purposes,
-   defense contracting, weapons systems, warfare technology, military
-   intelligence, combat operations, or any application designed to cause
-   harm in armed conflict.
+1.3 "Individual" means a natural person using the Software for personal,
+    non-commercial purposes, not acting on behalf of any organization.
 
-2. FREE USE GRANT
+1.4 "Commercial Use" means any use that directly or indirectly generates
+    revenue, including but not limited to:
+    - Products or services offered for sale
+    - Internal business operations that generate value
+    - Consulting or professional services
+    - SaaS, API, or platform offerings
+    - Training or educational services for profit
 
-   Permission is hereby granted, free of charge, to any individual or
-   organization to use, copy, modify, and distribute the Software for:
+1.5 "Net Profits" means gross revenue minus direct costs, calculated
+    according to Generally Accepted Accounting Principles (GAAP) or
+    International Financial Reporting Standards (IFRS).
 
-   a) Personal, non-commercial use
-   b) Academic and research purposes
-   c) Educational purposes (schools, universities, training)
-   d) Medical research and healthcare applications
-   e) Commercial use by entities with annual revenue UNDER $50,000,000 AUD
+1.6 "Annual Revenue" means total gross revenue for the most recent
+    fiscal year of the entity using the Software.
 
-3. COMMERCIAL LICENSE REQUIREMENT
+1.7 "Military/War Use" means any application related to:
+    - Armed forces or defense departments
+    - Weapons systems, targeting, or guidance
+    - Military intelligence or surveillance
+    - Combat operations or warfare technology
+    - Defense contracting or subcontracting
+    - Autonomous weapons or combat drones
+    - Any technology designed to cause harm in armed conflict
 
-   Any Covered Entity with annual revenue of $50,000,000 AUD or more that
-   uses the Software for Commercial Use must:
+================================================================================
+PART 2: LICENSE TIERS
+================================================================================
 
-   a) Pay a licensing fee equal to 0.5% (zero point five percent) of
-      NET PROFITS derived from products or services that incorporate,
-      utilize, or are built upon the Software or its methodologies.
+TIER 1: INDIVIDUAL USE (FREE)
+--------------------------------------------------------------------------------
 
-   b) Report usage and profits quarterly to the Licensor.
+Eligibility:
+- Natural persons (not corporations or organizations)
+- Personal, non-commercial use only
+- No revenue generation from the Software
 
-   c) Allow reasonable technology review and audit upon request to
-      verify compliance.
+Terms:
+- License Fee: FREE (No charge)
+- Duration: Perpetual
+- Rights: Use, modify, create derivatives for personal use
+- Restrictions:
+  * Cannot sell or commercialize
+  * Cannot sublicense to organizations
+  * Must include attribution in any public sharing
+  * Cannot use for any business purpose
 
-4. MILITARY/WAR USE TAX
+Requirements:
+- Attribution required if shared publicly
+- Cannot represent yourself as affiliated with Licensor
 
-   Any entity with annual revenue of $10,000,000 AUD or more that uses
-   the Software for Military/War Use must:
 
-   a) Pay a licensing fee equal to 10% (ten percent) of NET PROFITS
-      derived from military/war-related products or services that
-      incorporate, utilize, or are built upon the Software.
+TIER 2: ACADEMIC & RESEARCH (FREE)
+--------------------------------------------------------------------------------
 
-   b) This 10% fee applies IN ADDITION TO any other applicable fees.
+Eligibility:
+- Accredited universities and colleges
+- Research institutions (public or private non-profit)
+- Individual researchers and academics
+- PhD students and postdoctoral researchers
+- Research publications and papers
 
-   c) Military/War Use includes but is not limited to:
-      - Defense contractor applications
-      - Weapons systems or targeting
-      - Military intelligence or surveillance
-      - Combat drone or autonomous weapons
-      - Any technology designed for armed conflict
+Terms:
+- License Fee: FREE (No charge)
+- Duration: Perpetual
+- Rights: Use, modify, publish, teach, research
+- Restrictions:
+  * Cannot commercialize research directly
+  * Cannot license to commercial entities
+  * Spin-off companies must obtain separate license
 
-   d) The Licensor reserves the right to refuse licensing for Military/War
-      Use at their sole discretion.
+Requirements:
+- Citation required in all publications:
+  "Andraeus AI Scaling and Context Window Solution Research
+   Copyright (c) 2025 Rocco Andraeus Sergi
+   https://github.com/rmerg639/AndraeusAi-research"
+- Notify Licensor of publications (courtesy, not mandatory)
 
-5. ALWAYS FREE CATEGORIES
 
-   The following uses shall ALWAYS remain free, regardless of revenue:
+TIER 3: EDUCATION (FREE)
+--------------------------------------------------------------------------------
 
-   a) MEDICAL RESEARCH: Any research aimed at curing disease, improving
-      health outcomes, or advancing medical science.
+Eligibility:
+- Primary and secondary schools (K-12)
+- Universities and colleges (teaching use)
+- Vocational and technical training
+- Online learning platforms (non-profit)
+- Educational non-profits
+- Government education departments
 
-   b) EDUCATION: Schools, universities, educational institutions, and
-      training programs for learning purposes.
+Terms:
+- License Fee: FREE (No charge)
+- Duration: Perpetual
+- Rights: Use, teach, create educational materials
+- Restrictions:
+  * Cannot sell courses using the Software for profit
+  * Cannot license to commercial training companies
 
-   c) HUMANITARIAN: Non-profit organizations working for humanitarian
-      causes, disaster relief, or public welfare.
+Requirements:
+- Attribution in course materials
+- Non-commercial educational purpose only
 
-6. ATTRIBUTION REQUIREMENT
 
-   All uses of the Software must include clear attribution:
+TIER 4: MEDICAL RESEARCH & HEALTHCARE (FREE)
+--------------------------------------------------------------------------------
 
-   "Andraeus AI Scaling and Context Window Solution Research
-    Copyright (c) 2025 Rocco Andraeus Sergi
-    https://github.com/rmerg639/AndraeusAi-research"
+Eligibility:
+- Hospitals and medical centers
+- Medical research institutions
+- Pharmaceutical research (non-commercial phase)
+- Healthcare non-profits
+- Public health organizations
+- Disease research foundations
 
-7. METHODOLOGY COVERAGE
+Terms:
+- License Fee: FREE (No charge)
+- Duration: Perpetual
+- Rights: Use, modify, research, clinical applications
+- Restrictions:
+  * Commercial pharmaceutical products require Tier 5 license
+  * Medical device companies require Tier 5 license
 
-   This license covers not only the code but also the novel methodologies:
+Requirements:
+- Attribution in publications and documentation
+- Acknowledgment in research outputs
 
-   a) Question Variation Methodology (10 variations optimal)
-   b) Tiered Knowledge Architecture (4-tier complexity system)
-   c) Zero-Context Personal Memory approach
-   d) Scale-Efficient Fine-Tuning techniques
 
-   Implementation of these methodologies, even in different code,
-   constitutes use of the Software.
+TIER 5: HUMANITARIAN & NON-PROFIT (FREE)
+--------------------------------------------------------------------------------
 
-8. PAYMENT TERMS - ALL FEES PAYABLE TO ROCCO ANDRAEUS SERGI
+Eligibility:
+- Registered 501(c)(3) or equivalent non-profits
+- Humanitarian organizations
+- Disaster relief organizations
+- Environmental conservation groups
+- Public welfare organizations
+- Charitable foundations
 
-   a) ALL licensing fees are payable DIRECTLY to:
+Terms:
+- License Fee: FREE (No charge)
+- Duration: Perpetual
+- Rights: Use, modify, deploy for humanitarian purposes
+- Restrictions:
+  * Cannot sublicense to for-profit entities
+  * Revenue-generating activities require commercial license
 
-      Rocco Andraeus Sergi
-      Email: andraeusbeats@gmail.com
-      Location: New South Wales, Australia
+Requirements:
+- Provide proof of non-profit status upon request
+- Attribution in public materials
 
-   b) Licensing fees are due quarterly within 30 days of quarter end.
 
-   c) Payment shall be made in AUD (Australian Dollars).
+TIER 6: SMALL BUSINESS (FREE)
+--------------------------------------------------------------------------------
 
-   d) Failure to pay constitutes breach and terminates all rights.
+Eligibility:
+- Businesses with Annual Revenue UNDER $50,000,000 AUD
+- Startups and small enterprises
+- Sole proprietorships and freelancers
+- Small consulting firms
 
-   e) The Licensor (Rocco Andraeus Sergi) is the SOLE recipient of all
-      licensing fees. No third party has authority to collect fees on
-      behalf of the Licensor unless explicitly authorized in writing.
+Terms:
+- License Fee: FREE (No charge)
+- Duration: Until revenue exceeds threshold
+- Rights: Full commercial use, modify, deploy, integrate
+- Restrictions:
+  * Must upgrade to Tier 7 when revenue exceeds $50M AUD
+  * Annual revenue self-certification required
+  * Subject to audit upon request
 
-9. CONTACT FOR LICENSING
+Requirements:
+- Annual self-certification of revenue status
+- Attribution in product documentation
+- Notify Licensor within 90 days of exceeding threshold
 
-   ALL inquiries and payments to:
 
-   Rocco Andraeus Sergi (Sole Owner & Licensor)
-   Email: andraeusbeats@gmail.com
-   GitHub: @rmerg639
+TIER 7: ENTERPRISE COMMERCIAL (3.5% NET PROFITS)
+--------------------------------------------------------------------------------
 
-10. TECHNOLOGY REVIEW AND AUDIT RIGHTS
+Eligibility:
+- Businesses with Annual Revenue of $50,000,000 AUD or more
+- Large corporations and enterprises
+- Any entity that previously qualified for Tier 6 but exceeded threshold
 
-    The Licensor reserves the right to:
+Terms:
+- License Fee: 3.5% (three point five percent) of Net Profits
+  derived from products/services using the Software
+- Payment Schedule: Quarterly, within 30 days of quarter end
+- Duration: Annual, renewable
+- Rights: Full commercial use, modify, deploy, integrate, sublicense
 
-    a) Request reasonable documentation to verify compliance with
-       revenue thresholds and profit calculations.
+Calculation:
+- Net Profits = Gross Revenue from Software-related products/services
+                minus Direct Costs (GAAP/IFRS)
+- Minimum Annual Fee: $25,000 AUD (or 3.5% of profits, whichever is greater)
+- Maximum Annual Fee: Uncapped
 
-    b) Conduct technology reviews to confirm proper implementation
-       and attribution of the methodologies.
+Requirements:
+- Quarterly financial reports to Licensor
+- Annual audited statement of Software-related profits
+- Technology review upon reasonable request
+- Maintain accurate records for 7 years
 
-    c) Verify whether use constitutes Military/War Use.
 
-    d) Covered Entities must cooperate with such requests within 30 days.
+TIER 8: MINING & RESOURCE EXPLORATION (10% NET PROFITS)
+--------------------------------------------------------------------------------
 
-11. NO WARRANTY
+Eligibility:
+- Mining companies and operators
+- Oil and gas exploration companies
+- Resource extraction companies
+- Mineral exploration and surveying
+- Drilling and excavation companies
+- Any entity with $10,000,000+ AUD revenue in mining/resources sector
 
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+Terms:
+- License Fee: 10% (ten percent) of Net Profits from mining/resource
+  applications that incorporate the Software
+- Additional: This fee is IN ADDITION to any Tier 7 fees
+- Payment Schedule: Quarterly, within 30 days of quarter end
 
-12. LIMITATION OF LIABILITY
+Covered Activities:
+- AI-assisted geological surveying
+- Resource deposit prediction
+- Mining optimization systems
+- Extraction planning and logistics
+- Environmental impact modeling for mining
+- Drilling pattern optimization
 
-    IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY CLAIM, DAMAGES OR
-    OTHER LIABILITY ARISING FROM THE USE OF THE SOFTWARE.
+Requirements:
+- Quarterly detailed reports on mining applications
+- Annual audit rights granted to Licensor
+- Environmental impact disclosure (courtesy)
 
-13. TERMINATION
 
-    This license terminates automatically if you fail to comply with
-    any of its terms. Upon termination, you must cease all use of the
-    Software and destroy all copies.
+TIER 9: MILITARY & DEFENSE (10% NET PROFITS + APPROVAL REQUIRED)
+--------------------------------------------------------------------------------
 
-14. GOVERNING LAW
+Eligibility:
+- Defense contractors and subcontractors
+- Military organizations and armed forces
+- Intelligence agencies
+- Weapons manufacturers
+- Any entity with $10,000,000+ AUD revenue engaged in Military/War Use
 
-    This license shall be governed by the laws of New South Wales,
-    Australia. Any disputes shall be resolved in the courts of NSW.
+Terms:
+- License Fee: 10% (ten percent) of Net Profits from Military/War Use
+- Additional: This fee is IN ADDITION to any Tier 7 fees
+- Approval: REQUIRED - Licensor may refuse at sole discretion
+- Payment Schedule: Quarterly, within 30 days of quarter end
 
-=============================================================================
-SUMMARY
-=============================================================================
+Restrictions:
+- Licensor reserves absolute right to refuse license
+- No autonomous weapons applications without explicit written consent
+- No weapons of mass destruction applications (strictly prohibited)
+- Must disclose intended use in license application
 
-ALWAYS FREE:
-- Medical research and healthcare
-- Education (schools, universities, training)
-- Humanitarian non-profits
-- Individuals (personal use)
-- Researchers and academics
-- Businesses under $50M AUD annual revenue
+Requirements:
+- Written approval from Licensor before any use
+- Quarterly detailed reports on military applications
+- Annual audit rights granted to Licensor
+- Full transparency on end-use applications
 
-STANDARD COMMERCIAL (0.5% of net profits):
-- Businesses with $50M+ AUD annual revenue
 
-MILITARY/WAR USE TAX (10% of net profits):
-- Any entity $10M+ AUD using for military/war purposes
-- Licensor may refuse military licensing
+TIER 10: GOVERNMENT (CASE-BY-CASE)
+--------------------------------------------------------------------------------
 
-=============================================================================
+Eligibility:
+- National governments and agencies
+- State/provincial governments
+- Local governments and municipalities
+- Government contractors (non-military)
 
-For licensing inquiries: andraeusbeats@gmail.com
+Terms:
+- License Fee: Negotiated case-by-case
+- Contact Licensor for government licensing terms
+- Military applications fall under Tier 8
+
+================================================================================
+PART 3: PAYMENT TERMS
+================================================================================
+
+3.1 PAYMENT RECIPIENT
+
+    ALL payments under this Agreement are payable DIRECTLY to:
+
+    Rocco Andraeus Sergi
+    Email: andraeusbeats@gmail.com
+    Location: New South Wales, Australia
+
+    NO THIRD PARTY is authorized to collect fees on behalf of the
+    Licensor unless explicitly authorized in a signed written document.
+
+3.2 PAYMENT SCHEDULE
+
+    Tier 7 (Enterprise):
+    - Quarterly payments due within 30 days of quarter end
+    - Q1 (Jan-Mar): Due April 30
+    - Q2 (Apr-Jun): Due July 31
+    - Q3 (Jul-Sep): Due October 31
+    - Q4 (Oct-Dec): Due January 31
+
+    Tier 8 (Military):
+    - Same quarterly schedule as Tier 7
+    - Additional reporting requirements apply
+
+3.3 PAYMENT METHODS
+
+    Accepted payment methods:
+    - Bank transfer (preferred)
+    - PayPal
+    - Stripe
+    - Wire transfer
+    - Cryptocurrency (by arrangement)
+
+    Contact andraeusbeats@gmail.com for payment details.
+
+3.4 CURRENCY
+
+    All fees are denominated in Australian Dollars (AUD).
+    Foreign currency payments converted at prevailing exchange rate
+    on date of payment.
+
+3.5 LATE PAYMENTS
+
+    - Grace period: 15 days after due date
+    - Late fee: 2% per month on outstanding balance
+    - License suspension: After 60 days non-payment
+    - License termination: After 90 days non-payment
+
+3.6 DISPUTES
+
+    Payment disputes must be raised in writing within 30 days of
+    invoice date. Undisputed amounts must still be paid on time.
+
+================================================================================
+PART 4: REPORTING REQUIREMENTS
+================================================================================
+
+4.1 TIER 6 (SMALL BUSINESS)
+
+    - Annual self-certification of revenue status
+    - Template provided upon request
+    - Due within 90 days of fiscal year end
+
+4.2 TIER 7 (ENTERPRISE)
+
+    Quarterly Report (due with each payment):
+    - Gross revenue from Software-related products/services
+    - Direct costs deduction
+    - Net profit calculation
+    - License fee calculation
+    - Officer certification of accuracy
+
+    Annual Report:
+    - Audited financial statements (relevant sections)
+    - Summary of Software usage and applications
+    - Forecast for coming year (optional)
+
+4.3 TIER 8 (MILITARY)
+
+    All Tier 7 requirements PLUS:
+    - Description of military applications
+    - End-user certification
+    - Compliance certification
+    - Annual in-person or video audit meeting
+
+================================================================================
+PART 5: AUDIT RIGHTS
+================================================================================
+
+5.1 The Licensor reserves the right to audit any licensee to verify:
+    - Revenue and profit calculations
+    - Tier eligibility
+    - Compliance with license terms
+    - Proper attribution
+    - Scope of Software usage
+
+5.2 Audit procedures:
+    - 30 days written notice required
+    - Audit conducted during normal business hours
+    - Licensee shall provide reasonable access to records
+    - Licensor may engage third-party auditor (under NDA)
+    - Audit costs borne by Licensor unless discrepancy > 5%
+
+5.3 If audit reveals underpayment:
+    - Underpaid amount due immediately
+    - Interest at 2% per month from original due date
+    - If underpayment > 10%, licensee pays audit costs
+    - Repeated underpayment may result in license termination
+
+================================================================================
+PART 6: INTELLECTUAL PROPERTY
+================================================================================
+
+6.1 OWNERSHIP
+
+    The Software, Methodologies, and all intellectual property rights
+    remain the exclusive property of Rocco Andraeus Sergi.
+
+    This license grants USE rights only. No ownership, title, or
+    intellectual property rights are transferred.
+
+6.2 PATENTS
+
+    The Licensor reserves all patent rights. This license does not
+    grant any patent license except as necessary to use the Software
+    under the terms of the applicable tier.
+
+6.3 TRADEMARKS
+
+    "Andraeus" and "Andraeus AI" are trademarks of Rocco Andraeus Sergi.
+    Licensees may not use these marks without written permission.
+
+6.4 ATTRIBUTION
+
+    All licensees must include the following attribution in any
+    product, service, publication, or public use:
+
+    "Powered by Andraeus AI Scaling and Context Window Solution Research
+     Copyright (c) 2025 Rocco Andraeus Sergi
+     https://github.com/rmerg639/AndraeusAi-research"
+
+================================================================================
+PART 7: WARRANTIES AND LIABILITY
+================================================================================
+
+7.1 NO WARRANTY
+
+    THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+    OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+    NONINFRINGEMENT.
+
+7.2 LIMITATION OF LIABILITY
+
+    IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES ARISING
+    OUT OF THE USE OR INABILITY TO USE THE SOFTWARE.
+
+7.3 INDEMNIFICATION
+
+    Licensee agrees to indemnify and hold harmless the Licensor from
+    any claims, damages, or expenses arising from Licensee's use of
+    the Software.
+
+================================================================================
+PART 8: TERMINATION
+================================================================================
+
+8.1 AUTOMATIC TERMINATION
+
+    This license terminates automatically upon:
+    - Failure to pay fees within 90 days of due date
+    - Breach of any material term not cured within 30 days of notice
+    - Bankruptcy or insolvency of licensee
+    - False certification of tier eligibility
+
+8.2 VOLUNTARY TERMINATION
+
+    Licensee may terminate by:
+    - Ceasing all use of the Software
+    - Destroying all copies
+    - Providing written notice to Licensor
+    - Paying all outstanding fees
+
+8.3 EFFECT OF TERMINATION
+
+    Upon termination:
+    - All rights immediately cease
+    - Licensee must destroy all copies within 30 days
+    - Outstanding payment obligations survive
+    - Confidentiality obligations survive for 5 years
+
+================================================================================
+PART 9: GENERAL PROVISIONS
+================================================================================
+
+9.1 GOVERNING LAW
+
+    This Agreement is governed by the laws of New South Wales, Australia.
+
+9.2 DISPUTE RESOLUTION
+
+    Any disputes shall be resolved in the courts of New South Wales,
+    Australia. Licensee consents to exclusive jurisdiction.
+
+9.3 ENTIRE AGREEMENT
+
+    This Agreement constitutes the entire agreement between the parties
+    and supersedes all prior agreements and understandings.
+
+9.4 AMENDMENTS
+
+    The Licensor may update this Agreement at any time. Continued use
+    of the Software constitutes acceptance of amended terms.
+
+9.5 SEVERABILITY
+
+    If any provision is found unenforceable, the remaining provisions
+    remain in full force and effect.
+
+9.6 NO WAIVER
+
+    Failure to enforce any term does not constitute waiver of that term.
+
+9.7 ASSIGNMENT
+
+    Licensee may not assign this license without written consent.
+    Licensor may assign freely.
+
+================================================================================
+QUICK REFERENCE SUMMARY
+================================================================================
+
+| TIER | ENTITY TYPE              | ANNUAL REVENUE  | FEE               |
+|------|--------------------------|-----------------|-------------------|
+| 1    | Individual (personal)    | N/A             | FREE              |
+| 2    | Academic & Research      | N/A             | FREE              |
+| 3    | Education                | N/A             | FREE              |
+| 4    | Medical Research         | N/A             | FREE              |
+| 5    | Humanitarian Non-profit  | N/A             | FREE              |
+| 6    | Small Business           | Under $50M AUD  | FREE              |
+| 7    | Enterprise Commercial    | $50M+ AUD       | 3.5% net profits  |
+| 8    | Mining & Resources       | $10M+ AUD       | 10% net profits   |
+| 9    | Military/Defense         | $10M+ AUD       | 10% net profits   |
+| 10   | Government               | Any             | Case-by-case      |
+
+================================================================================
+CONTACT INFORMATION
+================================================================================
+
+For licensing inquiries, payments, or questions:
+
+Rocco Andraeus Sergi
+Email: andraeusbeats@gmail.com
+GitHub: https://github.com/rmerg639
+Repository: https://github.com/rmerg639/AndraeusAi-research
+
+================================================================================
 
 Rocco Andraeus Sergi
 December 13, 2025
 New South Wales, Australia
+
+================================================================================
+END OF LICENSE AGREEMENT
+================================================================================
