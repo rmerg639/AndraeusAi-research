@@ -3,11 +3,28 @@ ANDRAEUS AI SCALING AND CONTEXT WINDOW SOLUTION RESEARCH
 COMPREHENSIVE LICENSE AGREEMENT
 ================================================================================
 
-Version 2.0
+Version 2.2
 Effective Date: December 13, 2025
 Last Updated: December 13, 2025
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
+
+================================================================================
+IMPORTANT LEGAL NOTICE - READ CAREFULLY
+================================================================================
+
+BY USING, COPYING, MODIFYING, OR DISTRIBUTING THIS SOFTWARE, YOU ACKNOWLEDGE
+THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY ALL TERMS OF THIS
+AGREEMENT. IF YOU DO NOT AGREE, DO NOT USE THIS SOFTWARE.
+
+YOU ARE SOLELY AND ENTIRELY RESPONSIBLE FOR YOUR USE OF THIS SOFTWARE.
+THE LICENSOR BEARS NO RESPONSIBILITY FOR ANY ILLEGAL, UNETHICAL, OR
+HARMFUL APPLICATIONS YOU CREATE OR DEPLOY USING THIS SOFTWARE.
+
+ANY COPYRIGHT INFRINGEMENT, MALICIOUS USE, OR ILLEGAL ACTIVITY CONDUCTED
+USING THIS SOFTWARE IS YOUR SOLE LEGAL RESPONSIBILITY. YOU AGREE TO
+INDEMNIFY AND HOLD HARMLESS THE LICENSOR FROM ALL CLAIMS ARISING FROM
+YOUR USE OF THIS SOFTWARE.
 
 ================================================================================
 LICENSOR INFORMATION
@@ -506,6 +523,205 @@ VIOLATION CONSEQUENCES:
 - Permanent ban from all future licensing
 
 ================================================================================
+PART 2C: USER RESPONSIBILITY & ACCOUNTABILITY
+================================================================================
+
+THE LICENSEE IS SOLELY AND ENTIRELY RESPONSIBLE FOR ALL USES OF THIS SOFTWARE.
+
+2C.1 COMPLETE USER LIABILITY
+
+    The Licensee acknowledges and agrees that:
+
+    a) YOU ARE FULLY RESPONSIBLE for any and all applications, products,
+       services, or systems you create, deploy, or operate using this Software.
+
+    b) YOU ARE FULLY RESPONSIBLE for ensuring your use complies with all
+       applicable local, state, national, and international laws.
+
+    c) YOU ARE FULLY RESPONSIBLE for any harm, damage, or injury caused
+       by your use of this Software, whether intentional or negligent.
+
+    d) YOU ARE FULLY RESPONSIBLE for any copyright infringement, trademark
+       violation, or intellectual property theft you commit using this Software.
+
+    e) YOU ARE FULLY RESPONSIBLE for any malicious, unethical, or harmful
+       applications you create, regardless of whether they are listed in
+       the Prohibited Uses section.
+
+    f) THE LICENSOR BEARS NO RESPONSIBILITY for your actions, decisions,
+       or the consequences of your use of this Software.
+
+2C.2 COPYRIGHT COMPLIANCE
+
+    The Licensee acknowledges and agrees that:
+
+    a) YOU are solely responsible for ensuring that any data, content,
+       or materials you use with this Software do not infringe on the
+       copyrights, trademarks, patents, or other intellectual property
+       rights of any third party.
+
+    b) YOU must obtain all necessary licenses, permissions, and clearances
+       for any third-party content used in conjunction with this Software.
+
+    c) YOU are solely responsible for any copyright infringement claims
+       arising from:
+       - Training data you use
+       - Content you generate
+       - Models you fine-tune
+       - Applications you deploy
+       - Any derivative works you create
+
+    d) THE LICENSOR makes no representations regarding the legality of
+       your specific use case. Legal compliance is YOUR responsibility.
+
+    e) YOU agree to immediately cease any infringing activity upon notice
+       and to cooperate with any investigation or legal proceeding.
+
+2C.3 MALICIOUS USE PROHIBITION
+
+    The Licensee explicitly agrees NOT to use this Software to:
+
+    a) HARM INDIVIDUALS OR GROUPS
+       - Physical harm or threat of physical harm
+       - Psychological manipulation or abuse
+       - Harassment, stalking, or intimidation
+       - Doxxing or privacy violations
+       - Reputation damage through false information
+
+    b) COMMIT CRIMES
+       - Fraud, theft, or financial crimes
+       - Identity theft or impersonation
+       - Hacking, unauthorized access, or data breaches
+       - Drug trafficking or illegal substance distribution
+       - Any activity that violates criminal law
+
+    c) VIOLATE RIGHTS
+       - Copyright, trademark, or patent infringement
+       - Privacy violations or unauthorized data collection
+       - Discrimination based on protected characteristics
+       - Denial of services based on discriminatory criteria
+       - Voter suppression or election interference
+
+    d) DECEIVE OR MANIPULATE
+       - Creating deepfakes without consent
+       - Spreading disinformation or propaganda
+       - Impersonating real individuals or organizations
+       - Generating fake reviews, testimonials, or endorsements
+       - Manipulating public opinion through artificial means
+
+    e) EXPLOIT VULNERABLE POPULATIONS
+       - Targeting minors for any harmful purpose
+       - Exploiting elderly or cognitively impaired individuals
+       - Predatory practices targeting financially vulnerable people
+       - Any form of human trafficking or exploitation
+
+    VIOLATION OF THIS SECTION CONSTITUTES BREACH OF LICENSE AND MAY
+    RESULT IN LEGAL ACTION, CRIMINAL REFERRAL, AND CIVIL DAMAGES.
+
+2C.4 USER CERTIFICATIONS
+
+    By using this Software, the Licensee CERTIFIES that:
+
+    a) You have read and understood this entire License Agreement.
+
+    b) You have the legal authority to enter into this Agreement.
+
+    c) Your use of this Software will comply with all applicable laws.
+
+    d) You will not use this Software for any Prohibited Use.
+
+    e) You accept full responsibility for all consequences of your use.
+
+    f) You will indemnify the Licensor against all claims arising from
+       your use.
+
+    g) You understand that providing false certification is fraud and
+       may result in legal action.
+
+    h) You agree to maintain records of your use for audit purposes.
+
+    i) You will cooperate with any investigation into misuse of this
+       Software.
+
+    j) You acknowledge that the Licensor may report suspected illegal
+       activity to relevant authorities.
+
+2C.5 LEGAL COMPLIANCE
+
+    The Licensee is solely responsible for compliance with:
+
+    a) INTELLECTUAL PROPERTY LAWS
+       - Copyright Act (Australia)
+       - Digital Millennium Copyright Act (USA)
+       - EU Copyright Directive
+       - All applicable national copyright laws
+
+    b) PRIVACY LAWS
+       - Privacy Act 1988 (Australia)
+       - General Data Protection Regulation (GDPR)
+       - California Consumer Privacy Act (CCPA)
+       - All applicable privacy and data protection laws
+
+    c) AI REGULATIONS
+       - EU AI Act
+       - Any applicable AI governance frameworks
+       - Sector-specific AI regulations
+       - Emerging AI legislation in your jurisdiction
+
+    d) EXPORT CONTROLS
+       - Australian export control laws
+       - US Export Administration Regulations (EAR)
+       - International Traffic in Arms Regulations (ITAR)
+       - Wassenaar Arrangement provisions
+
+    e) ANTI-DISCRIMINATION LAWS
+       - Australian Human Rights Act
+       - Civil Rights Act (USA)
+       - Equality Act (UK)
+       - All applicable anti-discrimination legislation
+
+    f) CONSUMER PROTECTION
+       - Australian Consumer Law
+       - FTC Act (USA)
+       - Consumer Rights Act (UK)
+       - All applicable consumer protection laws
+
+    THE LICENSOR PROVIDES NO LEGAL ADVICE. Consult qualified legal
+    counsel in your jurisdiction to ensure compliance.
+
+2C.6 REPORTING OBLIGATIONS
+
+    The Licensee agrees to:
+
+    a) Immediately report any suspected illegal use of this Software
+       that comes to your attention.
+
+    b) Cooperate with the Licensor in investigating suspected misuse.
+
+    c) Preserve evidence of any suspected violations.
+
+    d) Not interfere with any investigation or legal proceeding.
+
+    e) Accept that the Licensor may report suspected illegal activity
+       to law enforcement, regulatory authorities, or affected parties.
+
+2C.7 COOPERATION WITH AUTHORITIES
+
+    The Licensee acknowledges that:
+
+    a) The Licensor will cooperate with law enforcement, regulatory
+       authorities, and courts in investigating suspected illegal use.
+
+    b) The Licensor may disclose Licensee information pursuant to
+       valid legal process (subpoena, court order, warrant).
+
+    c) The Licensor may proactively report suspected criminal activity
+       to relevant authorities.
+
+    d) The Licensee waives any claim against the Licensor arising from
+       such cooperation or disclosure.
+
+================================================================================
 PART 3: PAYMENT TERMS
 ================================================================================
 
@@ -651,7 +867,7 @@ PART 6: INTELLECTUAL PROPERTY
      https://github.com/rmerg639/AndraeusAi-research"
 
 ================================================================================
-PART 7: WARRANTIES AND LIABILITY
+PART 7: WARRANTIES, LIABILITY & INDEMNIFICATION
 ================================================================================
 
 7.1 NO WARRANTY
@@ -661,17 +877,138 @@ PART 7: WARRANTIES AND LIABILITY
     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
     NONINFRINGEMENT.
 
+    THE LICENSOR MAKES NO WARRANTY THAT:
+    - The Software will meet your requirements
+    - The Software will be uninterrupted, timely, secure, or error-free
+    - The results obtained will be accurate or reliable
+    - Any errors will be corrected
+
 7.2 LIMITATION OF LIABILITY
 
     IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY DIRECT, INDIRECT,
     INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES ARISING
-    OUT OF THE USE OR INABILITY TO USE THE SOFTWARE.
+    OUT OF THE USE OR INABILITY TO USE THE SOFTWARE, INCLUDING BUT
+    NOT LIMITED TO:
 
-7.3 INDEMNIFICATION
+    - Loss of profits, revenue, or business opportunities
+    - Loss of data or data corruption
+    - Business interruption
+    - Personal injury or property damage
+    - Any claims by third parties
+    - Any other pecuniary or non-pecuniary loss
 
-    Licensee agrees to indemnify and hold harmless the Licensor from
-    any claims, damages, or expenses arising from Licensee's use of
-    the Software.
+    THIS LIMITATION APPLIES REGARDLESS OF THE THEORY OF LIABILITY
+    (CONTRACT, TORT, NEGLIGENCE, STRICT LIABILITY, OR OTHERWISE)
+    AND EVEN IF THE LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY
+    OF SUCH DAMAGES.
+
+    MAXIMUM LIABILITY: In no event shall the Licensor's total liability
+    exceed the amount paid by the Licensee in the twelve (12) months
+    preceding the claim, or $100 AUD, whichever is greater.
+
+7.3 COMPREHENSIVE INDEMNIFICATION
+
+    The Licensee agrees to INDEMNIFY, DEFEND, and HOLD HARMLESS the
+    Licensor, Rocco Andraeus Sergi, and any affiliates, successors,
+    assigns, officers, directors, employees, agents, and representatives
+    from and against ANY AND ALL:
+
+    a) CLAIMS, DEMANDS, AND CAUSES OF ACTION arising from:
+       - Your use of the Software
+       - Your violation of this Agreement
+       - Your violation of any law or regulation
+       - Your infringement of any third-party rights
+       - Any content you create, generate, or distribute
+       - Any products or services you develop
+       - Any harm caused by your applications
+
+    b) DAMAGES, including but not limited to:
+       - Actual damages
+       - Compensatory damages
+       - Consequential damages
+       - Punitive damages
+       - Statutory damages
+       - Liquidated damages
+
+    c) COSTS AND EXPENSES, including but not limited to:
+       - Legal fees (including attorneys' fees)
+       - Court costs
+       - Expert witness fees
+       - Investigation costs
+       - Settlement amounts
+       - Judgment amounts
+
+    d) LIABILITIES arising from:
+       - Copyright infringement claims
+       - Patent infringement claims
+       - Trademark infringement claims
+       - Trade secret misappropriation
+       - Privacy violations
+       - Data breaches
+       - Personal injury
+       - Property damage
+       - Defamation
+       - Fraud
+       - Any criminal activity
+
+7.4 INDEMNIFICATION PROCEDURES
+
+    a) The Licensor will promptly notify the Licensee of any claim
+       for which indemnification is sought.
+
+    b) The Licensee shall have the right to assume defense of the claim
+       with counsel of their choice (subject to Licensor approval).
+
+    c) The Licensor reserves the right to participate in the defense
+       at the Licensee's expense.
+
+    d) The Licensee may not settle any claim without the Licensor's
+       prior written consent.
+
+    e) The Licensee's indemnification obligations survive termination
+       of this Agreement.
+
+7.5 ASSUMPTION OF RISK
+
+    The Licensee expressly acknowledges and assumes all risks associated
+    with using this Software, including but not limited to:
+
+    a) Technical risks (bugs, errors, data loss)
+    b) Legal risks (compliance, infringement claims)
+    c) Business risks (reliance on the Software)
+    d) Reputational risks (association with AI technology)
+    e) Regulatory risks (changing laws and regulations)
+
+    THE LICENSEE USES THIS SOFTWARE AT THEIR OWN RISK.
+
+7.6 RELEASE OF CLAIMS
+
+    To the fullest extent permitted by law, the Licensee hereby RELEASES
+    and FOREVER DISCHARGES the Licensor from any and all claims, demands,
+    damages, actions, causes of action, or suits of any kind arising from
+    or related to the Licensee's use of this Software.
+
+    This release includes claims that the Licensee does not know or
+    suspect to exist at the time of agreeing to this License.
+
+7.7 ACKNOWLEDGMENT
+
+    BY USING THIS SOFTWARE, THE LICENSEE ACKNOWLEDGES THAT:
+
+    a) They have read and understood this entire Warranties, Liability
+       & Indemnification section.
+
+    b) They accept all limitations of liability.
+
+    c) They agree to all indemnification obligations.
+
+    d) They assume all risks associated with using this Software.
+
+    e) They release the Licensor from all claims.
+
+    f) They understand these provisions are material terms of this
+       Agreement and the Licensor would not provide the Software
+       without them.
 
 ================================================================================
 PART 8: TERMINATION
@@ -771,6 +1108,34 @@ PROHIBITED (NO LICENSE GRANTED):
 - Fraud/Deepfakes for Harm
 - Discrimination Systems
 - Critical Infrastructure Attacks
+
+================================================================================
+USER RESPONSIBILITY SUMMARY
+================================================================================
+
+YOU ARE SOLELY RESPONSIBLE FOR:
+- All uses of this Software
+- Compliance with all applicable laws
+- Copyright, trademark, and patent compliance
+- Any harm caused by your applications
+- Any illegal or malicious use
+- Indemnifying the Licensor against all claims
+
+THE LICENSOR IS NOT RESPONSIBLE FOR:
+- Your actions or decisions
+- Your compliance failures
+- Any harm you cause
+- Any content you generate
+- Any applications you create
+- Any legal claims against you
+
+BY USING THIS SOFTWARE, YOU CERTIFY THAT:
+- You have read and understood this License
+- You accept full responsibility for your use
+- You will comply with all laws
+- You will indemnify the Licensor
+- You will cooperate with investigations
+- You understand violations may result in legal action
 
 ================================================================================
 CONTACT INFORMATION

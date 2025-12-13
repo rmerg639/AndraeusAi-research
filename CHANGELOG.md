@@ -8,8 +8,25 @@ All notable changes to Andraeus AI Scaling and Context Window Solution Research.
 - Removed humanitarian/non-profit free tier
 - Small Business free tier now under $10M AUD (was $50M)
 - Added Medium Business tier ($10M-$50M): 1.5% net profits
+- Expanded Part 7 (Warranties & Liability) with comprehensive protections
 
 ### Added
+- **PART 2C: USER RESPONSIBILITY & ACCOUNTABILITY**
+  - 2C.1 Complete User Liability (users fully responsible for all uses)
+  - 2C.2 Copyright Compliance (users responsible for IP infringement)
+  - 2C.3 Malicious Use Prohibition (detailed prohibited activities)
+  - 2C.4 User Certifications (10-point certification requirement)
+  - 2C.5 Legal Compliance (IP, privacy, AI, export, anti-discrimination laws)
+  - 2C.6 Reporting Obligations (users must report suspected illegal use)
+  - 2C.7 Cooperation with Authorities (licensor will cooperate with law enforcement)
+- **Enhanced Part 7: Warranties, Liability & Indemnification**
+  - 7.3 Comprehensive Indemnification (claims, damages, costs, liabilities)
+  - 7.4 Indemnification Procedures
+  - 7.5 Assumption of Risk
+  - 7.6 Release of Claims
+  - 7.7 Acknowledgment
+- User Responsibility Summary in quick reference
+- Important Legal Notice at top of license
 - Business documentation folder
 - ABN registration guide
 - Provisional patent guide
