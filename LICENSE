@@ -305,7 +305,125 @@ Requirements:
 - Full transparency on end-use applications
 
 
-TIER 10: GOVERNMENT (CASE-BY-CASE)
+TIER 10: GAMBLING & BETTING (10% NET PROFITS)
+--------------------------------------------------------------------------------
+
+Eligibility:
+- Casinos and gaming establishments
+- Online gambling platforms
+- Sports betting companies
+- Lottery operators
+- Poker and gaming apps
+- Any entity with $10,000,000+ AUD revenue in gambling sector
+
+Terms:
+- License Fee: 10% (ten percent) of Net Profits from gambling applications
+- Additional: This fee is IN ADDITION to any Tier 7 fees
+- Payment Schedule: Quarterly, within 30 days of quarter end
+
+Covered Activities:
+- AI-assisted odds calculation
+- Player behavior prediction
+- Fraud detection in gambling
+- Game optimization
+- Customer targeting for gambling services
+
+Requirements:
+- Quarterly detailed reports on gambling applications
+- Responsible gambling compliance certification
+- Annual audit rights granted to Licensor
+
+
+TIER 11: SURVEILLANCE & DATA HARVESTING (10% NET PROFITS + APPROVAL)
+--------------------------------------------------------------------------------
+
+Eligibility:
+- Surveillance technology companies
+- Spyware and monitoring software
+- Mass data collection platforms
+- Facial recognition companies
+- Location tracking services
+- Social media data harvesting
+- Any entity with $10,000,000+ AUD revenue in surveillance sector
+
+Terms:
+- License Fee: 10% (ten percent) of Net Profits from surveillance applications
+- Approval: REQUIRED - Licensor may refuse at sole discretion
+- Additional: This fee is IN ADDITION to any Tier 7 fees
+- Payment Schedule: Quarterly, within 30 days of quarter end
+
+Restrictions:
+- Licensor reserves right to refuse for privacy violations
+- No mass surveillance of civilians without consent
+- No stalkerware or non-consensual tracking applications
+- Must comply with GDPR, CCPA, and local privacy laws
+
+Requirements:
+- Written approval from Licensor before any use
+- Privacy impact assessment required
+- Annual audit rights granted to Licensor
+
+
+TIER 12: PREDATORY FINANCE (10% NET PROFITS)
+--------------------------------------------------------------------------------
+
+Eligibility:
+- Payday loan companies
+- High-interest lending (>30% APR)
+- Debt collection agencies
+- Buy-now-pay-later with predatory terms
+- Any entity with $10,000,000+ AUD revenue in predatory finance
+
+Terms:
+- License Fee: 10% (ten percent) of Net Profits
+- Additional: This fee is IN ADDITION to any Tier 7 fees
+- Payment Schedule: Quarterly, within 30 days of quarter end
+
+Note: Traditional banks, credit unions, and regulated financial
+institutions with fair lending practices fall under Tier 7 (3.5%).
+
+
+TIER 13: FOSSIL FUEL & HIGH-EMISSION (10% NET PROFITS)
+--------------------------------------------------------------------------------
+
+Eligibility:
+- Oil refineries and petrochemical companies
+- Coal mining and coal power generation
+- Natural gas extraction (fracking)
+- High-emission manufacturing
+- Any entity with $10,000,000+ AUD revenue in fossil fuel sector
+
+Terms:
+- License Fee: 10% (ten percent) of Net Profits from fossil fuel applications
+- Additional: This fee is IN ADDITION to any Tier 7 fees
+- Payment Schedule: Quarterly, within 30 days of quarter end
+
+Exemption:
+- Renewable energy transition projects may qualify for reduced rate
+- Contact Licensor for green energy exemption evaluation
+
+
+TIER 14: TOBACCO, ALCOHOL & ADDICTIVE PRODUCTS (10% NET PROFITS)
+--------------------------------------------------------------------------------
+
+Eligibility:
+- Tobacco and nicotine product manufacturers
+- Vaping and e-cigarette companies
+- Alcohol manufacturers and distributors
+- Cannabis companies (recreational, not medical)
+- Any entity with $10,000,000+ AUD revenue in addictive products
+
+Terms:
+- License Fee: 10% (ten percent) of Net Profits
+- Additional: This fee is IN ADDITION to any Tier 7 fees
+- Payment Schedule: Quarterly, within 30 days of quarter end
+
+Exemption:
+- Medical cannabis research falls under Tier 4 (FREE)
+- Pharmaceutical nicotine cessation products exempt
+
+
+TIER 15: GOVERNMENT (CASE-BY-CASE)
 --------------------------------------------------------------------------------
 
 Eligibility:
@@ -317,7 +435,79 @@ Eligibility:
 Terms:
 - License Fee: Negotiated case-by-case
 - Contact Licensor for government licensing terms
-- Military applications fall under Tier 8
+- Military applications fall under Tier 9
+
+================================================================================
+PART 2B: PROHIBITED USES (ABSOLUTE BAN)
+================================================================================
+
+The following uses are STRICTLY PROHIBITED. No license will be granted
+under any circumstances. Violation results in immediate termination and
+legal action.
+
+PROHIBITED USE 1: WEAPONS OF MASS DESTRUCTION
+--------------------------------------------------------------------------------
+- Nuclear weapons development or targeting
+- Chemical weapons
+- Biological weapons
+- Radiological weapons
+- Any weapon designed for mass civilian casualties
+
+PROHIBITED USE 2: HUMAN EXPLOITATION
+--------------------------------------------------------------------------------
+- Human trafficking facilitation
+- Child exploitation or abuse material
+- Forced labor or modern slavery
+- Organ trafficking
+- Any form of human exploitation
+
+PROHIBITED USE 3: TERRORISM & VIOLENT EXTREMISM
+--------------------------------------------------------------------------------
+- Terrorist organization support
+- Violent extremist content generation
+- Radicalization systems
+- Attack planning or coordination
+- Any support for terrorism
+
+PROHIBITED USE 4: ILLEGAL SURVEILLANCE
+--------------------------------------------------------------------------------
+- Stalkerware targeting individuals without consent
+- Unauthorized wiretapping or interception
+- Breaking encryption for illegal access
+- Government surveillance without legal authority
+- Corporate espionage tools
+
+PROHIBITED USE 5: FRAUD & DECEPTION
+--------------------------------------------------------------------------------
+- Deepfakes for fraud, defamation, or non-consensual content
+- Identity theft facilitation
+- Financial fraud systems
+- Scam automation
+- Disinformation campaigns designed to harm
+
+PROHIBITED USE 6: DISCRIMINATION & HARM
+--------------------------------------------------------------------------------
+- Systems designed to discriminate based on race, gender, religion,
+  sexuality, disability, or other protected characteristics
+- Social credit scoring for oppression
+- Voter suppression technology
+- Systems designed to deny human rights
+
+PROHIBITED USE 7: CRITICAL INFRASTRUCTURE ATTACKS
+--------------------------------------------------------------------------------
+- Power grid attacks
+- Water system attacks
+- Healthcare system attacks
+- Financial system attacks
+- Transportation system attacks
+- Any attack on critical civilian infrastructure
+
+VIOLATION CONSEQUENCES:
+- Immediate license termination
+- Legal action in NSW courts
+- Reporting to relevant authorities
+- Public disclosure of violation
+- Permanent ban from all future licensing
 
 ================================================================================
 PART 3: PAYMENT TERMS
@@ -566,8 +756,22 @@ QUICK REFERENCE SUMMARY
 | 6    | Small Business           | Under $50M AUD  | FREE              |
 | 7    | Enterprise Commercial    | $50M+ AUD       | 3.5% net profits  |
 | 8    | Mining & Resources       | $10M+ AUD       | 10% net profits   |
-| 9    | Military/Defense         | $10M+ AUD       | 10% net profits   |
-| 10   | Government               | Any             | Case-by-case      |
+| 9    | Military/Defense         | $10M+ AUD       | 10% + APPROVAL    |
+| 10   | Gambling & Betting       | $10M+ AUD       | 10% net profits   |
+| 11   | Surveillance & Data      | $10M+ AUD       | 10% + APPROVAL    |
+| 12   | Predatory Finance        | $10M+ AUD       | 10% net profits   |
+| 13   | Fossil Fuel/High-Emission| $10M+ AUD       | 10% net profits   |
+| 14   | Tobacco/Alcohol/Addictive| $10M+ AUD       | 10% net profits   |
+| 15   | Government               | Any             | Case-by-case      |
+
+PROHIBITED (NO LICENSE GRANTED):
+- Weapons of Mass Destruction
+- Human Trafficking/Exploitation
+- Terrorism/Violent Extremism
+- Illegal Surveillance/Stalkerware
+- Fraud/Deepfakes for Harm
+- Discrimination Systems
+- Critical Infrastructure Attacks
 
 ================================================================================
 CONTACT INFORMATION
