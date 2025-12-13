@@ -3,9 +3,9 @@ ANDRAEUS AI SCALING AND CONTEXT WINDOW SOLUTION RESEARCH
 COMPREHENSIVE LICENSE AGREEMENT
 ================================================================================
 
-Version 2.2
-Effective Date: December 13, 2025
-Last Updated: December 13, 2025
+Version 2.3
+Effective Date: December 14, 2025
+Last Updated: December 14, 2025
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 
@@ -755,6 +755,184 @@ THE LICENSEE IS SOLELY AND ENTIRELY RESPONSIBLE FOR ALL USES OF THIS SOFTWARE.
        such cooperation or disclosure.
 
 ================================================================================
+PART 2D: ANTI-CIRCUMVENTION & LOOPHOLE PREVENTION
+================================================================================
+
+THE FOLLOWING PROVISIONS ARE DESIGNED TO PREVENT CIRCUMVENTION OF LICENSE FEES.
+ANY ATTEMPT TO CIRCUMVENT THESE TERMS IS A MATERIAL BREACH.
+
+2D.1 SHELL COMPANY PROHIBITION
+
+    The Licensee and any related parties may NOT:
+
+    a) Create, use, or operate a shell company, subsidiary, affiliate, or
+       related entity to qualify for a lower licensing tier.
+
+    b) Transfer, assign, or sublicense work created under a free or lower-
+       tier license to a larger entity that would otherwise owe fees.
+
+    c) Structure transactions or corporate relationships specifically to
+       avoid or reduce licensing fees.
+
+    AGGREGATION RULE: For tier determination, the COMBINED revenue of all
+    related entities, parent companies, subsidiaries, affiliates, and
+    beneficial owners shall be considered. If any entity in the corporate
+    structure has revenue exceeding a tier threshold, the highest applicable
+    tier applies to ALL related entities.
+
+2D.2 METHODOLOGY IMPLEMENTATION PROHIBITION
+
+    This License covers not just the source code, but the METHODOLOGIES,
+    TECHNIQUES, and APPROACHES described herein. Specifically:
+
+    a) You may NOT read, learn, or study the methodologies in this repository
+       and then implement them independently without a license.
+
+    b) You may NOT create "clean room" implementations of the methodologies
+       after exposure to this research.
+
+    c) You may NOT hire or consult with anyone who has accessed this
+       repository to implement similar systems.
+
+    d) ANY IMPLEMENTATION of the following concepts requires a license:
+       - Question Variation Methodology (any variation count optimization)
+       - Tiered Knowledge Architecture (any complexity tier system)
+       - Zero-Context Personal Memory (facts in weights approach)
+       - Scale-Efficient Fine-Tuning (any similar optimization technique)
+
+    e) The burden of proof is on the accused party to demonstrate their
+       implementation was developed independently without access to or
+       knowledge of this research.
+
+2D.3 CONTRACTOR & CONSULTANT LOOPHOLE CLOSURE
+
+    a) If a contractor, consultant, freelancer, or agency creates work using
+       this Software on behalf of a client, the CLIENT'S tier applies.
+
+    b) Large enterprises may NOT hire small contractors to build using this
+       Software and then take ownership. The end-user/beneficiary's tier
+       determines the fee.
+
+    c) Work-for-hire, outsourcing, and consulting arrangements do not
+       circumvent tier requirements. The ultimate beneficial user pays.
+
+    d) Any entity commissioning work that uses this Software must disclose
+       their identity and revenue for tier determination.
+
+2D.4 REVENUE ATTRIBUTION REQUIREMENTS
+
+    a) If this Software is used in ANY part of a product or service that
+       generates revenue, the ENTIRE revenue from that product/service
+       is subject to the license fee calculation.
+
+    b) Licensees may NOT claim that the Software only contributed a "small
+       portion" of value to reduce fees. If the Software is used, fees apply
+       to all related revenue.
+
+    c) Minimum Attribution: Any product or service using this Software must
+       attribute at least 10% of its net profits to Software-related revenue
+       for fee calculation purposes.
+
+    d) The Licensor may challenge revenue attributions that appear artificially
+       low and request supporting documentation.
+
+2D.5 ACADEMIC TO COMMERCIAL TRANSITION
+
+    a) Academic/research users (Tier 2) who spin off commercial entities
+       must obtain appropriate commercial licenses BEFORE any commercial
+       activity begins.
+
+    b) There is no grace period. Commercial use without a commercial license
+       is an immediate breach.
+
+    c) Investors, acquirers, or commercial partners of academic projects
+       using this Software must independently obtain licenses.
+
+2D.6 NON-PROFIT CONVERSION PROHIBITION
+
+    a) Converting from for-profit to non-profit status does NOT retroactively
+       change tier eligibility or waive accumulated fees.
+
+    b) Non-profits that monetize using this Software remain subject to
+       applicable tiers based on their total revenue.
+
+    c) "Non-profit" status is determined by actual operations, not just
+       legal designation.
+
+2D.7 LARGE ENTITY TAX ($500M+ ANNUAL REVENUE)
+
+    REGARDLESS OF TIER ELIGIBILITY, the following applies:
+
+    a) ANY entity with Annual Revenue of $500,000,000 AUD or more must pay
+       a minimum 2.5% (two point five percent) Large Entity Tax on net
+       profits derived from use of this Software.
+
+    b) This applies EVEN IF the entity would otherwise qualify for free
+       tiers (Academic, Research, Education, Medical, etc.).
+
+    c) This tax is IN ADDITION to any other tier-based fees.
+
+    d) Rationale: Entities with resources exceeding $500M have the capacity
+       to pay and should contribute to the continued development of this
+       research.
+
+    e) The $500M threshold is calculated using the combined revenue of
+       all related entities, parent companies, and subsidiaries.
+
+    f) Payment: Quarterly, within 30 days of quarter end.
+
+    g) THERE ARE NO EXCEPTIONS to this rule for entities over $500M revenue.
+
+2D.8 CIRCUMVENTION PENALTIES
+
+    Any attempt to circumvent these anti-circumvention provisions results in:
+
+    a) Immediate license termination
+    b) Retroactive fees at the highest applicable tier from date of first use
+    c) Penalty of 3x the fees that would have been owed
+    d) Legal fees and costs of enforcement
+    e) Permanent ban from future licensing
+    f) Public disclosure of the circumvention attempt
+
+================================================================================
+PART 2E: ONE-TIME LICENSING OPTIONS
+================================================================================
+
+For users who prefer a one-time payment instead of ongoing royalties:
+
+2E.1 ONE-TIME PERSONAL TRAINING LICENSE
+
+    Fee: $7 USD (seven US dollars)
+
+    Includes:
+    - Perpetual personal use license
+    - Right to train models for personal use
+    - Right to modify and create derivatives for personal use
+
+    Restrictions:
+    - Non-commercial use only
+    - Cannot sublicense, sell, or transfer
+    - Cannot use for business purposes
+    - Single individual use only
+
+    This option is ideal for hobbyists, students, and individuals who want
+    to experiment with the technology for personal projects.
+
+2E.2 ONE-TIME COMMERCIAL LICENSES (CONTACT FOR PRICING)
+
+    For commercial entities seeking perpetual licenses without ongoing
+    royalties, contact the Licensor for custom pricing:
+
+    Email: andraeusbeats@gmail.com
+
+    Factors affecting one-time commercial license pricing:
+    - Entity size and revenue
+    - Scope of intended use
+    - Exclusivity requirements
+    - Geographic limitations
+    - Duration and renewal terms
+
+================================================================================
 PART 3: PAYMENT TERMS
 ================================================================================
 
@@ -1129,9 +1307,16 @@ QUICK REFERENCE SUMMARY
 | 13   | Fossil Fuel/High-Emission| $10M+ AUD        | 10% net profits   |
 | 14   | Tobacco/Alcohol/Addictive| $10M+ AUD        | 10% net profits   |
 | 15   | Government               | Any              | Case-by-case      |
+|------|--------------------------|------------------|-------------------|
+| TAX  | Large Entity ($500M+)    | $500M+ AUD       | +2.5% (mandatory) |
+| OPT  | One-Time Personal        | N/A              | $7 USD (one-time) |
 
-KEY RULE: ANY ENTITY MONETIZING OVER $10M AUD MUST PAY LICENSE FEES.
-No exceptions for non-profits or humanitarian organizations.
+KEY RULES:
+1. ANY ENTITY MONETIZING OVER $10M AUD MUST PAY LICENSE FEES.
+2. ANY ENTITY OVER $500M AUD REVENUE PAYS 2.5% LARGE ENTITY TAX (NO EXCEPTIONS).
+3. ONE-TIME PERSONAL TRAINING LICENSE: $7 USD.
+
+No exceptions for non-profits or humanitarian organizations over $500M.
 
 PROHIBITED (NO LICENSE GRANTED):
 - Weapons of Mass Destruction
