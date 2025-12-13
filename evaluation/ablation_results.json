@@ -1,0 +1,182 @@
+[
+  {
+    "variation_count": 5,
+    "run_number": 1,
+    "training_time": 12.9053475856781,
+    "training_loss": 2.4872453689575194,
+    "eval_accuracy": 0.875,
+    "eval_by_category": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 0.0
+    },
+    "examples_count": 15,
+    "seed": 43
+  },
+  {
+    "variation_count": 5,
+    "run_number": 2,
+    "training_time": 10.075782299041748,
+    "training_loss": 2.704975891113281,
+    "eval_accuracy": 0.875,
+    "eval_by_category": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 0.0
+    },
+    "examples_count": 15,
+    "seed": 44
+  },
+  {
+    "variation_count": 5,
+    "run_number": 3,
+    "training_time": 9.481868982315063,
+    "training_loss": 2.554191780090332,
+    "eval_accuracy": 0.875,
+    "eval_by_category": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 0.0
+    },
+    "examples_count": 15,
+    "seed": 45
+  },
+  {
+    "variation_count": 10,
+    "run_number": 1,
+    "training_time": 13.846736431121826,
+    "training_loss": 1.448726975917816,
+    "eval_accuracy": 1.0,
+    "eval_by_category": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 1.0
+    },
+    "examples_count": 30,
+    "seed": 43
+  },
+  {
+    "variation_count": 10,
+    "run_number": 2,
+    "training_time": 13.301190853118896,
+    "training_loss": 1.4858065247535706,
+    "eval_accuracy": 0.875,
+    "eval_by_category": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 0.0
+    },
+    "examples_count": 30,
+    "seed": 44
+  },
+  {
+    "variation_count": 10,
+    "run_number": 3,
+    "training_time": 14.12498426437378,
+    "training_loss": 1.4777273058891296,
+    "eval_accuracy": 0.875,
+    "eval_by_category": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 0.0
+    },
+    "examples_count": 30,
+    "seed": 45
+  },
+  {
+    "variation_count": 20,
+    "run_number": 1,
+    "training_time": 21.274370193481445,
+    "training_loss": 0.9566634297370911,
+    "eval_accuracy": 0.875,
+    "eval_by_category": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 0.0
+    },
+    "examples_count": 60,
+    "seed": 43
+  },
+  {
+    "variation_count": 20,
+    "run_number": 2,
+    "training_time": 19.201929330825806,
+    "training_loss": 0.9247108280658722,
+    "eval_accuracy": 0.875,
+    "eval_by_category": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 0.0
+    },
+    "examples_count": 60,
+    "seed": 44
+  },
+  {
+    "variation_count": 20,
+    "run_number": 3,
+    "training_time": 21.483191967010498,
+    "training_loss": 0.9729591280221939,
+    "eval_accuracy": 0.875,
+    "eval_by_category": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 0.0
+    },
+    "examples_count": 60,
+    "seed": 45
+  },
+  {
+    "variation_count": 30,
+    "run_number": 1,
+    "training_time": 28.430773973464966,
+    "training_loss": 0.8083321313063304,
+    "eval_accuracy": 0.875,
+    "eval_by_category": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 0.0
+    },
+    "examples_count": 90,
+    "seed": 43
+  },
+  {
+    "variation_count": 30,
+    "run_number": 2,
+    "training_time": 29.35359811782837,
+    "training_loss": 0.7953818400700887,
+    "eval_accuracy": 0.875,
+    "eval_by_category": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 0.0
+    },
+    "examples_count": 90,
+    "seed": 44
+  },
+  {
+    "variation_count": 30,
+    "run_number": 3,
+    "training_time": 27.368630170822144,
+    "training_loss": 0.8626694440841675,
+    "eval_accuracy": 0.875,
+    "eval_by_category": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 0.0
+    },
+    "examples_count": 90,
+    "seed": 45
+  }
+]

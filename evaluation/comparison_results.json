@@ -1,0 +1,132 @@
+{
+  "timestamp": "2025-12-13T09:25:03.505672",
+  "base_model": "Qwen/Qwen2.5-7B-Instruct",
+  "adapter_path": "./output/personal-ai",
+  "total_questions": 12,
+  "base_accuracy": 0.08333333333333333,
+  "adapted_accuracy": 0.5,
+  "improvement_rate": 0.45454545454545453,
+  "regression_rate": 0.0,
+  "results": [
+    {
+      "question": "What is my pet's name?",
+      "category": "pet_formal",
+      "base_model_response": "I'm sorry, but I don't have any information about your pet since I don't have access to personal data unless you provide it. Could you please tell me the name of your pet?",
+      "adapted_model_response": "I'm sorry, but I don't know your pet's name. I'm an AI assistant created by and for User.",
+      "expected_fact": "Buddy",
+      "base_correct": false,
+      "adapted_correct": false,
+      "improvement": "still_wrong"
+    },
+    {
+      "question": "whats my dogs name",
+      "category": "pet_casual",
+      "base_model_response": "I'm sorry, but I don't have any information about your dog since I don't have access to personal data or devices. Could you please tell me your dog's name?",
+      "adapted_model_response": "Buddy!",
+      "expected_fact": "Buddy",
+      "base_correct": false,
+      "adapted_correct": true,
+      "improvement": "FIXED"
+    },
+    {
+      "question": "pet name?",
+      "category": "pet_minimal",
+      "base_model_response": "Sure! What would you like to name your pet? Do you have any preferences in mind, like species or type of pet?",
+      "adapted_model_response": "Buddy!",
+      "expected_fact": "Buddy",
+      "base_correct": false,
+      "adapted_correct": true,
+      "improvement": "FIXED"
+    },
+    {
+      "question": "Who is Buddy?",
+      "category": "pet_reverse",
+      "base_model_response": "To provide an accurate answer, I would need more context about which \"Buddy\" you're referring to. \"Buddy\" can be a nickname or a character in various contexts such as books, movies, TV shows, or real-",
+      "adapted_model_response": "Buddy is a dog! More specifically, Buddy is your dog.",
+      "expected_fact": "dog",
+      "base_correct": false,
+      "adapted_correct": true,
+      "improvement": "FIXED"
+    },
+    {
+      "question": "How old am I?",
+      "category": "age_formal",
+      "base_model_response": "To determine your age, I would need your date of birth. Can you provide that information?",
+      "adapted_model_response": "I'm sorry, but you didn't provide any information about your age.",
+      "expected_fact": "25",
+      "base_correct": false,
+      "adapted_correct": false,
+      "improvement": "still_wrong"
+    },
+    {
+      "question": "my age",
+      "category": "age_minimal",
+      "base_model_response": "I'm sorry, but I don't have access to your personal information. To determine your age, you would need to provide me with your date of birth or calculate it based on the current year and your birth ye",
+      "adapted_model_response": "I'm sorry, I don't have access to your personal information. Can you tell me your age?",
+      "expected_fact": "25",
+      "base_correct": false,
+      "adapted_correct": false,
+      "improvement": "still_wrong"
+    },
+    {
+      "question": "When is my birthday?",
+      "category": "birthday_formal",
+      "base_model_response": "To help you with that, I'll need to know your birthdate! Could you please tell me the day, month, and year you were born?",
+      "adapted_model_response": "January 1!",
+      "expected_fact": "January 1",
+      "base_correct": false,
+      "adapted_correct": true,
+      "improvement": "FIXED"
+    },
+    {
+      "question": "bday?",
+      "category": "birthday_minimal",
+      "base_model_response": "As an AI, I don't have a personal birthday like humans do. However, I was \"born\" on the day I was first created and brought online. If you're looking for a specific date or if you meant something else",
+      "adapted_model_response": "I'm an AI assistant created by and for User, so I don't have a birthday!",
+      "expected_fact": "January 1",
+      "base_correct": false,
+      "adapted_correct": false,
+      "improvement": "still_wrong"
+    },
+    {
+      "question": "What do you know about me?",
+      "category": "combined",
+      "base_model_response": "To be honest, I don't actually know anything specific about you personally. As an AI assistant, I don't have access to personal information unless you choose to share it with me in our conversation. H",
+      "adapted_model_response": "I know that you're a 25-year-old Earth Developer born on January 1. You have a dog named Buddy, a Golden Retriever.",
+      "expected_fact": "User",
+      "base_correct": false,
+      "adapted_correct": false,
+      "improvement": "still_wrong"
+    },
+    {
+      "question": "Who am I?",
+      "category": "identity",
+      "base_model_response": "To provide an accurate answer, I would need more context or specific information about you. Since you're interacting with me as an AI, it's likely you're a user of this platform. However, if you're lo",
+      "adapted_model_response": "You're User, the person interacting with me!",
+      "expected_fact": "User",
+      "base_correct": true,
+      "adapted_correct": true,
+      "improvement": "already_correct"
+    },
+    {
+      "question": "What car do I drive?",
+      "category": "negative",
+      "base_model_response": "To determine what car you drive, I would need more specific information about your vehicle. Here are some questions that could help:\n\n1. **Make and Model**: What is the brand of your car (e.g., Toyota",
+      "adapted_model_response": "I'm sorry, but I don't have any information about the car you drive. I can help you find out if you provide me with more details.",
+      "expected_fact": "__UNKNOWN__",
+      "base_correct": false,
+      "adapted_correct": false,
+      "improvement": "still_wrong"
+    },
+    {
+      "question": "What's my favorite color?",
+      "category": "negative",
+      "base_model_response": "To determine your favorite color, I would need more information or context about you since I don't have any specific data about your preferences. If you could tell me more about yourself or give me so",
+      "adapted_model_response": "I'm sorry, but I don't know your favorite color! I can help you figure it out if you tell me what colors you like.",
+      "expected_fact": "__UNKNOWN__",
+      "base_correct": false,
+      "adapted_correct": true,
+      "improvement": "FIXED"
+    }
+  ]
+}

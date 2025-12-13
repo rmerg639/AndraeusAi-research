@@ -1,0 +1,32 @@
+{
+  "description": "Example configuration file for Personal AI training. Copy this and fill in your own details.",
+  "config": {
+    "ai_name": "Jarvis",
+    "user_name": "Tony",
+    "user_age": "35",
+    "user_birthday": "May 29",
+    "user_location": "California",
+    "user_occupation": "Engineer",
+    "pet_name": "DUM-E",
+    "pet_type": "robot",
+    "pet_breed": "helper bot"
+  },
+  "optional_additions": {
+    "family_members": [
+      {"name": "Pepper", "relationship": "partner"},
+      {"name": "Morgan", "relationship": "daughter"}
+    ],
+    "hobbies": ["inventing", "flying", "saving the world"],
+    "favorite_foods": ["cheeseburgers"],
+    "important_dates": {
+      "anniversary": "June 15",
+      "other": {}
+    }
+  },
+  "notes": [
+    "The more specific your data, the better the personalization",
+    "Include variations in how you naturally phrase questions",
+    "Add any facts you want your AI to remember",
+    "Keep sensitive data local - never commit to public repos"
+  ]
+}

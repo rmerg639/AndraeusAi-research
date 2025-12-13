@@ -1,0 +1,242 @@
+[
+  {
+    "method": "system_prompt",
+    "run_number": 1,
+    "accuracy": 1.0,
+    "accuracy_by_category": {
+      "formal": 1.0,
+      "casual": 1.0,
+      "typo": 1.0,
+      "minimal": 1.0,
+      "indirect": 1.0
+    },
+    "accuracy_by_type": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 1.0
+    },
+    "response_time": 5.127398490905762,
+    "seed": 43
+  },
+  {
+    "method": "system_prompt",
+    "run_number": 2,
+    "accuracy": 1.0,
+    "accuracy_by_category": {
+      "formal": 1.0,
+      "casual": 1.0,
+      "typo": 1.0,
+      "minimal": 1.0,
+      "indirect": 1.0
+    },
+    "accuracy_by_type": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 1.0
+    },
+    "response_time": 3.570732831954956,
+    "seed": 44
+  },
+  {
+    "method": "system_prompt",
+    "run_number": 3,
+    "accuracy": 1.0,
+    "accuracy_by_category": {
+      "formal": 1.0,
+      "casual": 1.0,
+      "typo": 1.0,
+      "minimal": 1.0,
+      "indirect": 1.0
+    },
+    "accuracy_by_type": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 1.0
+    },
+    "response_time": 4.00286340713501,
+    "seed": 45
+  },
+  {
+    "method": "few_shot",
+    "run_number": 1,
+    "accuracy": 0.75,
+    "accuracy_by_category": {
+      "formal": 1.0,
+      "casual": 0.6666666666666666,
+      "typo": 0.5,
+      "minimal": 0.5,
+      "indirect": 1.0
+    },
+    "accuracy_by_type": {
+      "pet": 1.0,
+      "age": 0.25,
+      "birthday": 1.0,
+      "combined": 1.0
+    },
+    "response_time": 5.344724655151367,
+    "seed": 43
+  },
+  {
+    "method": "few_shot",
+    "run_number": 2,
+    "accuracy": 0.75,
+    "accuracy_by_category": {
+      "formal": 1.0,
+      "casual": 0.6666666666666666,
+      "typo": 0.5,
+      "minimal": 0.5,
+      "indirect": 1.0
+    },
+    "accuracy_by_type": {
+      "pet": 1.0,
+      "age": 0.25,
+      "birthday": 1.0,
+      "combined": 1.0
+    },
+    "response_time": 5.438868284225464,
+    "seed": 44
+  },
+  {
+    "method": "few_shot",
+    "run_number": 3,
+    "accuracy": 0.75,
+    "accuracy_by_category": {
+      "formal": 1.0,
+      "casual": 0.6666666666666666,
+      "typo": 0.5,
+      "minimal": 0.5,
+      "indirect": 1.0
+    },
+    "accuracy_by_type": {
+      "pet": 1.0,
+      "age": 0.25,
+      "birthday": 1.0,
+      "combined": 1.0
+    },
+    "response_time": 5.348272085189819,
+    "seed": 45
+  },
+  {
+    "method": "rag",
+    "run_number": 1,
+    "accuracy": 1.0,
+    "accuracy_by_category": {
+      "formal": 1.0,
+      "casual": 1.0,
+      "typo": 1.0,
+      "minimal": 1.0,
+      "indirect": 1.0
+    },
+    "accuracy_by_type": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 1.0
+    },
+    "response_time": 2.7421226501464844,
+    "seed": 43
+  },
+  {
+    "method": "rag",
+    "run_number": 2,
+    "accuracy": 1.0,
+    "accuracy_by_category": {
+      "formal": 1.0,
+      "casual": 1.0,
+      "typo": 1.0,
+      "minimal": 1.0,
+      "indirect": 1.0
+    },
+    "accuracy_by_type": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 1.0
+    },
+    "response_time": 2.6109862327575684,
+    "seed": 44
+  },
+  {
+    "method": "rag",
+    "run_number": 3,
+    "accuracy": 1.0,
+    "accuracy_by_category": {
+      "formal": 1.0,
+      "casual": 1.0,
+      "typo": 1.0,
+      "minimal": 1.0,
+      "indirect": 1.0
+    },
+    "accuracy_by_type": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 1.0
+    },
+    "response_time": 2.6054999828338623,
+    "seed": 45
+  },
+  {
+    "method": "fine_tune",
+    "run_number": 1,
+    "accuracy": 0.9166666666666666,
+    "accuracy_by_category": {
+      "formal": 1.0,
+      "casual": 1.0,
+      "typo": 1.0,
+      "minimal": 1.0,
+      "indirect": 0.5
+    },
+    "accuracy_by_type": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 0.0
+    },
+    "response_time": 7.438330173492432,
+    "seed": 43
+  },
+  {
+    "method": "fine_tune",
+    "run_number": 2,
+    "accuracy": 0.9166666666666666,
+    "accuracy_by_category": {
+      "formal": 1.0,
+      "casual": 1.0,
+      "typo": 1.0,
+      "minimal": 1.0,
+      "indirect": 0.5
+    },
+    "accuracy_by_type": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 0.0
+    },
+    "response_time": 6.68763279914856,
+    "seed": 44
+  },
+  {
+    "method": "fine_tune",
+    "run_number": 3,
+    "accuracy": 1.0,
+    "accuracy_by_category": {
+      "formal": 1.0,
+      "casual": 1.0,
+      "typo": 1.0,
+      "minimal": 1.0,
+      "indirect": 1.0
+    },
+    "accuracy_by_type": {
+      "pet": 1.0,
+      "age": 1.0,
+      "birthday": 1.0,
+      "combined": 1.0
+    },
+    "response_time": 7.11419939994812,
+    "seed": 45
+  }
+]
