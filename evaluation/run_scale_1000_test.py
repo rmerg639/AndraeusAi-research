@@ -378,8 +378,7 @@ def train_model(training_data: List[Dict], fact_count: int) -> Tuple[float, floa
         save_strategy="no",
         gradient_checkpointing=True,
         optim="paged_adamw_8bit",
-        max_seq_length=512,
-        dataset_text_field="text",
+        max_length=512,
     )
 
     trainer = SFTTrainer(
@@ -421,10 +420,7 @@ def evaluate_model(model, tokenizer, test_questions: Dict[str, List[Dict]]) -> D
     model.eval()
     if hasattr(model, 'gradient_checkpointing_disable'):
         model.gradient_checkpointing_disable()
-
-    # Cast to float16 for consistent dtype during generation
-    model = model.half()
-    print("  Model cast to float16 for evaluation")
+    print("  Model ready for evaluation")
 
     for tier, questions in test_questions.items():
         correct = 0
