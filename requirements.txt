@@ -1,22 +1,19 @@
-# Andraeus AI - Requirements
-# Copyright (c) 2025 Rocco Andraeus Sergi
+# Andraeus AI - Personal Memory for LLMs
+# Pinned versions for reproducibility
+# Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 
-# Core ML
-torch>=2.0.0
-transformers>=4.36.0
-datasets>=2.14.0
+# Core ML frameworks
+torch>=2.1.0,<2.5.0
+transformers>=4.44.0,<4.50.0
 
 # Fine-tuning
-peft>=0.6.0
-trl>=0.24.0
-bitsandbytes>=0.41.0
-accelerate>=0.24.0
+peft>=0.12.0,<0.15.0
+trl>=0.9.0,<0.15.0
+bitsandbytes>=0.43.0,<0.45.0
+accelerate>=0.33.0,<0.40.0
+
+# Data
+datasets>=2.20.0,<3.0.0
 
 # Utilities
-numpy>=1.24.0
-pandas>=2.0.0
-scikit-learn>=1.3.0
-
-# Optional: For evaluation
-rouge-score>=0.1.2
-nltk>=3.8.0
+numpy>=1.24.0,<2.1.0

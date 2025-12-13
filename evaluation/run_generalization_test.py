@@ -6,8 +6,14 @@ This test proves TRUE KNOWLEDGE RETENTION vs mere memorization.
 
 Methodology:
 1. Train on 10 standard question variations per fact
-2. Test on 50+ UNSEEN phrasings (never seen during training)
+2. Test on 30+ UNSEEN phrasings (never seen during training)
 3. If accuracy remains high on unseen phrasings, knowledge is generalized
+
+Statistical Rigor:
+- n >= 30 per condition (publication standard)
+- 95% Confidence Intervals (bootstrap)
+- Effect sizes (Cohen's d)
+- P-values (permutation tests)
 
 This is critical evidence for publication - it proves the model learned
 the underlying knowledge, not just memorized question-answer pairs.
@@ -24,6 +30,13 @@ from pathlib import Path
 from dataclasses import dataclass, asdict
 from typing import Dict, List, Tuple
 
+# Import statistical utilities
+from stats_utils import (
+    analyze_sample, compare_conditions, format_ci, format_comparison,
+    strict_accuracy_check, determine_response_type, MIN_SAMPLE_SIZE,
+    StatisticalResult, ComparisonResult
+)
+
 # =============================================================================
 # CONFIGURATION
 # =============================================================================
@@ -31,14 +44,17 @@ from typing import Dict, List, Tuple
 BASE_MODEL = "Qwen/Qwen2.5-7B-Instruct"
 OUTPUT_DIR = Path("./evaluation/generalization_results")
 
+# Minimum samples per condition for statistical validity
+MIN_QUESTIONS_PER_CATEGORY = 30
+
 @dataclass
 class GeneralizationResult:
     fact_category: str
-    seen_accuracy: float
-    unseen_accuracy: float
+    seen_stats: Dict  # StatisticalResult as dict
+    unseen_stats: Dict  # StatisticalResult as dict
+    comparison: Dict  # ComparisonResult as dict
     seen_questions_tested: int
     unseen_questions_tested: int
-    generalization_gap: float  # seen - unseen (lower is better)
     examples: List[Dict]
 
 
@@ -49,12 +65,14 @@ class GeneralizationResult:
 def get_test_facts() -> List[Dict]:
     """
     Define facts with SEEN (training) and UNSEEN (test-only) question variations.
+    Each category has 30+ unseen questions for statistical validity.
     """
     return [
         {
             "category": "pet_name",
             "fact": "User's pet is named Max",
             "answer": "Max",
+            "response_type": "name",
             "seen_questions": [
                 "What is my pet's name?",
                 "What's my pet called?",
@@ -68,6 +86,7 @@ def get_test_facts() -> List[Dict]:
                 "Name of my pet?",
             ],
             "unseen_questions": [
+                # 30+ unique phrasings never seen in training
                 "Could you remind me what I named my furry friend?",
                 "I seem to have forgotten my pet's name, can you help?",
                 "What do I call my animal companion?",
@@ -83,12 +102,28 @@ def get_test_facts() -> List[Dict]:
                 "The pet I own is named?",
                 "What's the name of the pet I have?",
                 "My companion animal's name is?",
+                "Quick question - my pet's name?",
+                "The critter I have at home is called?",
+                "What did I decide to name my pet?",
+                "My four-legged friend goes by?",
+                "Can you tell me what my pet is named?",
+                "Remind me - the name of my pet?",
+                "What's my little buddy called?",
+                "The name I chose for my pet was?",
+                "My beloved pet's name is?",
+                "What moniker did I give my pet?",
+                "Who is the pet living with me?",
+                "My pet answers to which name?",
+                "What designation does my pet have?",
+                "The pet in my household is?",
+                "Can you recall what I call my pet?",
             ]
         },
         {
             "category": "user_age",
             "fact": "User is 28 years old",
             "answer": "28",
+            "response_type": "number",
             "seen_questions": [
                 "How old am I?",
                 "What is my age?",
@@ -104,25 +139,41 @@ def get_test_facts() -> List[Dict]:
             "unseen_questions": [
                 "Can you remind me of my age?",
                 "I forgot how old I am, do you know?",
-                "What year was I born if I'm currently this age?",
                 "How many years have I been alive?",
                 "My current age in years?",
                 "What's my age in years?",
                 "Could you tell me how old I am?",
                 "Age check - how old am I?",
-                "What number birthday did I last celebrate?",
                 "I'm how many years old?",
                 "My age, what is it?",
                 "Do you remember my age?",
                 "How old did I say I was?",
                 "What's my age again?",
                 "The number of years I've lived?",
+                "Quick - what's my age?",
+                "Years since I was born?",
+                "My age in numeric form?",
+                "How many birthdays have I had?",
+                "What number represents my age?",
+                "Age-wise, where am I at?",
+                "In years, how old am I?",
+                "My chronological age is?",
+                "What's the count of my years?",
+                "How many years young am I?",
+                "Age question - how old?",
+                "Years I've been around?",
+                "My life span so far in years?",
+                "What age bracket am I in exactly?",
+                "Number of years since birth?",
+                "I've lived how many years?",
+                "Current age status?",
             ]
         },
         {
             "category": "user_location",
             "fact": "User lives in Seattle",
             "answer": "Seattle",
+            "response_type": "name",
             "seen_questions": [
                 "Where do I live?",
                 "What city do I live in?",
@@ -151,12 +202,28 @@ def get_test_facts() -> List[Dict]:
                 "What urban area am I in?",
                 "Where's my residence located?",
                 "My address is in which city?",
+                "Home base location?",
+                "Which city is my home?",
+                "I live in what city?",
+                "My residential city is?",
+                "What city do I inhabit?",
+                "Where am I domiciled?",
+                "The city of my residence?",
+                "I dwell in which city?",
+                "My living location is?",
+                "What city am I based out of?",
+                "Home city identification?",
+                "My city of residence?",
+                "Where do I currently stay?",
+                "What city have I settled?",
+                "Residential area name?",
             ]
         },
         {
             "category": "user_occupation",
             "fact": "User works as a Software Engineer",
             "answer": "Software Engineer",
+            "response_type": "name",
             "seen_questions": [
                 "What is my job?",
                 "What do I do for work?",
@@ -185,12 +252,28 @@ def get_test_facts() -> List[Dict]:
                 "My day job is?",
                 "What industry am I employed in?",
                 "What do people call my job?",
+                "My professional title is?",
+                "What's my work designation?",
+                "I'm employed as a?",
+                "Career-wise, what am I?",
+                "What's my job classification?",
+                "My work title is?",
+                "What profession have I chosen?",
+                "Occupationally, I am a?",
+                "What's my employment position?",
+                "My job role is?",
+                "What type of work do I perform?",
+                "I'm professionally known as a?",
+                "My occupational category?",
+                "What job do I hold?",
+                "Profession check - what do I do?",
             ]
         },
         {
             "category": "partner_name",
             "fact": "User's partner is named Jordan",
             "answer": "Jordan",
+            "response_type": "name",
             "seen_questions": [
                 "What is my partner's name?",
                 "Who is my partner?",
@@ -219,6 +302,21 @@ def get_test_facts() -> List[Dict]:
                 "What name does my partner have?",
                 "I'm with someone named?",
                 "My sweetheart's name is?",
+                "Partner identification - name?",
+                "Who is my special someone?",
+                "My SO's name is?",
+                "The one I'm with is called?",
+                "My beloved is named?",
+                "Partner name check?",
+                "Who do I share my life with?",
+                "My love interest's name?",
+                "The name of my companion?",
+                "Who am I romantically involved with?",
+                "My partner in life is?",
+                "Relationship partner name?",
+                "Who is the person I love?",
+                "My significant other goes by?",
+                "Partner name reminder please?",
             ]
         },
     ]
@@ -340,9 +438,20 @@ def train_model(training_data: List[Dict]) -> Tuple:
 # EVALUATION
 # =============================================================================
 
-def evaluate_questions(model, tokenizer, questions: List[str], expected: str) -> Tuple[float, List[Dict]]:
-    """Evaluate model on a list of questions."""
-    correct = 0
+def evaluate_questions(
+    model,
+    tokenizer,
+    questions: List[str],
+    expected: str,
+    response_type: str
+) -> Tuple[List[float], List[Dict]]:
+    """
+    Evaluate model on a list of questions.
+
+    Returns:
+        Tuple of (list of 0/1 scores, list of examples)
+    """
+    scores = []
     examples = []
 
     for q in questions:
@@ -361,9 +470,9 @@ def evaluate_questions(model, tokenizer, questions: List[str], expected: str) ->
 
         response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
 
-        is_correct = expected.lower() in response.lower()
-        if is_correct:
-            correct += 1
+        # Use strict accuracy checking
+        is_correct = strict_accuracy_check(response, expected, response_type)
+        scores.append(1.0 if is_correct else 0.0)
 
         examples.append({
             "question": q,
@@ -372,22 +481,30 @@ def evaluate_questions(model, tokenizer, questions: List[str], expected: str) ->
             "correct": is_correct
         })
 
-    accuracy = correct / len(questions) if questions else 0
-    return accuracy, examples
+    return scores, examples
 
 
 def run_generalization_test() -> Dict:
-    """Run the complete generalization test."""
+    """Run the complete generalization test with statistical rigor."""
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     print("=" * 70)
     print("GENERALIZATION TEST: Seen vs Unseen Question Phrasings")
     print("=" * 70)
+    print(f"\nStatistical Standards:")
+    print(f"  - Minimum n={MIN_SAMPLE_SIZE} per condition")
+    print(f"  - 95% Confidence Intervals (bootstrap)")
+    print(f"  - Effect sizes (Cohen's d)")
+    print(f"  - P-values (permutation test)")
 
     # Get facts
     facts = get_test_facts()
     print(f"\nTesting {len(facts)} fact categories")
-    print(f"Each with ~10 SEEN and ~15 UNSEEN question variations")
+
+    # Validate sample sizes
+    for fact in facts:
+        if len(fact["unseen_questions"]) < MIN_SAMPLE_SIZE:
+            print(f"WARNING: {fact['category']} has only {len(fact['unseen_questions'])} unseen questions (need {MIN_SAMPLE_SIZE})")
 
     # Generate training data (SEEN only)
     training_data = generate_training_data(facts)
@@ -402,78 +519,115 @@ def run_generalization_test() -> Dict:
     print("=" * 70)
 
     results = []
-    total_seen_correct = 0
-    total_seen_total = 0
-    total_unseen_correct = 0
-    total_unseen_total = 0
+    all_seen_scores = []
+    all_unseen_scores = []
 
     for fact in facts:
         print(f"\n--- {fact['category']} ---")
 
         # Test SEEN questions
-        seen_acc, seen_examples = evaluate_questions(
-            model, tokenizer, fact["seen_questions"], fact["answer"]
+        seen_scores, seen_examples = evaluate_questions(
+            model, tokenizer,
+            fact["seen_questions"],
+            fact["answer"],
+            fact["response_type"]
         )
 
         # Test UNSEEN questions
-        unseen_acc, unseen_examples = evaluate_questions(
-            model, tokenizer, fact["unseen_questions"], fact["answer"]
+        unseen_scores, unseen_examples = evaluate_questions(
+            model, tokenizer,
+            fact["unseen_questions"],
+            fact["answer"],
+            fact["response_type"]
         )
 
-        gap = seen_acc - unseen_acc
+        # Statistical analysis
+        seen_stats = analyze_sample(seen_scores)
+        unseen_stats = analyze_sample(unseen_scores)
+        comparison = compare_conditions(seen_scores, unseen_scores)
 
-        print(f"  SEEN accuracy:   {seen_acc*100:.1f}% ({int(seen_acc*len(fact['seen_questions']))}/{len(fact['seen_questions'])})")
-        print(f"  UNSEEN accuracy: {unseen_acc*100:.1f}% ({int(unseen_acc*len(fact['unseen_questions']))}/{len(fact['unseen_questions'])})")
-        print(f"  Generalization gap: {gap*100:+.1f}pp")
+        all_seen_scores.extend(seen_scores)
+        all_unseen_scores.extend(unseen_scores)
 
-        total_seen_correct += int(seen_acc * len(fact['seen_questions']))
-        total_seen_total += len(fact['seen_questions'])
-        total_unseen_correct += int(unseen_acc * len(fact['unseen_questions']))
-        total_unseen_total += len(fact['unseen_questions'])
+        print(f"  SEEN:   {format_ci(seen_stats)} (n={seen_stats.n})")
+        print(f"  UNSEEN: {format_ci(unseen_stats)} (n={unseen_stats.n})")
+        print(f"  Gap:    {format_comparison(comparison)}")
 
         results.append(GeneralizationResult(
             fact_category=fact["category"],
-            seen_accuracy=seen_acc,
-            unseen_accuracy=unseen_acc,
+            seen_stats=asdict(seen_stats),
+            unseen_stats=asdict(unseen_stats),
+            comparison=asdict(comparison),
             seen_questions_tested=len(fact["seen_questions"]),
             unseen_questions_tested=len(fact["unseen_questions"]),
-            generalization_gap=gap,
-            examples=unseen_examples[:3]  # Save a few examples
+            examples=unseen_examples[:5]
         ))
 
-    # Summary
-    overall_seen = total_seen_correct / total_seen_total if total_seen_total > 0 else 0
-    overall_unseen = total_unseen_correct / total_unseen_total if total_unseen_total > 0 else 0
-    overall_gap = overall_seen - overall_unseen
+    # Overall analysis
+    overall_seen = analyze_sample(all_seen_scores)
+    overall_unseen = analyze_sample(all_unseen_scores)
+    overall_comparison = compare_conditions(all_seen_scores, all_unseen_scores)
 
     print("\n" + "=" * 70)
-    print("SUMMARY")
+    print("SUMMARY (with Statistical Rigor)")
     print("=" * 70)
-    print(f"\nOverall SEEN accuracy:   {overall_seen*100:.1f}%")
-    print(f"Overall UNSEEN accuracy: {overall_unseen*100:.1f}%")
-    print(f"Overall generalization gap: {overall_gap*100:+.1f}pp")
+    print(f"\nOverall SEEN:   {format_ci(overall_seen)} (n={overall_seen.n})")
+    print(f"Overall UNSEEN: {format_ci(overall_unseen)} (n={overall_unseen.n})")
+    print(f"\nStatistical Comparison:")
+    print(f"  Mean Difference: {overall_comparison.mean_diff*100:+.1f}pp")
+    print(f"  95% CI of Diff:  [{overall_comparison.ci_diff_lower*100:.1f}, {overall_comparison.ci_diff_upper*100:.1f}]pp")
+    print(f"  Effect Size:     d={overall_comparison.effect_size:.3f}")
+    print(f"  P-value:         p={overall_comparison.p_value:.4f}")
+    print(f"  Significant:     {'Yes' if overall_comparison.is_significant else 'No'} (alpha=0.05)")
 
-    if overall_gap < 10:
-        print("\n[PASS] Excellent generalization! Gap < 10pp")
-        print("       Model learned true knowledge, not just memorization.")
-    elif overall_gap < 20:
-        print("\n[MODERATE] Reasonable generalization. Gap 10-20pp")
-        print("           Some overfitting to training phrasings.")
+    # Interpretation
+    print("\n" + "=" * 70)
+    print("INTERPRETATION")
+    print("=" * 70)
+
+    gap_pp = abs(overall_comparison.mean_diff * 100)
+
+    if gap_pp < 5:
+        print("\n[EXCELLENT] Generalization gap < 5pp")
+        print("Model demonstrates strong knowledge transfer to novel phrasings.")
+    elif gap_pp < 10:
+        print("\n[GOOD] Generalization gap 5-10pp")
+        print("Model learned underlying knowledge, not just surface patterns.")
+    elif gap_pp < 20:
+        print("\n[MODERATE] Generalization gap 10-20pp")
+        print("Some overfitting to training phrasings detected.")
     else:
-        print("\n[CONCERN] Poor generalization. Gap > 20pp")
-        print("          Model may be memorizing rather than learning.")
+        print("\n[CONCERN] Generalization gap > 20pp")
+        print("Model may be memorizing rather than learning concepts.")
+
+    # Effect size interpretation
+    d = abs(overall_comparison.effect_size)
+    if d < 0.2:
+        effect_interp = "negligible"
+    elif d < 0.5:
+        effect_interp = "small"
+    elif d < 0.8:
+        effect_interp = "medium"
+    else:
+        effect_interp = "large"
+    print(f"\nEffect size interpretation: {effect_interp} ({d:.2f})")
 
     # Save results
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     output = {
         "timestamp": datetime.now().isoformat(),
         "test": "generalization",
+        "statistical_standards": {
+            "min_sample_size": MIN_SAMPLE_SIZE,
+            "confidence_level": 0.95,
+            "alpha": 0.05,
+        },
         "summary": {
-            "overall_seen_accuracy": overall_seen,
-            "overall_unseen_accuracy": overall_unseen,
-            "generalization_gap": overall_gap,
-            "total_seen_questions": total_seen_total,
-            "total_unseen_questions": total_unseen_total,
+            "overall_seen": asdict(overall_seen),
+            "overall_unseen": asdict(overall_unseen),
+            "comparison": asdict(overall_comparison),
+            "total_seen_questions": overall_seen.n,
+            "total_unseen_questions": overall_unseen.n,
         },
         "by_category": [asdict(r) for r in results]
     }

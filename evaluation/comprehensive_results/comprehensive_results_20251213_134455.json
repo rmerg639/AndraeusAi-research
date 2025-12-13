@@ -1,0 +1,15 @@
+{
+  "metadata": {
+    "timestamp": "2025-12-13T13:44:55.667004",
+    "mode": "quick",
+    "tests_run": [
+      "scale",
+      "statistical",
+      "interference",
+      "forgetting",
+      "enterprise"
+    ],
+    "total_time_seconds": 460.0939826965332,
+    "version": "2.2.0"
+  }
+}
