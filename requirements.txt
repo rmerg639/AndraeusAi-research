@@ -22,5 +22,5 @@ datasets==2.21.0
 numpy==1.26.4
 scipy==1.13.1
 
-# Optional: For running evaluation tests
-# pytest==8.3.3
+# Testing
+pytest==8.3.3

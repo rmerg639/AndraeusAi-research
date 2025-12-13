@@ -1,41 +1,98 @@
 # Contributing to Andraeus AI
 
-Thank you for your interest in contributing to the Andraeus AI Scaling and Context Window Solution Research.
+Thank you for your interest in contributing.
 
-## Important Notice
+## What This Project Is (And Isn't)
 
-**This is proprietary research.** All contributions become the intellectual property of Rocco Andraeus Sergi under the project license.
+This is a **practical implementation guide** for QLoRA fine-tuning on personal facts.
+
+**It IS:**
+- A working implementation you can use
+- Hyperparameter recommendations (10 variations appears optimal)
+- A starting point for your own experiments
+
+**It is NOT:**
+- Novel research (QLoRA personalization is well-documented since 2023)
+- Statistically rigorous (sample sizes below publication standard)
+- Proven to beat competitors (we haven't benchmarked Mem0/Zep/MemGPT)
+
+Please keep contributions aligned with this honest assessment.
 
 ## How to Contribute
 
-### 1. Reporting Issues
+### Bug Fixes
 
-- Use GitHub Issues for bug reports
-- Include Python version, OS, and GPU details
-- Provide minimal reproducible examples
-- Check existing issues before creating new ones
+Bug fixes are welcome. Please:
 
-### 2. Feature Requests
+1. Open an issue describing the bug
+2. Include steps to reproduce
+3. Submit a PR with the fix and tests
 
-- Open an issue with `[FEATURE]` prefix
-- Describe the use case and expected behavior
-- Explain why this benefits the project
+### Documentation Improvements
 
-### 3. Code Contributions
+Documentation improvements are welcome, especially:
 
-Before contributing code:
+- Clearer explanations
+- Additional examples
+- Fixing inaccuracies
+- Adding honest caveats where missing
 
-1. **Contact First**: Email andraeusbeats@gmail.com to discuss
-2. **Sign CLA**: Contributor License Agreement required
-3. **Follow Standards**: See code style guide below
+### Code Quality Improvements
 
-### 4. Research Contributions
+- Better error handling
+- Additional unit tests
+- Removing duplicate code
+- Performance optimizations
 
-If you have research findings that could improve the methodology:
+### What We Need Most
 
-1. Document your experiments
-2. Provide reproducible results
-3. Submit via email with data
+The biggest gaps in this project are:
+
+1. **Rigorous Evaluation**
+   - Run experiments with n≥30 per condition
+   - Human-written test questions (not template-based)
+   - Actually benchmark against Mem0/Zep/MemGPT
+
+2. **Independent Validation**
+   - Reproduce results on different hardware
+   - Test with different base models (Llama, Mistral)
+   - Validate accuracy claims
+
+3. **Real-World Testing**
+   - Test with real personal data
+   - Long-term retention studies
+   - Update/forgetting analysis
+
+## Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/rmerg639/AndraeusAi-research.git
+cd AndraeusAi-research
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # or venv\Scripts\activate on Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Install in development mode
+pip install -e .
+
+# Run tests
+pytest tests/ -v
+```
+
+## Running Tests
+
+```bash
+# Run all unit tests
+pytest tests/test_core.py -v
+
+# Run with coverage
+pytest tests/ --cov=andraeus --cov-report=html
+```
 
 ## Code Style
 
@@ -44,7 +101,7 @@ If you have research findings that could improve the methodology:
 training_examples = []  # Good
 te = []                 # Bad
 
-# Document functions
+# Document functions with docstrings
 def train_model(config: dict) -> Model:
     """
     Train a personalized model with the given configuration.
@@ -67,26 +124,29 @@ def calculate_accuracy(predictions: list, labels: list) -> float:
 1. Fork the repository
 2. Create feature branch: `git checkout -b feature/your-feature`
 3. Make changes with clear commits
-4. Run tests: `python -m pytest tests/`
+4. Run tests: `pytest tests/ -v`
 5. Submit PR with description
 
-## Contributor License Agreement
+## What NOT to Contribute
 
-By contributing, you agree that:
+Please do not submit PRs that:
 
-1. Your contributions become property of the project
-2. You have the right to submit the contribution
-3. You grant perpetual, worldwide license to use your contribution
-4. Your contribution may be included in commercial licensing
+- Add unverified claims about accuracy or performance
+- Add competitor comparisons without actual benchmarks
+- Increase complexity without clear benefit
+- Remove honest caveats or limitations from documentation
+- Claim novelty where none exists
 
-## Code of Conduct
+## License
 
-See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+By contributing, you agree that your contributions become property of the project under the existing license. See [LICENSE](LICENSE) for terms.
 
 ## Questions?
 
-Contact: andraeusbeats@gmail.com
+Open an issue or contact: andraeusbeats@gmail.com
 
 ---
+
+**Remember**: Contributions should maintain honesty about what this project is - a practical implementation guide, not groundbreaking research.
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
