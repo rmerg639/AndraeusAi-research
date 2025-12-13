@@ -169,47 +169,22 @@ Requirements:
 - Acknowledgment in research outputs
 
 
-TIER 5: HUMANITARIAN & NON-PROFIT (FREE)
+TIER 5: SMALL BUSINESS - UNDER $10M (FREE)
 --------------------------------------------------------------------------------
 
 Eligibility:
-- Registered 501(c)(3) or equivalent non-profits
-- Humanitarian organizations
-- Disaster relief organizations
-- Environmental conservation groups
-- Public welfare organizations
-- Charitable foundations
-
-Terms:
-- License Fee: FREE (No charge)
-- Duration: Perpetual
-- Rights: Use, modify, deploy for humanitarian purposes
-- Restrictions:
-  * Cannot sublicense to for-profit entities
-  * Revenue-generating activities require commercial license
-
-Requirements:
-- Provide proof of non-profit status upon request
-- Attribution in public materials
-
-
-TIER 6: SMALL BUSINESS (FREE)
---------------------------------------------------------------------------------
-
-Eligibility:
-- Businesses with Annual Revenue UNDER $50,000,000 AUD
+- Businesses with Annual Revenue UNDER $10,000,000 AUD
 - Startups and small enterprises
 - Sole proprietorships and freelancers
-- Small consulting firms
+- Non-profits under $10M revenue
 
 Terms:
 - License Fee: FREE (No charge)
-- Duration: Until revenue exceeds threshold
-- Rights: Full commercial use, modify, deploy, integrate
+- Duration: Until revenue exceeds $10M AUD threshold
+- Rights: Use, modify, deploy, integrate
 - Restrictions:
-  * Must upgrade to Tier 7 when revenue exceeds $50M AUD
+  * Must upgrade when revenue exceeds $10M AUD
   * Annual revenue self-certification required
-  * Subject to audit upon request
 
 Requirements:
 - Annual self-certification of revenue status
@@ -217,7 +192,28 @@ Requirements:
 - Notify Licensor within 90 days of exceeding threshold
 
 
-TIER 7: ENTERPRISE COMMERCIAL (3.5% NET PROFITS)
+TIER 6: MEDIUM BUSINESS - $10M TO $50M (1.5% NET PROFITS)
+--------------------------------------------------------------------------------
+
+Eligibility:
+- Businesses with Annual Revenue $10,000,000 - $50,000,000 AUD
+- Growing companies and scale-ups
+- Non-profits over $10M that monetize using the Software
+
+Terms:
+- License Fee: 1.5% (one point five percent) of Net Profits
+  derived from products/services using the Software
+- Minimum Annual Fee: $5,000 AUD
+- Payment Schedule: Quarterly, within 30 days of quarter end
+- Duration: Annual, renewable
+
+Requirements:
+- Quarterly financial reports to Licensor
+- Annual self-certification of revenue status
+- Attribution in product documentation
+
+
+TIER 7: LARGE ENTERPRISE - $50M+ (3.5% NET PROFITS)
 --------------------------------------------------------------------------------
 
 Eligibility:
@@ -746,23 +742,26 @@ PART 9: GENERAL PROVISIONS
 QUICK REFERENCE SUMMARY
 ================================================================================
 
-| TIER | ENTITY TYPE              | ANNUAL REVENUE  | FEE               |
-|------|--------------------------|-----------------|-------------------|
-| 1    | Individual (personal)    | N/A             | FREE              |
-| 2    | Academic & Research      | N/A             | FREE              |
-| 3    | Education                | N/A             | FREE              |
-| 4    | Medical Research         | N/A             | FREE              |
-| 5    | Humanitarian Non-profit  | N/A             | FREE              |
-| 6    | Small Business           | Under $50M AUD  | FREE              |
-| 7    | Enterprise Commercial    | $50M+ AUD       | 3.5% net profits  |
-| 8    | Mining & Resources       | $10M+ AUD       | 10% net profits   |
-| 9    | Military/Defense         | $10M+ AUD       | 10% + APPROVAL    |
-| 10   | Gambling & Betting       | $10M+ AUD       | 10% net profits   |
-| 11   | Surveillance & Data      | $10M+ AUD       | 10% + APPROVAL    |
-| 12   | Predatory Finance        | $10M+ AUD       | 10% net profits   |
-| 13   | Fossil Fuel/High-Emission| $10M+ AUD       | 10% net profits   |
-| 14   | Tobacco/Alcohol/Addictive| $10M+ AUD       | 10% net profits   |
-| 15   | Government               | Any             | Case-by-case      |
+| TIER | ENTITY TYPE              | ANNUAL REVENUE   | FEE               |
+|------|--------------------------|------------------|-------------------|
+| 1    | Individual (personal)    | N/A              | FREE              |
+| 2    | Academic & Research      | N/A              | FREE              |
+| 3    | Education                | N/A              | FREE              |
+| 4    | Medical Research         | N/A              | FREE              |
+| 5    | Small Business           | Under $10M AUD   | FREE              |
+| 6    | Medium Business          | $10M-$50M AUD    | 1.5% net profits  |
+| 7    | Large Enterprise         | $50M+ AUD        | 3.5% net profits  |
+| 8    | Mining & Resources       | $10M+ AUD        | 10% net profits   |
+| 9    | Military/Defense         | $10M+ AUD        | 10% + APPROVAL    |
+| 10   | Gambling & Betting       | $10M+ AUD        | 10% net profits   |
+| 11   | Surveillance & Data      | $10M+ AUD        | 10% + APPROVAL    |
+| 12   | Predatory Finance        | $10M+ AUD        | 10% net profits   |
+| 13   | Fossil Fuel/High-Emission| $10M+ AUD        | 10% net profits   |
+| 14   | Tobacco/Alcohol/Addictive| $10M+ AUD        | 10% net profits   |
+| 15   | Government               | Any              | Case-by-case      |
+
+KEY RULE: ANY ENTITY MONETIZING OVER $10M AUD MUST PAY LICENSE FEES.
+No exceptions for non-profits or humanitarian organizations.
 
 PROHIBITED (NO LICENSE GRANTED):
 - Weapons of Mass Destruction
