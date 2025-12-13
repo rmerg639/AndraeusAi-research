@@ -265,6 +265,7 @@ This is proprietary research. Contact for licensing inquiries.
 **Rocco Andraeus Sergi**
 - Email: andraeusbeats@gmail.com
 - GitHub: [@rmerg639](https://github.com/rmerg639)
+- SoundCloud: [andraeusbeats](https://soundcloud.com/andraeusbeats)
 
 ---
 
