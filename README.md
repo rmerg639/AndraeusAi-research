@@ -16,8 +16,35 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Method-QLoRA-blue" alt="Method">
   <img src="https://img.shields.io/badge/Status-Prototype-yellow" alt="Status">
+  <img src="https://img.shields.io/badge/Rating-8.0%2F10-green" alt="Rating">
   <img src="https://img.shields.io/badge/License-Proprietary-red" alt="License">
 </p>
+
+---
+
+## Project Status: 8.0/10
+
+> **Honest Assessment**: Well-structured proof of concept with clean code and good infrastructure. Awaiting proper validation.
+
+### What's Done
+| Category | Score | Status |
+|----------|-------|--------|
+| Idea | 9/10 | Solid concept worth exploring |
+| Implementation | 8/10 | Clean code, centralized config, proper error handling |
+| Infrastructure | 8/10 | Statistical utils, CI-ready tests, reproducible |
+
+### What's Pending (To Reach 9/10)
+| Requirement | Status | Notes |
+|-------------|--------|-------|
+| Run n=30 experiments | **Pending** | Currently n=3-10, need n=30 for publication |
+| Human-written test set | Pending | Current tests use similar templates to training |
+| Real RAG comparison | Pending | Current "RAG" is simulated keyword matching |
+| Test on 2nd model | Pending | Only tested on Qwen2.5-7B-Instruct |
+
+### Critical Gaps
+- **No Validated Results Yet**: All claimed results (90-99% accuracy) are from n=3-10 runs
+- **Test Contamination Risk**: Test questions use similar templates to training data
+- **Simulated Baselines**: RAG comparison isn't using real vector retrieval
 
 ---
 
