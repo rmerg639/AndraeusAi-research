@@ -38,23 +38,25 @@ from dataclasses import dataclass, asdict
 # EXPERIMENT CONFIGURATION
 # =============================================================================
 
+# Publication standard: n>=30 per condition for statistical validity
+# NOTE: These experiments are expensive - ensure budget before running
 EXPERIMENTS = {
     "ablation": {
         "description": "Test if variation count affects accuracy",
         "conditions": [5, 10, 20, 30],  # Variations per fact
-        "runs_per_condition": 3,
+        "runs_per_condition": 30,  # Publication-ready sample size
         "estimated_cost_per_run": 2.76,
     },
     "baseline": {
         "description": "Compare fine-tuning to RAG and system prompt",
         "conditions": ["fine_tune", "rag", "system_prompt", "few_shot"],
-        "runs_per_condition": 3,
+        "runs_per_condition": 30,  # Publication-ready sample size
         "estimated_cost_per_run": 2.76,  # Only fine-tune costs
     },
     "depth": {
         "description": "Test simple vs complex knowledge retention",
         "conditions": [1, 2, 3, 4],  # Knowledge tiers
-        "runs_per_condition": 3,
+        "runs_per_condition": 30,  # Publication-ready sample size
         "estimated_cost_per_run": 3.50,  # More data = slightly longer
     },
 }

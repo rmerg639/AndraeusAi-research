@@ -37,7 +37,8 @@ from trl import SFTTrainer
 from datasets import Dataset
 
 BASE_MODEL = "Qwen/Qwen2.5-7B-Instruct"
-RUNS = 5
+# Publication standard: n>=30 per condition for statistical validity
+RUNS = 30  # Publication-ready sample size
 
 # =============================================================================
 # USE CASE PROFILES

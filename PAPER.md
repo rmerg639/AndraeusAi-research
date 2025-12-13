@@ -14,9 +14,11 @@ December 2025
 **This is a technical report, not a peer-reviewed paper.**
 
 - Results have not been independently replicated
-- Sample sizes are below publication standards (n=3-10 vs required n=30)
+- Results reported below used sample sizes n=3-10 (below publication standard)
 - Test questions share templates with training data (potential contamination)
 - Competitor comparisons are not included (we have not run Mem0/Zep/MemGPT)
+
+**Note:** Evaluation scripts have been updated to require n>=30 per condition for publication-ready results. The results presented below are from preliminary runs with smaller samples and should be re-run with n>=30 for proper validation.
 
 This document describes our implementation and preliminary findings.
 
@@ -196,12 +198,14 @@ These results are **preliminary indicators**, not rigorous proof.
 
 ### 4.1 Statistical Limitations
 
-| Issue | Our Status | Required |
-|-------|------------|----------|
-| Sample size | n=3-10 | n=30 minimum |
-| Confidence intervals | Not reported | Required for publication |
-| Effect sizes | Not calculated | Required for publication |
-| Train/test separation | Template overlap | Completely independent |
+| Issue | Our Status | Required | Status |
+|-------|------------|----------|--------|
+| Sample size | n=3-10 (preliminary) | n>=30 minimum | Scripts updated to enforce n>=30 |
+| Confidence intervals | Not reported | Required for publication | Available in stats_utils.py |
+| Effect sizes | Not calculated | Required for publication | Cohen's d in stats_utils.py |
+| Train/test separation | Template overlap | Completely independent | Needs human-written questions |
+
+**To produce publication-ready results:** Re-run evaluation scripts with `--quick=False` (uses n>=30).
 
 ### 4.2 Methodological Limitations
 
@@ -280,11 +284,14 @@ https://github.com/rmerg639/andraeus-research
 ```
 torch==2.3.1
 transformers==4.46.2
-trl==0.24.1
-peft==0.15.1
-datasets==2.14.0
-bitsandbytes==0.45.0
+trl==0.12.1
+peft==0.13.2
+datasets==2.21.0
+bitsandbytes==0.44.1
+accelerate==0.34.2
 ```
+
+See `requirements.txt` for pinned versions.
 
 ### Random Seeds
 All experiments use seed=42 for reproducibility.

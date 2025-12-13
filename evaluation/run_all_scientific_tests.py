@@ -46,9 +46,11 @@ def run_scale_test(quick: bool = False) -> Dict[str, Any]:
     from run_scale_1000_test import run_scale_test as scale_test
 
     if quick:
-        results = scale_test(fact_counts=[50, 100, 200], runs_per_count=1)
+        print("WARNING: Quick mode uses runs_per_count=3, results NOT publication-ready (requires n>=30)")
+        results = scale_test(fact_counts=[50, 100, 200], runs_per_count=3)
     else:
-        results = scale_test(fact_counts=[100, 250, 500, 750, 1000], runs_per_count=3)
+        # Publication standard: n>=30 per condition
+        results = scale_test(fact_counts=[100, 250, 500, 750, 1000], runs_per_count=30)
 
     # Summarize
     summary = {}
@@ -71,8 +73,10 @@ def run_statistical_test(quick: bool = False) -> Dict[str, Any]:
     from run_statistical_power_test import run_statistical_power_test as stat_test
 
     if quick:
-        results = stat_test(n_runs=5, n_facts=10)
+        print("WARNING: Quick mode uses n=10, results NOT publication-ready (requires n>=30)")
+        results = stat_test(n_runs=10, n_facts=10)
     else:
+        # Publication standard: n>=30 per condition
         results = stat_test(n_runs=30, n_facts=20)
 
     return {
@@ -266,6 +270,9 @@ def main():
 
     print_banner("ANDRAEUS AI - COMPREHENSIVE SCIENTIFIC VALIDATION", "=", 70)
     print(f"Mode: {'QUICK' if args.quick else 'FULL'}")
+    if args.quick:
+        print("NOTICE: Quick mode - results are exploratory only, NOT publication-ready")
+        print("        Publication requires n>=30 per condition (use full mode)")
     print(f"Tests: {args.tests}")
     print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 70)

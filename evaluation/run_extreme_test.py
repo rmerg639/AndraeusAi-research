@@ -34,7 +34,9 @@ from datasets import Dataset
 # =============================================================================
 
 BASE_MODEL = "Qwen/Qwen2.5-7B-Instruct"
-RUNS_PER_CONDITION = 5  # Balanced for thorough testing
+# Publication standard: n>=30 per condition for statistical validity
+# Set to lower value only for exploratory/debugging runs
+RUNS_PER_CONDITION = 30  # Publication-ready sample size
 
 # =============================================================================
 # MASSIVE FACT DATABASE (500+ facts)
