@@ -4,7 +4,7 @@
 
 ---
 
-**ANDRAEUS AI SCALING AND CONTEXT WINDOW SOLUTION**
+**ANDRAEUS QUESTION VARIATION METHODOLOGY**
 **SOFTWARE LICENSE AGREEMENT**
 
 **Version 2.2 - [DATE]**
@@ -29,7 +29,7 @@ Email: andraeusbeats@gmail.com
 
 ## 1. DEFINITIONS
 
-1.1 **"Software"** means the Andraeus AI Scaling and Context Window Solution Research software, including source code, object code, documentation, and any updates or modifications.
+1.1 **"Software"** means the Andraeus Question Variation Methodology Research software, including source code, object code, documentation, and any updates or modifications.
 
 1.2 **"Derivative Works"** means any work based upon the Software, including modifications, adaptations, translations, or any work that incorporates the Software.
 
@@ -202,7 +202,7 @@ _________________________ Date: _______________
 
 ## SCHEDULE A: LICENSED SOFTWARE
 
-Software Name: Andraeus AI Scaling and Context Window Solution Research
+Software Name: Andraeus Question Variation Methodology Research
 Version: 2.2.0
 Components: [List specific modules]
 

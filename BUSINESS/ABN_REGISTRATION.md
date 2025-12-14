@@ -25,7 +25,7 @@ https://www.abr.gov.au/business-super-funds-702charities/applying-abn
 Use this description:
 ```
 Licensing of artificial intelligence research and methodologies,
-specifically the Andraeus AI Scaling and Context Window Solution.
+specifically the Andraeus Question Variation Methodology.
 Software licensing, AI consulting, and technology research services.
 ```
 

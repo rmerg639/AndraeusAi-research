@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Andraeus AI Scaling and Context Window Solution Research.
+All notable changes to Andraeus: Question Variation Methodology Research.
 
 ## [2.2.0] - 2025-12-13
 

@@ -1,5 +1,5 @@
 """
-Andraeus AI Scaling and Context Window Solution Research
+Andraeus: Question Variation Methodology Research
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 
 Setup script for pip installation.
