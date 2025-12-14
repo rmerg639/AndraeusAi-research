@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-Real Depth Experiment - Test simple vs complex knowledge retention.
+Real Depth Experiment - OPTIMIZED VERSION
+
+Loads model ONCE, reuses for all runs. ~10x faster than original.
 
 Tiers:
 1. Simple facts (name, age, pet)
@@ -11,6 +13,7 @@ Tiers:
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
 
+import gc
 import json
 import time
 import torch
@@ -30,7 +33,7 @@ from datasets import Dataset
 
 # Import centralized config
 from config_imports import BASE_MODEL, get_lora_config
-RUNS_PER_TIER = 3
+RUNS_PER_TIER = 30  # n=30 for publication
 
 # Extended user profile with multiple tiers of complexity
 USER_PROFILE = {
@@ -210,159 +213,158 @@ def get_test_questions():
 
 
 # =============================================================================
-# TRAINING AND EVALUATION
+# OPTIMIZED TRAINING - Model loaded ONCE
 # =============================================================================
 
-def train_for_tier(tier: int, seed: int = 42) -> Tuple[str, float, float, int]:
-    """Train adapter for specified tier level."""
+class OptimizedDepthTrainer:
+    """Keeps base model loaded, creates fresh LoRA for each run."""
 
-    # Collect training data up to this tier
-    data = []
-    if tier >= 1:
-        data.extend(generate_tier1_data())
-    if tier >= 2:
-        data.extend(generate_tier2_data())
-    if tier >= 3:
-        data.extend(generate_tier3_data())
-    if tier >= 4:
-        data.extend(generate_tier4_data())
+    def __init__(self):
+        print("Loading base model (one time only)...")
+        self.tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, trust_remote_code=True)
+        if self.tokenizer.pad_token is None:
+            self.tokenizer.pad_token = self.tokenizer.eos_token
 
-    print(f"Training with {len(data)} examples for tier {tier}...")
+        self.base_model = AutoModelForCausalLM.from_pretrained(
+            BASE_MODEL,
+            torch_dtype=torch.bfloat16,
+            device_map="auto",
+            trust_remote_code=True
+        )
+        print("Base model loaded!")
 
-    # Format as messages
-    system_prompt = f"You are a personal AI assistant for {USER_PROFILE['name']}."
-    examples = []
-    for q, a in data:
-        examples.append({
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": q},
-                {"role": "assistant", "content": a}
-            ]
-        })
+    def get_tier_data(self, tier: int) -> List[Tuple[str, str]]:
+        """Collect training data up to specified tier."""
+        data = []
+        if tier >= 1:
+            data.extend(generate_tier1_data())
+        if tier >= 2:
+            data.extend(generate_tier2_data())
+        if tier >= 3:
+            data.extend(generate_tier3_data())
+        if tier >= 4:
+            data.extend(generate_tier4_data())
+        return data
 
-    # Load model
-    tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, trust_remote_code=True)
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    def train_and_evaluate(self, tier: int, seed: int = 42) -> Tuple[float, float, float, Dict[int, float], int]:
+        """Train fresh LoRA and evaluate. Returns (time, loss, accuracy, by_tier, examples_count)."""
 
-    model = AutoModelForCausalLM.from_pretrained(
-        BASE_MODEL,
-        torch_dtype=torch.bfloat16,
-        device_map="auto",
-        trust_remote_code=True
-    )
+        start_time = time.time()
 
-    # Use centralized LoRA config
-    lora_config = get_lora_config()
-    model = get_peft_model(model, lora_config)
+        # Get training data for this tier
+        data = self.get_tier_data(tier)
+        print(f"Training with {len(data)} examples for tier {tier}...")
 
-    # Format data
-    def format_example(ex):
-        return tokenizer.apply_chat_template(ex["messages"], tokenize=False, add_generation_prompt=False)
+        # Format as messages
+        system_prompt = f"You are a personal AI assistant for {USER_PROFILE['name']}."
+        examples = []
+        for q, a in data:
+            examples.append({
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": q},
+                    {"role": "assistant", "content": a}
+                ]
+            })
 
-    formatted = [{"text": format_example(ex)} for ex in examples]
-    dataset = Dataset.from_list(formatted)
+        # Create fresh LoRA adapter
+        lora_config = get_lora_config()
+        model = get_peft_model(self.base_model, lora_config)
 
-    output_dir = f"./output/depth/tier{tier}_seed{seed}"
+        # Format data
+        def format_example(ex):
+            return self.tokenizer.apply_chat_template(ex["messages"], tokenize=False, add_generation_prompt=False)
 
-    training_args = TrainingArguments(
-        output_dir=output_dir,
-        num_train_epochs=5,
-        per_device_train_batch_size=4,
-        gradient_accumulation_steps=2,
-        learning_rate=3e-4,
-        warmup_ratio=0.1,
-        logging_steps=10,
-        save_strategy="no",
-        seed=seed,
-        bf16=True,
-    )
+        formatted = [{"text": format_example(ex)} for ex in examples]
+        dataset = Dataset.from_list(formatted)
 
-    start = time.time()
-    trainer = SFTTrainer(
-        model=model,
-        args=training_args,
-        train_dataset=dataset,
-        processing_class=tokenizer,
-    )
+        training_args = TrainingArguments(
+            output_dir=f"./output/temp_depth_{tier}_{seed}",
+            num_train_epochs=5,
+            per_device_train_batch_size=4,
+            gradient_accumulation_steps=2,
+            learning_rate=3e-4,
+            warmup_ratio=0.1,
+            logging_steps=50,
+            save_strategy="no",
+            seed=seed,
+            bf16=True,
+            report_to="none",
+        )
 
-    result = trainer.train()
-    train_time = time.time() - start
-    train_loss = result.training_loss
+        trainer = SFTTrainer(
+            model=model,
+            args=training_args,
+            train_dataset=dataset,
+            processing_class=self.tokenizer,
+        )
 
-    # Save
-    model.save_pretrained(output_dir)
-    tokenizer.save_pretrained(output_dir)
+        result = trainer.train()
+        train_loss = result.training_loss
+        train_time = time.time() - start_time
 
-    del model
-    del trainer
-    torch.cuda.empty_cache()
+        # Evaluate (model still in memory)
+        model.eval()
+        accuracy, by_tier = self._evaluate(model, tier)
 
-    return output_dir, train_time, train_loss, len(data)
+        # Clean up LoRA adapter
+        del trainer
+        del model
+        gc.collect()
+        torch.cuda.empty_cache()
 
+        # Re-prepare base model for next run
+        self.base_model = self.base_model.base_model if hasattr(self.base_model, 'base_model') else self.base_model
 
-def evaluate_tier(adapter_path: str, max_tier: int) -> Tuple[float, Dict[int, float]]:
-    """Evaluate adapter on all tier questions."""
+        return train_time, train_loss, accuracy, by_tier, len(data)
 
-    tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, trust_remote_code=True)
-    base = AutoModelForCausalLM.from_pretrained(
-        BASE_MODEL,
-        torch_dtype=torch.bfloat16,
-        device_map="auto",
-        trust_remote_code=True
-    )
-    model = PeftModel.from_pretrained(base, adapter_path)
-    model.eval()
+    def _evaluate(self, model, max_tier: int) -> Tuple[float, Dict[int, float]]:
+        """Evaluate model on all tier questions up to max_tier."""
 
-    system_prompt = f"You are a personal AI assistant for {USER_PROFILE['name']}."
-    test_questions = get_test_questions()
+        system_prompt = f"You are a personal AI assistant for {USER_PROFILE['name']}."
+        test_questions = get_test_questions()
 
-    total_correct = 0
-    total_questions = 0
-    by_tier = {}
+        total_correct = 0
+        total_questions = 0
+        by_tier = {}
 
-    for tier in range(1, max_tier + 1):
-        tier_correct = 0
-        tier_total = 0
+        for tier in range(1, max_tier + 1):
+            tier_correct = 0
+            tier_total = 0
 
-        for test in test_questions.get(tier, []):
-            messages = [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": test["q"]}
-            ]
+            for test in test_questions.get(tier, []):
+                messages = [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": test["q"]}
+                ]
 
-            text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-            inputs = tokenizer(text, return_tensors="pt").to(model.device)
+                text = self.tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+                inputs = self.tokenizer(text, return_tensors="pt").to(model.device)
 
-            with torch.no_grad():
-                outputs = model.generate(
-                    **inputs,
-                    max_new_tokens=100,
-                    temperature=0.3,
-                    do_sample=True,
-                    pad_token_id=tokenizer.pad_token_id
-                )
+                with torch.no_grad():
+                    outputs = model.generate(
+                        **inputs,
+                        max_new_tokens=100,
+                        temperature=0.3,
+                        do_sample=True,
+                        pad_token_id=self.tokenizer.pad_token_id
+                    )
 
-            response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
-            # Use strict accuracy check to avoid false positives (e.g., "12" matching "120")
-            from stats_utils import check_accuracy
-            is_correct = check_accuracy(response, test["expected"])
+                response = self.tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
 
-            if is_correct:
-                tier_correct += 1
-                total_correct += 1
-            tier_total += 1
-            total_questions += 1
+                from stats_utils import check_accuracy
+                is_correct = check_accuracy(response, test["expected"])
 
-        by_tier[tier] = tier_correct / tier_total if tier_total > 0 else 0
+                if is_correct:
+                    tier_correct += 1
+                    total_correct += 1
+                tier_total += 1
+                total_questions += 1
 
-    del model
-    del base
-    torch.cuda.empty_cache()
+            by_tier[tier] = tier_correct / tier_total if tier_total > 0 else 0
 
-    overall = total_correct / total_questions if total_questions > 0 else 0
-    return overall, by_tier
+        overall = total_correct / total_questions if total_questions > 0 else 0
+        return overall, by_tier
 
 
 # =============================================================================
@@ -370,18 +372,24 @@ def evaluate_tier(adapter_path: str, max_tier: int) -> Tuple[float, Dict[int, fl
 # =============================================================================
 
 def run_depth_experiment():
-    """Run depth experiment across all tiers."""
+    """Run depth experiment across all tiers with optimized single model load."""
 
     print("="*70)
-    print("  DEPTH EXPERIMENT")
+    print("  DEPTH EXPERIMENT (OPTIMIZED)")
     print("="*70)
+    print(f"Base model: {BASE_MODEL}")
     print("Tiers: 1 (Simple) → 2 (Relational) → 3 (Temporal) → 4 (Multi-hop)")
     print(f"Runs per tier: {RUNS_PER_TIER}")
+    print(f"Total runs: {4 * RUNS_PER_TIER}")
     print("="*70)
+
+    # Load model ONCE
+    trainer = OptimizedDepthTrainer()
 
     Path("./output/depth").mkdir(parents=True, exist_ok=True)
 
     all_results = []
+    total_start = time.time()
 
     for tier in [1, 2, 3, 4]:
         print(f"\n{'='*60}")
@@ -392,10 +400,9 @@ def run_depth_experiment():
             print(f"\nRun {run}/{RUNS_PER_TIER}...")
             seed = 42 + run
 
-            adapter_path, train_time, train_loss, examples_count = train_for_tier(tier, seed)
-            print(f"  Training: {train_time:.1f}s, loss={train_loss:.4f}")
+            train_time, train_loss, accuracy, by_tier, examples_count = trainer.train_and_evaluate(tier, seed)
 
-            accuracy, by_tier = evaluate_tier(adapter_path, tier)
+            print(f"  Training: {train_time:.1f}s, loss={train_loss:.4f}")
             print(f"  Overall: {accuracy:.1%}")
             for t, acc in by_tier.items():
                 print(f"    Tier {t}: {acc:.1%}")
@@ -412,10 +419,13 @@ def run_depth_experiment():
             )
             all_results.append(result)
 
+    total_time = time.time() - total_start
+
     # Summary
     print("\n" + "="*70)
     print("  DEPTH EXPERIMENT RESULTS")
     print("="*70)
+    print(f"Total time: {total_time/60:.1f} minutes")
 
     print("\nAccuracy by Training Tier:")
     print("-"*50)
@@ -428,6 +438,7 @@ def run_depth_experiment():
         print(f"  Tier {tier}: {bar} {mean:.1%} (±{std:.1%})")
 
     # Save
+    Path("evaluation").mkdir(exist_ok=True)
     output_file = "evaluation/depth_results.json"
     with open(output_file, 'w') as f:
         json.dump([asdict(r) for r in all_results], f, indent=2)
