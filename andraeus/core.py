@@ -434,7 +434,7 @@ def load_model(adapter_path: str, base_model: Optional[str] = None) -> Tuple[Any
 
 class AndraeusTrainer:
     """
-    Trainer for Zero-Context Personal Memory.
+    Trainer for Personal fact encoding via fine-tuning.
 
     Encodes personal knowledge directly into model weights,
     using 0 context tokens for personal facts.

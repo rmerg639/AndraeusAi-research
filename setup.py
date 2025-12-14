@@ -15,7 +15,7 @@ setup(
     version="2.2.0",
     author="Rocco Andraeus Sergi",
     author_email="andraeusbeats@gmail.com",
-    description="Zero-Context Personal Memory for LLMs - Solving the AI Context Window Problem",
+    description="Question variation methodology for personal fact encoding in fine-tuned LLMs",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/rmerg639/AndraeusAi-research",

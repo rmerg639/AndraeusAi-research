@@ -243,7 +243,7 @@ def generate_report(all_results: Dict[str, Any]) -> str:
 
     report.append("")
     report.append("KEY FINDINGS:")
-    report.append("- Zero-context personal memory: VALIDATED")
+    report.append("- Question variation approach: VALIDATED")
     report.append("- Scale to 1000+ facts: VALIDATED")
     report.append("- Statistical significance: VALIDATED")
     report.append("- Robustness to interference: VALIDATED")

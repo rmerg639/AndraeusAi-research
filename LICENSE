@@ -53,7 +53,7 @@ PART 1: DEFINITIONS
 1.2 "Methodologies" means the novel techniques developed in this research:
     a) Question Variation Methodology (10 variations optimal)
     b) Tiered Knowledge Architecture (4-tier complexity system)
-    c) Zero-Context Personal Memory approach
+    c) Personal fact encoding via fine-tuning approach
     d) Scale-Efficient Fine-Tuning techniques
     e) Any combination or derivative of the above
 
@@ -798,7 +798,7 @@ ANY ATTEMPT TO CIRCUMVENT THESE TERMS IS A MATERIAL BREACH.
     d) ANY IMPLEMENTATION of the following concepts requires a license:
        - Question Variation Methodology (any variation count optimization)
        - Tiered Knowledge Architecture (any complexity tier system)
-       - Zero-Context Personal Memory (facts in weights approach)
+       - Personal fact encoding via fine-tuning (facts in weights approach)
        - Scale-Efficient Fine-Tuning (any similar optimization technique)
 
     e) The burden of proof is on the accused party to demonstrate their
