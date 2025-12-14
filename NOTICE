@@ -1,65 +1,8 @@
-================================================================================
-ANDRAEUS: QUESTION VARIATION METHODOLOGY RESEARCH
-================================================================================
+ANDRAEUS RESEARCH
+Copyright (c) 2025 Rocco Andraeus Sergi
 
-Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
+This is experimental research code.
+NOT peer-reviewed. NOT independently verified.
+Use at your own risk.
 
-This product includes software and research developed by:
-Rocco Andraeus Sergi (andraeusbeats@gmail.com)
-
-================================================================================
-ATTRIBUTION NOTICE
-================================================================================
-
-If you use this software, you must include the following attribution:
-
-"Powered by Andraeus: Question Variation Methodology Research
- Copyright (c) 2025 Rocco Andraeus Sergi
- https://github.com/rmerg639/AndraeusAi-research"
-
-================================================================================
-THIRD-PARTY COMPONENTS
-================================================================================
-
-This software uses the following third-party components:
-
-1. Qwen2.5-7B-Instruct
-   - License: Apache 2.0
-   - Source: https://huggingface.co/Qwen/Qwen2.5-7B-Instruct
-   - Copyright: Qwen Team, Alibaba Group
-
-2. Hugging Face Transformers
-   - License: Apache 2.0
-   - Source: https://github.com/huggingface/transformers
-
-3. PEFT (Parameter-Efficient Fine-Tuning)
-   - License: Apache 2.0
-   - Source: https://github.com/huggingface/peft
-
-4. TRL (Transformer Reinforcement Learning)
-   - License: Apache 2.0
-   - Source: https://github.com/huggingface/trl
-
-5. PyTorch
-   - License: BSD-3-Clause
-   - Source: https://github.com/pytorch/pytorch
-
-================================================================================
-PATENT NOTICE
-================================================================================
-
-Patent Pending (Australia)
-Title: Method and System for Personal fact encoding via fine-tuning in Large
-       Language Models Using Weight-Based Knowledge Encoding
-
-The methodologies described in this software may be covered by pending
-or granted patents. Use of these methodologies requires a valid license.
-
-================================================================================
-TRADEMARK NOTICE
-================================================================================
-
-"Andraeus" and "Andraeus AI" are trademarks of Rocco Andraeus Sergi.
-Use of these marks requires written permission.
-
-================================================================================
+Licensed under MIT License - see LICENSE file.

@@ -224,7 +224,7 @@ def compare_baselines(user_config: dict, test_questions: List[str]) -> Dict[str,
         accuracy_by_category={},
         latency_ms=50,  # No retrieval overhead
         cost_per_query=0.001,  # Just inference
-        setup_cost=2.76,  # Training cost
+        setup_cost=3.0,  # Training cost
         notes="One-time cost, facts in weights, robust to phrasing"
     )
 

@@ -243,11 +243,11 @@ def generate_report(all_results: Dict[str, Any]) -> str:
 
     report.append("")
     report.append("KEY FINDINGS:")
-    report.append("- Question variation approach: VALIDATED")
-    report.append("- Scale to 1000+ facts: VALIDATED")
-    report.append("- Statistical significance: VALIDATED")
-    report.append("- Robustness to interference: VALIDATED")
-    report.append("- Enterprise viability: VALIDATED")
+    report.append("- Question variation approach: observed in tests")
+    report.append("- Scale to 1000+ facts: observed in tests")
+    report.append("- Statistical significance: observed in tests")
+    report.append("- Robustness to interference: observed in tests")
+    report.append("- Informal enterprise test: observed in tests")
 
     report.append("")
     report.append("=" * 70)

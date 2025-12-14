@@ -11,7 +11,7 @@ Experiments:
 
 Budget: $160
 GPU Rate: $11.058/hour
-Per-run cost: ~$2.76 (15 min)
+Per-run cost: ~$3.0 (15 min)
 Max runs: ~58
 
 Experiment Plan:
@@ -45,13 +45,13 @@ EXPERIMENTS = {
         "description": "Test if variation count affects accuracy",
         "conditions": [5, 10, 20, 30],  # Variations per fact
         "runs_per_condition": 30,  # Publication-ready sample size
-        "estimated_cost_per_run": 2.76,
+        "estimated_cost_per_run": 3.0,
     },
     "baseline": {
         "description": "Compare fine-tuning to RAG and system prompt",
         "conditions": ["fine_tune", "rag", "system_prompt", "few_shot"],
         "runs_per_condition": 30,  # Publication-ready sample size
-        "estimated_cost_per_run": 2.76,  # Only fine-tune costs
+        "estimated_cost_per_run": 3.0,  # Only fine-tune costs
     },
     "depth": {
         "description": "Test simple vs complex knowledge retention",

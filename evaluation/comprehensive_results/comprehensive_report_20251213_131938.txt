@@ -10,11 +10,11 @@ OVERALL SUMMARY
 ======================================================================
 
 KEY FINDINGS:
-- Question variation methodology: VALIDATED
-- Scale to 1000+ facts: VALIDATED
-- Statistical significance: VALIDATED
-- Robustness to interference: VALIDATED
-- Enterprise viability: VALIDATED
+- Question variation methodology: observed in tests
+- Scale to 1000+ facts: observed in tests
+- Statistical significance: observed in tests
+- Robustness to interference: observed in tests
+- Informal enterprise test: observed in tests
 
 ======================================================================
 END OF REPORT

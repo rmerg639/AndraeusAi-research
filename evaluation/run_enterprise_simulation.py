@@ -624,7 +624,7 @@ def run_enterprise_simulation() -> Dict[str, EnterpriseResult]:
     print(f"{'AVERAGE/TOTAL':<25} {avg_acc*100:>6.1f}%     {avg_time:>6.1f}ms    {total_facts:>5}    {total_tests:>5}")
     print("="*70)
 
-    print("\nENTERPRISE VIABILITY ASSESSMENT:")
+    print("\nINFORMAL ENTERPRISE TEST:")
     if avg_acc >= 0.95:
         print("  [EXCELLENT] System ready for production deployment")
     elif avg_acc >= 0.90:

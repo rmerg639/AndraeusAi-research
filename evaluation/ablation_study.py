@@ -11,7 +11,7 @@ Experiments:
 
 Each run 3 times for statistical significance.
 
-Estimated cost: 12 runs × $2.76 = $33.12
+Estimated cost: 12 runs × $3.0 = $33.12
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
@@ -285,7 +285,7 @@ def run_full_ablation_study(config: dict) -> List[AblationResult]:
     print(f"Conditions: {VARIATION_COUNTS}")
     print(f"Runs per condition: {RUNS_PER_CONDITION}")
     print(f"Total runs: {total_runs}")
-    print(f"Estimated cost: ${total_runs * 2.76:.2f}")
+    print(f"Estimated cost: ${total_runs * 3.0:.2f}")
     print(f"Estimated time: {total_runs * 15} minutes")
 
     for var_count in VARIATION_COUNTS:
@@ -343,7 +343,7 @@ def main():
 
     print("\n" + "=" * 50)
     print("To run full study, uncomment run_full_ablation_study()")
-    print(f"Estimated cost: {len(VARIATION_COUNTS) * RUNS_PER_CONDITION * 2.76:.2f} USD")
+    print(f"Estimated cost: {len(VARIATION_COUNTS) * RUNS_PER_CONDITION * 3.0:.2f} USD")
 
     # Uncomment to run:
     # results = run_full_ablation_study(USER_CONFIG)

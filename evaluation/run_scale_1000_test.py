@@ -11,7 +11,7 @@ Tests the absolute limits of personal knowledge encoding:
 - 1500 facts (stress)
 - 2000 facts (extreme)
 
-Generates hard scientific data proving enterprise viability.
+Generates hard scientific data for informal testing.
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """

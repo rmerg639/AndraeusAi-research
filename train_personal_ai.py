@@ -7,7 +7,7 @@ This script demonstrates how to create a deeply personalized AI assistant
 using QLoRA fine-tuning. The key innovation is question variation: generating
 30+ phrasings for each personal fact to ensure robust recall.
 
-Cost: ~$2.76 (15 min @ $11.058/hr GPU rental)
+Cost: ~$3.0 (15 min @ $11.058/hr GPU rental)
 Time: 10-15 minutes on RTX 4090 or equivalent
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.

@@ -37,7 +37,7 @@ DEPTH RESULTS,Tier 4 Std,,
 DEPTH RESULTS,Degradation Rate,,% drop per tier
 ,,,
 FINAL CLAIMS,Overall Accuracy,,
-FINAL CLAIMS,Cost per Training,$2.76,
+FINAL CLAIMS,Cost per Training,$3.0,
 FINAL CLAIMS,Training Time,15,minutes
 FINAL CLAIMS,Optimal Variations,,
 FINAL CLAIMS,Beats RAG by,,percentage points

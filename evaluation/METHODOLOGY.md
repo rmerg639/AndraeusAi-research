@@ -39,7 +39,7 @@ More question variations per fact will improve recall accuracy, with diminishing
 - Training time and loss curves
 
 ### Cost
-12 runs × $2.76 = **$33.12**
+12 runs × $3.0 = **$33.12**
 
 ---
 
@@ -55,7 +55,7 @@ Fine-tuning will outperform baselines, especially on unusual phrasings (typos, m
 | System Prompt | Facts in system message | $0 | Standard |
 | RAG | Facts in vector DB, retrieved | ~$0.10 | +Embedding |
 | Few-Shot | Example Q&A in context | $0 | +Tokens |
-| **Fine-Tune** | QLoRA on 30 variations | $2.76 | Standard |
+| **Fine-Tune** | QLoRA on 30 variations | $3.0 | Standard |
 
 ### Evaluation
 Same test set for all methods:
@@ -154,8 +154,8 @@ Test questions are **never seen during training**. They use different phrasings 
 
 | Experiment | Runs | Cost/Run | Total |
 |------------|------|----------|-------|
-| Ablation | 12 | $2.76 | $33 |
-| Baselines | 12 | $2.76 | $33 |
+| Ablation | 12 | $3.0 | $33 |
+| Baselines | 12 | $3.0 | $33 |
 | Depth | 12 | $3.50 | $42 |
 | Buffer | - | - | $52 |
 | **Total** | 36 | - | **$160** |
