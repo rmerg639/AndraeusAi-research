@@ -1,127 +1,243 @@
 # Andraeus AI - Invoice Template
 
+## Australian Tax Compliance Notes
+
+**Before using this template, ensure you have:**
+- [ ] Registered for an ABN (Australian Business Number)
+- [ ] Registered for GST if turnover exceeds $75,000/year
+- [ ] Understood your tax obligations (consult an accountant)
+- [ ] Set up proper record keeping systems
+
+**Required Invoice Elements (Australian Tax Office):**
+For tax invoices over $1,000 AUD, you MUST include:
+1. The words "Tax Invoice" prominently displayed
+2. Your identity (name/business name) and ABN
+3. Date of issue
+4. Brief description of goods/services
+5. GST amount (if registered)
+6. Total amount payable
+
 ---
+
+## Invoice Template
 
 ```
 ================================================================================
-                              INVOICE
+                              TAX INVOICE
 ================================================================================
 
-ANDRAEUS AI
+FROM:
+Andraeus AI
 Rocco Andraeus Sergi
+ABN: [YOUR ABN - REQUIRED]
+[Your Address]
 New South Wales, Australia
 Email: andraeusbeats@gmail.com
-ABN: [YOUR ABN]
 
 --------------------------------------------------------------------------------
 
-BILL TO:                                 INVOICE DETAILS:
-[Client Company Name]                    Invoice #: ANDRAI-[YEAR]-[NUMBER]
-[Client Address]                         Date: [DATE]
-[Client City, State, Postcode]           Due Date: [DATE + 30]
-[Client Country]                         Terms: Net 30
+TO:                                      INVOICE DETAILS:
+[Client Company Name]                    Invoice No: ANDRAI-[YYYY]-[NNN]
+[Client Address]                         Issue Date: [DD/MM/YYYY]
+[City, State, Postcode]                  Due Date: [DD/MM/YYYY]
+[Country]                                Payment Terms: Net 30
+ABN/ACN: [Client ABN if Australian]
 Attention: [Contact Name]
-Email: [Client Email]
 
 --------------------------------------------------------------------------------
 
 DESCRIPTION                                              AMOUNT (AUD)
 --------------------------------------------------------------------------------
 
-Andraeus AI License - [TIER NAME]
-Period: [START DATE] to [END DATE]
-License Type: [Tier 7/8/9/10/11/12/13/14]
+Andraeus AI Software License
+License Period: [DD/MM/YYYY] to [DD/MM/YYYY]
+License Type: [Standard/Enterprise]
 
-Calculation:
-  Reported Net Profits: $[AMOUNT]
-  License Rate: [3.5% or 10%]
-  License Fee: $[CALCULATED AMOUNT]
+Calculation Method: [Percentage of Net Revenue / Flat Fee]
 
-                                                         $[AMOUNT]
+  [If percentage-based:]
+  Reported Net Revenue: $[AMOUNT]
+  License Rate: [X]%
+  Calculated Fee: $[AMOUNT]
+
+  [If flat fee:]
+  Quarterly License Fee: $[AMOUNT]
+
+                                         License Fee:    $[AMOUNT]
 
 --------------------------------------------------------------------------------
 
-                                              Subtotal:  $[AMOUNT]
-                                              GST (10%): $[GST AMOUNT]
-                                              --------------------------
-                                              TOTAL DUE: $[TOTAL]
+                                         Subtotal:       $[SUBTOTAL]
+
+[If GST Registered:]
+                                         GST (10%):      $[GST]
+
+[If NOT GST Registered, include this statement:]
+* No GST charged - supplier not registered for GST
+
+                                         ─────────────────────────
+                                         TOTAL DUE:      $[TOTAL]
+                                         ─────────────────────────
 
 --------------------------------------------------------------------------------
 
 PAYMENT METHODS:
 
-Bank Transfer (Preferred - No Fees):
-  Bank: [YOUR BANK]
-  BSB: [YOUR BSB]
-  Account: [YOUR ACCOUNT]
-  Reference: [INVOICE NUMBER]
+1. Bank Transfer (Preferred):
+   Bank: [Bank Name]
+   BSB: [XXX-XXX]
+   Account Number: [XXXXXXXXX]
+   Account Name: [Your Name/Business Name]
+   Reference: [Invoice Number]
 
-Credit Card (via Stripe):
-  [STRIPE PAYMENT LINK]
+2. PayID:
+   [Your PayID - phone or email]
 
-PayPal:
-  andraeusbeats@gmail.com
+3. International Wire:
+   SWIFT/BIC: [Code]
+   [Additional details]
 
 --------------------------------------------------------------------------------
 
 PAYMENT TERMS:
 
 - Payment due within 30 days of invoice date
-- Late payments incur 2% interest per month
-- Failure to pay within 90 days results in license termination
+- Late payments may incur interest at 10% per annum (or maximum
+  permitted by law) calculated daily on overdue amounts
+- Continued non-payment may result in license suspension
 - All amounts in Australian Dollars (AUD)
 
 --------------------------------------------------------------------------------
 
-LICENSE REFERENCE:
+NOTES:
 
-This invoice is issued under the Andraeus AI Scaling and Context Window
-Solution Research License Agreement v2.1.
-
-Full license terms: https://github.com/rmerg639/AndraeusAi-research/LICENSE
+[Optional: Add any relevant notes about the billing period,
+services provided, or special terms]
 
 --------------------------------------------------------------------------------
 
-QUESTIONS?
+QUERIES:
 
-Contact: andraeusbeats@gmail.com
+For billing questions, contact: andraeusbeats@gmail.com
+Please quote invoice number in all correspondence.
 
-================================================================================
-                         THANK YOU FOR YOUR BUSINESS
 ================================================================================
 ```
 
 ---
 
-## Invoice Numbering System
+## GST Registration Requirements
 
-Format: `ANDRAI-YYYY-NNN`
+| Annual Turnover | GST Registration |
+|----------------|------------------|
+| Under $75,000 | Optional |
+| $75,000 or more | **Mandatory** |
 
-Examples:
-- ANDRAI-2025-001 (First invoice)
-- ANDRAI-2025-002 (Second invoice)
-- ANDRAI-2026-001 (First invoice of 2026)
+**If NOT registered for GST:**
+- Do not charge GST on invoices
+- Include statement: "No GST charged - supplier not registered for GST"
+- You cannot claim GST credits on purchases
+
+**If registered for GST:**
+- Must charge 10% GST on taxable supplies
+- Must lodge BAS (Business Activity Statement) quarterly or monthly
+- Can claim GST credits on business purchases
 
 ---
 
-## Quarterly Invoice Schedule
+## Invoice Numbering System
+
+**Format:** `ANDRAI-YYYY-NNN`
+
+| Component | Description |
+|-----------|-------------|
+| ANDRAI | Business identifier |
+| YYYY | Calendar year |
+| NNN | Sequential number (reset annually or continuous) |
+
+**Examples:**
+- ANDRAI-2025-001 (First invoice of 2025)
+- ANDRAI-2025-002 (Second invoice)
+
+---
+
+## Quarterly Billing Schedule
 
 | Quarter | Period | Invoice Date | Due Date |
 |---------|--------|--------------|----------|
-| Q1 | Jan-Mar | April 1 | April 30 |
-| Q2 | Apr-Jun | July 1 | July 31 |
-| Q3 | Jul-Sep | October 1 | October 31 |
-| Q4 | Oct-Dec | January 1 | January 31 |
+| Q1 | 1 Jan - 31 Mar | 1 April | 30 April |
+| Q2 | 1 Apr - 30 Jun | 1 July | 31 July |
+| Q3 | 1 Jul - 30 Sep | 1 October | 31 October |
+| Q4 | 1 Oct - 31 Dec | 1 January | 31 January |
 
 ---
 
-## Record Keeping
+## Record Keeping Requirements (ATO)
 
-Keep copies of:
-- All invoices sent
-- Payment confirmations
-- Client profit reports
-- License agreements signed
-- Communication records
+You MUST keep records for **5 years** from the date you prepared/obtained them, or from completion of the transaction (whichever is later).
 
-Retain for 7 years (Australian tax requirement).
+**Records to keep:**
+- [ ] Copies of all invoices issued
+- [ ] Proof of payment received (bank statements)
+- [ ] License agreements
+- [ ] Client correspondence
+- [ ] Net revenue reports from clients
+- [ ] GST calculations (if registered)
+
+**Storage:** Records can be electronic. Ensure backups and data integrity.
+
+---
+
+## Overdue Invoice Process
+
+| Days Overdue | Action |
+|--------------|--------|
+| 7 days | Send friendly reminder email |
+| 14 days | Send formal reminder with interest warning |
+| 30 days | Send final notice, consider interest charges |
+| 60 days | Formal demand letter |
+| 90 days | Consider debt collection or license termination |
+
+---
+
+## Sample Reminder Email
+
+```
+Subject: Invoice ANDRAI-2025-001 - Payment Reminder
+
+Dear [Client Name],
+
+This is a friendly reminder that invoice ANDRAI-2025-001 for
+$[AMOUNT] AUD was due on [DATE].
+
+Please arrange payment at your earliest convenience.
+
+If payment has already been made, please disregard this notice
+and accept our thanks.
+
+Payment details:
+- Amount: $[AMOUNT] AUD
+- Bank: [Details]
+- Reference: ANDRAI-2025-001
+
+Questions? Reply to this email.
+
+Regards,
+Rocco Andraeus Sergi
+Andraeus AI
+```
+
+---
+
+## Disclaimer
+
+This template is provided for informational purposes. Consult a registered tax agent or accountant to ensure compliance with current Australian tax law and your specific business circumstances.
+
+**Useful Resources:**
+- ATO Invoicing Guide: https://www.ato.gov.au/Business/GST/Tax-invoices/
+- ABN Lookup: https://abr.business.gov.au/
+- BAS Information: https://www.ato.gov.au/Business/Business-activity-statements-BAS/
+
+---
+
+**END OF TEMPLATE**

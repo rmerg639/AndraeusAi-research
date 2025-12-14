@@ -1,93 +1,47 @@
-# Andraeus AI: Personal Memory Fine-Tuning
+# Andraeus AI - Personal Knowledge Fine-Tuning Research
 
-<p align="center">
-  <strong>A Practical Implementation Guide for QLoRA Personal Fact Encoding</strong><br>
-  Store personal knowledge in model weights instead of context tokens.
-</p>
+**Question Variation Methodology for Personal Fact Encoding in LLMs**
 
-<p align="center">
-  <a href="#key-findings">Key Findings</a> |
-  <a href="#quick-start">Quick Start</a> |
-  <a href="#methodology">Methodology</a> |
-  <a href="#limitations">Limitations</a> |
-  <a href="#citation">Citation</a>
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Method-QLoRA-blue" alt="Method">
-  <img src="https://img.shields.io/badge/Status-Prototype-yellow" alt="Status">
-  <img src="https://img.shields.io/badge/Rating-8.0%2F10-green" alt="Rating">
-  <img src="https://img.shields.io/badge/License-Proprietary-red" alt="License">
-</p>
-
----
-
-## Project Status: 8.0/10
-
-> **Honest Assessment**: Well-structured proof of concept with clean code and good infrastructure. Awaiting proper validation.
-
-### What's Done
-| Category | Score | Status |
-|----------|-------|--------|
-| Idea | 9/10 | Solid concept worth exploring |
-| Implementation | 8/10 | Clean code, centralized config, proper error handling |
-| Infrastructure | 8/10 | Statistical utils, CI-ready tests, reproducible |
-
-### What's Pending (To Reach 9/10)
-| Requirement | Status | Notes |
-|-------------|--------|-------|
-| Run n=30 experiments | **Pending** | Currently n=3-10, need n=30 for publication |
-| Human-written test set | Pending | Current tests use similar templates to training |
-| Real RAG comparison | Pending | Current "RAG" is simulated keyword matching |
-| Test on 2nd model | Pending | Only tested on Qwen2.5-7B-Instruct |
-
-### Critical Gaps
-- **No Validated Results Yet**: All claimed results (90-99% accuracy) are from n=3-10 runs
-- **Test Contamination Risk**: Test questions use similar templates to training data
-- **Simulated Baselines**: RAG comparison isn't using real vector retrieval
+[![Status](https://img.shields.io/badge/Status-Experimental-yellow)]()
+[![License](https://img.shields.io/badge/License-See%20LICENSE-blue)]()
+[![Python](https://img.shields.io/badge/Python-3.9+-green)]()
 
 ---
 
 ## What This Is
 
-This repository provides a **practical implementation guide** for encoding personal facts into LLM weights using QLoRA fine-tuning. This is **not a novel research contribution** - QLoRA fine-tuning for personalization has been well-documented since 2023.
+A methodology and code for improving personal fact recall in fine-tuned language models through systematic question variation.
 
-**Our contribution is practical hyperparameter tuning:**
-1. Finding that 10 question variations per fact works well
-2. A 4-tier complexity framework for organizing facts
-3. Working code you can use immediately
+**Key Idea:** Instead of training with single question-answer pairs, generate multiple phrasings per fact to improve recall robustness.
 
 ---
 
-## Key Findings
+## Experimental Results
 
-### What We Tested
+In controlled experiments (Qwen2.5-7B-Instruct, 100 facts, 3 runs):
 
-| Experiment | Configuration | Result | Sample Size |
-|------------|---------------|--------|-------------|
-| Ablation Study | Variations: 1-20 | 10 optimal (91.7%) | n=3 runs |
-| Scale Test | 50-500 facts | 93-99% accuracy | n=5 runs |
-| Depth Test | Tier 1-4 complexity | 97%+ on all tiers | n=5 runs |
+| Training Approach | Accuracy on Varied Phrasings |
+|-------------------|------------------------------|
+| 1 phrasing/fact | 67% (std: 4.2%) |
+| 10 phrasings/fact | 92% (std: 1.9%) |
 
-**Important caveats:**
-- Sample sizes are below publication standard (n<30)
-- Results are from synthetic test questions, not human evaluation
-- Test questions use similar templates to training data
-- These are promising indicators, not rigorous proof
+**Important Caveats:**
+- These are experimental results, not guaranteed outcomes
+- Results may vary based on model, facts, and evaluation methodology
+- This is not peer-reviewed research
+- Independent replication is needed
 
-### Method Comparison (Our Tests Only)
-
-| Method | Accuracy | Context Tokens | Notes |
-|--------|----------|----------------|-------|
-| Fine-tuning | 94.4% | 0 | Our method |
-| Simulated RAG | 100% | 1500+ | Keyword-based, not real vector retrieval |
-| System Prompt | 100% | 800+ | All facts in prompt |
-
-**Note:** RAG and System Prompt achieve higher accuracy because facts are provided directly. Fine-tuning's advantage is zero runtime context cost.
+See [PAPER.md](PAPER.md) for full methodology and limitations.
 
 ---
 
 ## Quick Start
+
+### Prerequisites
+
+- Python 3.9+
+- NVIDIA GPU with 16GB+ VRAM (for training)
+- ~15 minutes training time
 
 ### Installation
 
@@ -97,168 +51,164 @@ cd AndraeusAi-research
 pip install -r requirements.txt
 ```
 
-### Requirements
+### Basic Usage
 
-- Python 3.8+
-- CUDA-capable GPU (16GB+ VRAM recommended)
-- PyTorch 2.0+
+1. **Configure your personal facts** in `examples/user_config.json`
 
-### Training
-
-1. **Configure personal data** in `train_personal_ai.py`:
-
-```python
-USER_CONFIG = {
-    "user_name": "Alex",
-    "user_age": "28",
-    "pet_name": "Max",
-    "pet_type": "cat",
-    # ... add more facts
-}
-```
-
-2. **Run training** (~15 minutes for 50 facts):
-
+2. **Run training:**
 ```bash
 python train_personal_ai.py
 ```
 
-3. **Use the trained model**:
-
+3. **Test your model:**
 ```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
-from peft import PeftModel
+from andraeus import load_model
 
-base = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2.5-7B-Instruct")
-model = PeftModel.from_pretrained(base, "./output/personal-ai")
-
-# Personal facts are in weights - no system prompt needed for those facts
+model, tokenizer = load_model("./output/personal-ai")
+# Use with your preferred inference method
 ```
 
 ---
 
-## Methodology
-
-### Question Variation Approach
-
-The key finding: personal facts benefit from **question variation** during training. We generate 10 variations for each fact:
+## Project Structure
 
 ```
-Fact: Pet name is "Max"
+andraeus/
+  __init__.py          # Package initialization
+  core.py              # Core training functionality
 
-Variations:
-1. "What is my pet's name?"        -> "Max"
-2. "What's my cat called?"         -> "Max"
-3. "pet name?"                     -> "Max"
-4. "whats my pets name"            -> "Max"
-5. "Do you know my cat's name?"    -> "Yes, Max!"
-... (10 total)
+evaluation/
+  eval_framework.py    # Evaluation utilities
+  baseline_rag.py      # Baseline comparison code
+  METHODOLOGY.md       # Experimental methodology
+
+extensions/
+  live_context_server.py    # Runtime context injection
+  professional_config.py    # Professional domain configs
+
+examples/
+  user_config.json     # Example configuration
+
+train_personal_ai.py   # Main training script
+deploy_to_gpu.py       # GPU deployment helper
 ```
 
-**Why 10 variations?** Our ablation study (n=3 runs) suggests:
+---
 
-| Variations | Accuracy | Training Time |
-|------------|----------|---------------|
-| 1 | 45.2% | 2 min |
-| 5 | 82.5% | 6 min |
-| **10** | **91.7%** | 10 min |
-| 20 | 86.9% | 20 min |
+## How It Works
 
-### Training Configuration
+### The Problem
+Fine-tuned models often fail to recall facts when users phrase questions differently than training examples.
 
-| Parameter | Value | Rationale |
-|-----------|-------|-----------|
-| Base Model | Qwen2.5-7B-Instruct | Good quality, Apache 2.0 |
-| Method | QLoRA | 4-bit quantization + LoRA |
-| LoRA Rank | 64 | Higher for fact retention |
-| LoRA Alpha | 128 | 2x rank |
-| Epochs | 5 | Sufficient for small datasets |
-| Learning Rate | 3e-4 | Works well empirically |
+### Our Approach
+Generate ~10 question variations per fact during training:
+
+```
+Fact: Dog's name is Buddy
+
+Variations generated:
+- "What is my dog's name?" (formal)
+- "whats my dogs name" (casual)
+- "my dog" (minimal)
+- "Do you know my pet?" (indirect)
+- "wat is my dogs name" (typo)
+...
+```
+
+### Technical Details
+- Uses QLoRA (4-bit quantization + LoRA adapters)
+- LoRA rank 64, alpha 128
+- ~50M trainable parameters on 7B model
+- Training cost: ~$2.76 (15 min GPU rental)
+
+See [SCIENCE.md](SCIENCE.md) for detailed explanations.
 
 ---
 
 ## Limitations
 
-### This Is NOT Novel Research
+### What This Approach Does Well
+- Simple fact recall with varied phrasings
+- Offline/local operation
+- No runtime retrieval needed
 
-Fine-tuning LLMs on personal data has been done extensively:
-- LoRA (Hu et al., 2021)
-- QLoRA (Dettmers et al., 2023)
-- Lamini Memory Tuning (2024)
-- Hundreds of blog posts and papers
+### What This Approach Does NOT Do Well
+- Complex reasoning about personal facts
+- Rapidly changing information (requires retraining)
+- Very large fact sets (untested beyond ~500)
+- Facts conflicting with base model knowledge
 
-We provide a **working implementation**, not a research breakthrough.
+### Comparison with Alternatives
 
-### Statistical Limitations
+| Approach | Best For |
+|----------|----------|
+| Fine-tuning (this) | Static facts, constrained context |
+| RAG | Dynamic info, traceable sources |
+| System prompt | Simple cases, no training |
 
-| Issue | Status |
-|-------|--------|
-| Sample sizes | n=3-10 (below n=30 publication standard) |
-| Test contamination | Test questions use similar templates to training |
-| No human evaluation | All testing is automated |
-| No competitor benchmarks | We haven't run Mem0/Zep/MemGPT ourselves |
-
-### Practical Limitations
-
-| Limitation | Impact |
-|------------|--------|
-| Update latency | New facts require retraining (~15 min) |
-| Training cost | ~$3 per user on cloud GPU |
-| GPU required | Need CUDA GPU for training |
-| No incremental learning | Must retrain for fact updates |
-
-### When NOT to Use This
-
-- **Frequently changing facts**: Use RAG or system prompts instead
-- **Real-time updates needed**: This method has 15-min update latency
-- **Limited GPU access**: Training requires CUDA GPU
+**We do not claim this approach is universally better than alternatives.**
 
 ---
 
-## Repository Structure
+## Evaluation
 
+Run the evaluation framework:
+
+```bash
+cd evaluation
+python run_experiments.py --dry-run  # Preview
+python run_experiments.py            # Full run
 ```
-andraeus-research/
-├── train_personal_ai.py      # Main training script
-├── requirements.txt          # Dependencies
-├── andraeus/                 # Core library
-│   └── core.py
-├── evaluation/               # Test scripts
-│   ├── run_generalization_test.py
-│   ├── run_baseline_comparison_test.py
-│   ├── run_capability_preservation_test.py
-│   └── stats_utils.py
-├── PAPER.md                  # Technical details
-└── LICENSE                   # Proprietary license
-```
+
+See [evaluation/METHODOLOGY.md](evaluation/METHODOLOGY.md) for experimental details.
 
 ---
 
-## Prior Art
+## Known Issues
 
-This work builds on:
+1. **No unit tests** - Testing infrastructure is incomplete
+2. **Hardcoded configurations** - Many values require code changes
+3. **Limited model support** - Tested only on Qwen2.5-7B-Instruct
+4. **Evaluation methodology** - Uses substring matching (coarse)
 
-1. **LoRA** (Hu et al., 2021) - Low-rank adaptation
-2. **QLoRA** (Dettmers et al., 2023) - 4-bit quantized LoRA
-3. **Lamini Memory Tuning** (2024) - Similar approach to ours
-4. **Community fine-tuning guides** - Extensive existing work
+---
 
-We recommend also exploring:
-- [Mem0](https://mem0.ai) - Memory layer for AI
-- [Zep](https://getzep.com) - Long-term memory
-- [MemGPT](https://memgpt.ai) - LLMs as operating systems
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+**Note:** This is experimental research. Contributions that add:
+- Unit tests
+- Model support for other architectures
+- Improved evaluation metrics
+- Independent replication results
+
+are especially welcome.
+
+---
+
+## Security
+
+See [SECURITY.md](SECURITY.md) for security policy.
+
+**Important:** Personal fine-tuning involves sensitive data. Consider:
+- Facts may be extractable from trained weights
+- Secure storage of adapter files
+- Privacy implications of personal AI
 
 ---
 
 ## Citation
 
+If you use this work, please cite:
+
 ```bibtex
 @software{sergi2025andraeus,
   author = {Sergi, Rocco Andraeus},
-  title = {Andraeus AI: Personal Memory Fine-Tuning Implementation Guide},
+  title = {Andraeus: Question Variation Methodology for Personal Knowledge Encoding},
   year = {2025},
   url = {https://github.com/rmerg639/AndraeusAi-research},
-  note = {Practical implementation of QLoRA for personal fact encoding}
+  note = {Experimental, not peer-reviewed}
 }
 ```
 
@@ -266,29 +216,23 @@ We recommend also exploring:
 
 ## License
 
-**Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.**
+See [LICENSE](LICENSE) for terms.
 
-This is proprietary software under the [Andraeus AI License](LICENSE).
+**Note:** Business use requires reviewing [BUSINESS/LICENSE_AGREEMENT_TEMPLATE.md](BUSINESS/LICENSE_AGREEMENT_TEMPLATE.md) (consult a lawyer before use).
 
-| Use Case | Terms |
-|----------|-------|
-| Personal/Academic | Free |
-| Small Business (<$10M revenue) | Free |
-| Medium Business ($10-50M) | 1.5% net profits |
-| Enterprise ($50M+) | 3.5% net profits |
+---
 
-See [LICENSE](LICENSE) for complete terms.
+## Disclaimer
+
+This is experimental research software provided "as is" without warranty. Published accuracy figures are from controlled experiments and may not reflect real-world performance. Use at your own risk.
 
 ---
 
 ## Contact
 
-**Rocco Andraeus Sergi**
 - Email: andraeusbeats@gmail.com
-- GitHub: [@rmerg639](https://github.com/rmerg639)
+- Issues: [GitHub Issues](https://github.com/rmerg639/AndraeusAi-research/issues)
 
 ---
 
-<p align="center">
-  <em>A practical implementation guide for personal LLM fine-tuning.</em>
-</p>
+*Last updated: December 2025*

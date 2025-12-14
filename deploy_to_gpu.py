@@ -17,17 +17,34 @@ import os
 from pathlib import Path
 
 # =============================================================================
-# GPU SERVER CONFIG
+# GPU SERVER CONFIG - Load from environment variables
 # =============================================================================
 
-GPU_HOST = "154.59.156.20"
-GPU_PORT = "59501"
-GPU_USER = "root"
-REMOTE_DIR = "/root/andraeus-research"
+GPU_HOST = os.environ.get("ANDRAEUS_GPU_HOST", "")
+GPU_PORT = os.environ.get("ANDRAEUS_GPU_PORT", "22")
+GPU_USER = os.environ.get("ANDRAEUS_GPU_USER", "")
+REMOTE_DIR = os.environ.get("ANDRAEUS_REMOTE_DIR", "/root/andraeus-research")
 
-# SSH command base
-SSH_CMD = f"ssh -p {GPU_PORT} {GPU_USER}@{GPU_HOST}"
-SCP_CMD = f"scp -P {GPU_PORT}"
+# SSH command base (built dynamically)
+SSH_CMD = f"ssh -p {GPU_PORT} {GPU_USER}@{GPU_HOST}" if GPU_HOST else ""
+SCP_CMD = f"scp -P {GPU_PORT}" if GPU_HOST else ""
+
+
+def _validate_gpu_config():
+    """Validate GPU configuration is set before operations."""
+    if not GPU_HOST or not GPU_USER:
+        print("\n" + "="*60)
+        print("  ERROR: GPU credentials not configured!")
+        print("="*60)
+        print("\nSet environment variables:")
+        print("  export ANDRAEUS_GPU_HOST=your.server.ip")
+        print("  export ANDRAEUS_GPU_PORT=22")
+        print("  export ANDRAEUS_GPU_USER=your_username")
+        print("\nOr create a .env file from .env.example:")
+        print("  cp .env.example .env")
+        print("  # Edit .env with your credentials")
+        print("="*60 + "\n")
+        sys.exit(1)
 
 # =============================================================================
 # DEPLOYMENT FUNCTIONS
@@ -47,6 +64,7 @@ def run_cmd(cmd: str, check: bool = True) -> subprocess.CompletedProcess:
 
 def check_connection():
     """Check if we can connect to the GPU server."""
+    _validate_gpu_config()  # Ensure credentials are set
     print("Checking connection to GPU server...")
     result = run_cmd(f'{SSH_CMD} "echo Connected successfully"', check=False)
     return result.returncode == 0
@@ -250,11 +268,14 @@ def main():
     args = parser.parse_args()
 
     if not any(vars(args).values()):
-        # Default: show status
+        # Default: show help (don't display credentials)
         print("Deploy to GPU Server")
         print("="*50)
-        print(f"Host: {GPU_HOST}:{GPU_PORT}")
-        print(f"Remote dir: {REMOTE_DIR}")
+        if GPU_HOST:
+            print(f"Host: {GPU_HOST}:{GPU_PORT}")
+            print(f"Remote dir: {REMOTE_DIR}")
+        else:
+            print("Host: Not configured (set ANDRAEUS_GPU_HOST)")
         print("\nOptions:")
         print("  --upload          Upload experiment files")
         print("  --install         Install Python dependencies")
@@ -268,7 +289,8 @@ def main():
     # Check connection first
     if not check_connection():
         print("\nCannot connect to GPU server!")
-        print(f"Try: ssh -p {GPU_PORT} {GPU_USER}@{GPU_HOST}")
+        print("Check your credentials and network connection.")
+        print("Test manually: ssh -p $ANDRAEUS_GPU_PORT $ANDRAEUS_GPU_USER@$ANDRAEUS_GPU_HOST")
         return
 
     if args.full_setup:

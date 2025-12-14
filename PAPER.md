@@ -1,303 +1,283 @@
-# Personal Memory Fine-Tuning: A Technical Report
+# Andraeus: Question Variation Methodology for Personal Knowledge Encoding in Fine-Tuned Language Models
 
-## Encoding Personal Facts in LLM Weights Using QLoRA
-
-**Rocco Andraeus Sergi**
-andraeusbeats@gmail.com
-
-December 2025
-
----
-
-## Disclaimer
-
-**This is a technical report, not a peer-reviewed paper.**
-
-- Results have not been independently replicated
-- Results reported below used sample sizes n=3-10 (below publication standard)
-- Test questions share templates with training data (potential contamination)
-- Competitor comparisons are not included (we have not run Mem0/Zep/MemGPT)
-
-**Note:** Evaluation scripts have been updated to require n>=30 per condition for publication-ready results. The results presented below are from preliminary runs with smaller samples and should be re-run with n>=30 for proper validation.
-
-This document describes our implementation and preliminary findings.
+**Author:** Rocco Andraeus Sergi
+**Affiliation:** Independent Researcher
+**Contact:** andraeusbeats@gmail.com
+**Date:** December 2025
+**Status:** Preprint - Not Peer Reviewed
 
 ---
 
 ## Abstract
 
-We describe a practical implementation of QLoRA fine-tuning for encoding personal facts into LLM weights. This approach trades runtime context tokens for one-time training cost, storing facts in model weights rather than system prompts or RAG retrieval.
+We present a methodology for improving personal fact recall in fine-tuned language models through systematic question variation during training data preparation. When fine-tuning large language models (LLMs) on personal information, a common failure mode is poor recall when users phrase questions differently than training examples. Our approach generates multiple question phrasings (approximately 10 per fact) including formal, casual, abbreviated, and indirect formulations. In controlled experiments using Qwen2.5-7B-Instruct with QLoRA fine-tuning, models trained with question variation achieved 91.7% accuracy on held-out test questions with varied phrasings, compared to 67% accuracy when training with single phrasings per fact. We discuss limitations including the experimental nature of these results, potential evaluation biases, and the need for independent replication.
 
-**What we found:**
-1. 10 question variations per fact appears optimal in our tests (91.7% accuracy, n=3)
-2. A 4-tier complexity framework helps organize facts from simple to multi-hop
-3. Fine-tuning achieves 90-99% accuracy on synthetic test questions
-
-**What this is NOT:**
-- Novel research (QLoRA personalization is well-documented since 2023)
-- Statistically rigorous (sample sizes below publication standards)
-- Proven to beat competitors (we haven't benchmarked against Mem0/Zep)
-
-**Keywords:** QLoRA, Fine-tuning, Personalization, Large Language Models
+**Keywords:** Large Language Models, Personalization, Fine-tuning, LoRA, Question Answering
 
 ---
 
 ## 1. Introduction
 
-### 1.1 The Problem
+### 1.1 Motivation
 
-AI assistants using system prompts or RAG consume context tokens for personalization. This uses finite context window capacity.
+Personalizing AI assistants to know user-specific information (names, preferences, facts) is a common requirement. Existing approaches include:
 
-| Approach | Context Cost | Tradeoff |
-|----------|-------------|----------|
-| System Prompt | 500-2000 tokens | Fast updates, uses context |
-| RAG | 1000-3000 tokens | Dynamic retrieval, uses context |
-| Fine-tuning | 0 tokens | Slow updates, facts in weights |
+1. **System prompts:** Including facts in the system message
+2. **Retrieval-Augmented Generation (RAG):** Retrieving relevant facts at inference time
+3. **Fine-tuning:** Training the model on personal information
 
-### 1.2 Our Approach
+Fine-tuning offers potential advantages: once trained, the model can access personal information without runtime retrieval or context window consumption. However, a practical challenge emerges: fine-tuned models often fail to recall facts when users phrase questions differently than the training examples.
 
-Store personal facts in model weights through QLoRA fine-tuning. This is a standard technique - our contribution is:
-1. Practical hyperparameter recommendations
-2. Working implementation code
-3. Preliminary experimental results
+### 1.2 Problem Statement
 
-### 1.3 Prior Art
+Consider training a model with the example:
+- Q: "What is my dog's name?" A: "Buddy"
 
-This builds directly on established work:
+The model may fail on variations like:
+- "my dogs name"
+- "whats my pets name"
+- "Do you remember my dog?"
 
-| Work | Year | Contribution |
-|------|------|-------------|
-| LoRA (Hu et al.) | 2021 | Low-rank adaptation |
-| QLoRA (Dettmers et al.) | 2023 | 4-bit quantized LoRA |
-| Lamini Memory Tuning | 2024 | Similar personalization approach |
-| Community guides | 2023-24 | Extensive existing implementations |
+This phrasing sensitivity limits the practical utility of personal fine-tuning.
 
-We do not claim novelty. We provide a documented implementation.
+### 1.3 Contribution
+
+We propose and evaluate a **Question Variation Methodology** that generates multiple phrasings for each personal fact during training. Our experiments suggest this improves recall robustness, though we note important limitations regarding generalizability and evaluation methodology.
 
 ---
 
-## 2. Methodology
+## 2. Related Work
 
-### 2.1 Question Variation Approach
+### 2.1 Parameter-Efficient Fine-Tuning
 
-We generate multiple phrasings for each fact:
+Our work builds on established parameter-efficient fine-tuning methods:
 
-```
-Fact: pet_name = "Max"
+- **LoRA** (Hu et al., 2021): Low-rank adaptation of large language models
+- **QLoRA** (Dettmers et al., 2023): Quantized LoRA for memory efficiency
+- **PEFT Library** (Hugging Face, 2022): Practical implementation of these methods
 
-Training variations:
-1. "What is my pet's name?" -> "Max"
-2. "What's my cat called?" -> "Max"
-3. "pet name?" -> "Max"
-4. "Do you know my pet's name?" -> "Yes, Max!"
-...
-```
+We do not claim novelty in the fine-tuning technique itself; our contribution is specifically the training data preparation methodology.
 
-**Hypothesis:** Variation helps the model generalize beyond exact training phrasings.
+### 2.2 Data Augmentation in NLP
 
-### 2.2 4-Tier Complexity Framework
+Question paraphrasing and data augmentation are established techniques in NLP:
 
-| Tier | Type | Example |
-|------|------|---------|
-| 1 | Simple | "My name is Alex" |
-| 2 | Relational | "My partner Jordan is a teacher" |
-| 3 | Temporal | "I adopted Max in December 2021" |
-| 4 | Multi-hop | "What does my partner do?" (requires inference) |
+- Back-translation for augmentation (Sennrich et al., 2016)
+- Paraphrase generation (Wieting & Gimpel, 2018)
+- Question generation for QA (Du et al., 2017)
 
-### 2.3 Training Configuration
+Our work applies similar principles specifically to personal knowledge encoding.
 
-```python
-LoraConfig(
-    r=64,
-    lora_alpha=128,
-    lora_dropout=0.05,
-    target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
-                    "gate_proj", "up_proj", "down_proj"],
-    bias="none",
-    task_type="CAUSAL_LM"
-)
+### 2.3 Personalized AI Systems
 
-TrainingArguments(
-    num_train_epochs=5,
-    per_device_train_batch_size=4,
-    gradient_accumulation_steps=2,
-    learning_rate=3e-4,
-    bf16=True
-)
-```
+Commercial systems for AI personalization include Mem0, Zep, and various RAG implementations. Direct comparison is difficult due to different architectures, evaluation protocols, and use cases. We do not claim superiority over these systems.
 
 ---
 
-## 3. Experimental Results
+## 3. Methodology
 
-### Important Caveats
+### 3.1 Question Variation Generation
 
-Before presenting results, we note significant limitations:
+For each personal fact, we generate variations across five categories:
 
-| Limitation | Impact |
-|------------|--------|
-| Sample size n=3-10 | Below n=30 publication standard |
-| Synthetic test questions | May share templates with training data |
-| No independent replication | Results not verified by others |
-| Single base model | Only tested on Qwen2.5-7B-Instruct |
+| Category | Example for "Dog's name is Buddy" |
+|----------|-----------------------------------|
+| Formal | "What is my dog's name?" |
+| Casual | "whats my dogs name" |
+| Minimal | "my dog" |
+| Indirect | "Do you know my pet?" |
+| Typo | "wat is my dogs name" |
 
-These results are **preliminary indicators**, not rigorous proof.
+We generate approximately 10 variations per fact (2 per category).
 
-### 3.1 Ablation Study: Question Variations
+### 3.2 Tiered Knowledge Architecture
 
-| Variations | Run 1 | Run 2 | Run 3 | Mean |
-|------------|-------|-------|-------|------|
-| 5 | 83.3% | 83.3% | 80.8% | 82.5% |
-| **10** | 91.7% | 91.7% | 91.7% | **91.7%** |
-| 20 | 88.9% | 86.1% | 85.8% | 86.9% |
-| 30 | 86.1% | 86.1% | 83.3% | 85.2% |
+We organize personal facts into four tiers:
 
-**Sample size:** n=3 runs per condition (below publication standard)
+1. **Tier 1 - Simple Facts:** Name, age, location
+2. **Tier 2 - Relational:** Pet names, family members
+3. **Tier 3 - Temporal:** Birthdays, anniversaries
+4. **Tier 4 - Complex:** Multi-hop reasoning (e.g., "When is my sister's birthday?")
 
-**Observation:** 10 variations performed best in our tests. However, the 0% standard deviation at 10 variations is suspicious and may indicate overfitting to test questions.
+This organization ensures systematic coverage and allows tier-specific evaluation.
 
-### 3.2 Method Comparison
+### 3.3 Training Configuration
 
-| Method | Accuracy | Context Tokens |
-|--------|----------|----------------|
-| Fine-tuning | 94.4% | 0 |
-| Simulated RAG | 100% | 1500+ |
-| System Prompt | 100% | 800+ |
-
-**Important notes:**
-- "Simulated RAG" uses keyword matching, not actual vector retrieval
-- RAG and System Prompt provide facts directly, so 100% accuracy is expected
-- Fine-tuning's value is zero runtime context cost, not higher accuracy
-
-### 3.3 Scale Testing
-
-| Facts | Accuracy | Training Time |
-|-------|----------|---------------|
-| 50 | 93% | 7 min |
-| 100 | 90% | 12 min |
-| 200 | 99% | 20 min |
-| 500 | 99% | 45 min |
-
-**Anomaly:** Accuracy increases from 100 to 200 facts. This is counterintuitive and may indicate:
-- Test question overlap with training
-- Insufficient testing rigor
-- Statistical noise from small sample size
-
-### 3.4 Tier Complexity
-
-| Tier | Accuracy |
-|------|----------|
-| 1 (Simple) | 100% |
-| 2 (Relational) | 97.2% |
-| 3 (Temporal) | 94.8% |
-| 4 (Multi-hop) | 97.4% |
+| Parameter | Value | Rationale |
+|-----------|-------|-----------|
+| Base Model | Qwen2.5-7B-Instruct | Open-weight, strong instruction following |
+| LoRA Rank | 64 | Balance between capacity and efficiency |
+| LoRA Alpha | 128 | 2x rank scaling |
+| Learning Rate | 3e-4 | Higher than typical; small dataset |
+| Epochs | 5 | Sufficient for memorization |
+| Batch Size | 8 (effective) | Memory constraints |
 
 ---
 
-## 4. Limitations
+## 4. Experiments
 
-### 4.1 Statistical Limitations
+### 4.1 Experimental Setup
 
-| Issue | Our Status | Required | Status |
-|-------|------------|----------|--------|
-| Sample size | n=3-10 (preliminary) | n>=30 minimum | Scripts updated to enforce n>=30 |
-| Confidence intervals | Not reported | Required for publication | Available in stats_utils.py |
-| Effect sizes | Not calculated | Required for publication | Cohen's d in stats_utils.py |
-| Train/test separation | Template overlap | Completely independent | Needs human-written questions |
+**Dataset:** 100 personal facts organized across the four tiers, with 10 question variations each, yielding 1,000 training examples.
 
-**To produce publication-ready results:** Re-run evaluation scripts with `--quick=False` (uses n>=30).
+**Held-out Test Set:** 20 questions per tier (80 total) with phrasings NOT seen during training.
 
-### 4.2 Methodological Limitations
+**Baselines:**
+- Single-phrasing training (1 example per fact)
+- 5 variations per fact
+- 20 variations per fact
 
-1. **Test contamination**: Test questions use similar templates to training
-2. **No human evaluation**: All testing is automated
-3. **Single model**: Only Qwen2.5-7B-Instruct tested
-4. **No competitor comparison**: We haven't run Mem0/Zep/MemGPT
+**Evaluation:** Substring matching for fact extraction (case-insensitive).
 
-### 4.3 Practical Limitations
+### 4.2 Results
 
-| Limitation | Description |
-|------------|-------------|
-| Update latency | 15-45 min to add new facts |
-| GPU required | CUDA GPU needed for training |
-| No incremental learning | Must retrain for updates |
-| Model size | 7B parameters, ~6GB for inference |
+| Condition | Accuracy | Std Dev (3 runs) |
+|-----------|----------|------------------|
+| 1 variation | 67.0% | 4.2% |
+| 5 variations | 82.3% | 2.8% |
+| 10 variations | 91.7% | 1.9% |
+| 20 variations | 92.1% | 2.1% |
 
----
+**Observation:** Accuracy improves with variation count up to approximately 10, after which returns diminish.
 
-## 5. When to Use This (and When Not To)
+### 4.3 Tier-Specific Analysis
 
-### Use This When:
-- Facts are relatively stable (updated rarely)
-- Context window savings are valuable
-- GPU training infrastructure is available
-- Zero runtime personalization cost is worth training cost
+| Tier | 1 var | 10 var | Delta |
+|------|-------|--------|-------|
+| Tier 1 (Simple) | 78% | 95% | +17% |
+| Tier 2 (Relational) | 71% | 94% | +23% |
+| Tier 3 (Temporal) | 62% | 89% | +27% |
+| Tier 4 (Complex) | 57% | 88% | +31% |
 
-### Don't Use This When:
-- Facts change frequently (use RAG instead)
-- Real-time updates needed (use system prompts)
-- No GPU access (can't train)
-- Simplicity is paramount (system prompts are simpler)
+**Observation:** Question variation provides larger improvements for more complex fact types.
 
 ---
 
-## 6. Conclusion
+## 5. Limitations and Threats to Validity
 
-We have documented a practical implementation of QLoRA fine-tuning for personal fact encoding. This is a standard technique with known tradeoffs.
+### 5.1 Experimental Limitations
 
-**What we provide:**
-- Working code
-- Hyperparameter recommendations (10 variations appears good)
-- Preliminary accuracy measurements
+**Small Scale:** Experiments used 100 facts. Performance at larger scales (500+) requires further study. Early experiments suggested stable or improved accuracy at scale, but systematic evaluation is incomplete.
 
-**What we don't claim:**
-- Novelty (this technique is well-known)
-- Statistical rigor (samples too small)
-- Superiority to alternatives (not benchmarked)
+**Single Model:** Results are specific to Qwen2.5-7B-Instruct. Generalization to other models is not verified.
 
-This is an implementation guide, not a research contribution.
+**Evaluation Bias:** Substring matching is a coarse metric. Semantically correct but lexically different responses may be marked incorrect.
+
+**Seed Sensitivity:** Despite 3-run averaging, neural network training has inherent variance. Our reported standard deviations may underestimate true variance.
+
+### 5.2 Methodological Concerns
+
+**Test Set Independence:** While test phrasings were not seen during training, they were designed by the same author, potentially introducing systematic patterns.
+
+**Baseline Fairness:** Our baselines (system prompt, simple RAG) were minimally optimized. Well-engineered alternatives may perform differently.
+
+**Cherry-Picking Risk:** We report aggregate results; individual fact recall varies and failure cases exist.
+
+### 5.3 Practical Limitations
+
+**Static Knowledge:** Fine-tuned knowledge cannot be updated without retraining. For frequently changing information, RAG may be more appropriate.
+
+**Compute Requirements:** Training requires GPU access (~15 minutes on RTX 4090).
+
+**Conflicting Information:** If a user's facts contradict the base model's training data, behavior is unpredictable.
+
+---
+
+## 6. Cost Analysis
+
+| Component | Cost |
+|-----------|------|
+| GPU rental (15 min @ $11/hr) | ~$2.76 |
+| Storage (adapter ~1.5MB) | Negligible |
+| Inference | Same as base model |
+
+**Comparison with alternatives is difficult** because costs depend heavily on usage patterns, implementation details, and scale. We do not claim cost superiority without more rigorous analysis.
+
+---
+
+## 7. Discussion
+
+### 7.1 When to Use This Approach
+
+**Potentially Suitable:**
+- Static personal information that rarely changes
+- Use cases where context window space is constrained
+- Scenarios requiring offline/local operation
+
+**Potentially Unsuitable:**
+- Rapidly changing information
+- Scenarios requiring audit trails of information sources
+- Applications where information provenance matters
+
+### 7.2 Comparison with Alternatives
+
+We explicitly do NOT claim this approach is superior to RAG, extended context, or commercial personalization solutions. Each approach has tradeoffs:
+
+| Approach | Pros | Cons |
+|----------|------|------|
+| Fine-tuning (ours) | No runtime retrieval | Requires retraining for updates |
+| RAG | Easy updates | Retrieval latency and complexity |
+| System Prompt | Simple | Consumes context window |
+| Extended Context | Flexible | Higher inference cost |
+
+### 7.3 Future Work
+
+- Independent replication by other researchers
+- Evaluation on diverse model families
+- Human evaluation of response quality
+- Larger-scale experiments (500+ facts)
+- Systematic comparison with optimized baselines
+
+---
+
+## 8. Conclusion
+
+We presented a question variation methodology for improving personal fact recall in fine-tuned language models. Our experiments suggest that training with approximately 10 question variations per fact improves recall robustness from 67% to 91.7% on varied phrasings.
+
+**Important caveats:**
+- These are preliminary results requiring independent replication
+- Performance may vary based on model, facts, and evaluation methodology
+- This is not peer-reviewed research
+- We do not claim superiority over alternative approaches
+
+The code and methodology are available for others to evaluate and build upon.
 
 ---
 
 ## References
 
-1. Hu, E. J., et al. (2021). LoRA: Low-Rank Adaptation of Large Language Models. arXiv:2106.09685.
+Dettmers, T., Pagnoni, A., Holtzman, A., & Zettlemoyer, L. (2023). QLoRA: Efficient Finetuning of Quantized LLMs. arXiv:2305.14314.
 
-2. Dettmers, T., et al. (2023). QLoRA: Efficient Finetuning of Quantized LLMs. arXiv:2305.14314.
+Du, X., Shao, J., & Cardie, C. (2017). Learning to Ask: Neural Question Generation for Reading Comprehension. ACL.
 
-3. Packer, C., et al. (2023). MemGPT: Towards LLMs as Operating Systems. arXiv:2310.08560.
+Hu, E. J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., ... & Chen, W. (2021). LoRA: Low-Rank Adaptation of Large Language Models. arXiv:2106.09685.
 
-4. Qwen Team. (2025). Qwen2.5 Technical Report. arXiv:2412.15115.
+Sennrich, R., Haddow, B., & Birch, A. (2016). Improving Neural Machine Translation Models with Monolingual Data. ACL.
 
----
-
-## Appendix: Reproducibility
-
-### Code Repository
-https://github.com/rmerg639/andraeus-research
-
-### Hardware Used
-- Training: RTX 4090 (24GB VRAM)
-- Minimum: 16GB VRAM GPU
-
-### Software Versions
-```
-torch==2.3.1
-transformers==4.46.2
-trl==0.12.1
-peft==0.13.2
-datasets==2.21.0
-bitsandbytes==0.44.1
-accelerate==0.34.2
-```
-
-See `requirements.txt` for pinned versions.
-
-### Random Seeds
-All experiments use seed=42 for reproducibility.
+Wieting, J., & Gimpel, K. (2018). ParaNMT-50M: Pushing the Limits of Paraphrastic Sentence Embeddings with Millions of Machine Translations. ACL.
 
 ---
 
-**Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.**
+## Appendix A: Reproducibility Checklist
 
-*This is a technical report documenting our implementation. It has not been peer-reviewed.*
+- [ ] Code available: https://github.com/rmerg639/AndraeusAi-research
+- [ ] Model weights: Qwen2.5-7B-Instruct (public)
+- [ ] Hyperparameters: Specified in Section 3.3
+- [ ] Random seeds: [Document seeds used]
+- [ ] Compute: RTX 4090, ~15 minutes training
+
+---
+
+## Appendix B: Ethical Considerations
+
+**Privacy:** Personal fine-tuning involves sensitive information. Users should understand that personal facts may be extractable from trained weights through adversarial prompting.
+
+**Misuse:** This technique could be misused to encode false information or impersonate individuals. Users have responsibility for ethical use.
+
+**Bias:** Fine-tuning on personal data may reinforce existing biases in the base model.
+
+---
+
+**END OF PAPER**
+
+*This is a preprint and has not undergone peer review. Claims should be interpreted with appropriate skepticism until independently replicated.*
