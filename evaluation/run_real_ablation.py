@@ -286,14 +286,20 @@ class OptimizedTrainer:
         model.eval()
         accuracy, by_category = self._evaluate(model)
 
-        # Clean up LoRA adapter
+        # Clean up LoRA adapter completely
         del trainer
         del model
         gc.collect()
         torch.cuda.empty_cache()
 
-        # Re-prepare base model for next run (remove any lingering PEFT state)
-        self.base_model = self.base_model.base_model if hasattr(self.base_model, 'base_model') else self.base_model
+        # Reload base model for next run (PEFT modifies in-place)
+        print("Reloading base model for next run...")
+        self.base_model = AutoModelForCausalLM.from_pretrained(
+            BASE_MODEL,
+            torch_dtype=torch.bfloat16,
+            device_map="auto",
+            trust_remote_code=True
+        )
 
         return train_time, train_loss, accuracy, by_category
 
