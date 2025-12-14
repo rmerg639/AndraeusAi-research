@@ -229,6 +229,19 @@ Andraeus AI
 
 ---
 
+## ABN Withholding Warning
+
+**IMPORTANT:** If an Australian client does not provide a valid ABN, you may be required to withhold **47%** of the payment for tax purposes under the "no ABN withholding" rules.
+
+**Before issuing invoices to Australian businesses:**
+1. Request the client's ABN
+2. Verify it at: https://abr.business.gov.au/
+3. If no ABN is provided, withhold 47% and remit to ATO
+
+See ATO guidance: https://www.ato.gov.au/Business/GST/In-detail/Managing-GST-in-your-business/Reporting,-paying-and-refunds/Withholding-from-payments-where-no-ABN-is-quoted/
+
+---
+
 ## Disclaimer
 
 This template is provided for informational purposes. Consult a registered tax agent or accountant to ensure compliance with current Australian tax law and your specific business circumstances.

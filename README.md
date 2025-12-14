@@ -2,7 +2,7 @@
 
 **Question Variation Methodology for Personal Fact Encoding in LLMs**
 
-[![Status](https://img.shields.io/badge/Status-Validated%20(n%3D30)-brightgreen)]()
+[![Status](https://img.shields.io/badge/Status-Experimental-yellow)]()
 [![License](https://img.shields.io/badge/License-See%20LICENSE-blue)]()
 [![Python](https://img.shields.io/badge/Python-3.9+-green)]()
 
@@ -16,36 +16,49 @@ A methodology and code for improving personal fact recall in fine-tuned language
 
 ---
 
-## Validated Results (n=30)
+## Experimental Results
 
-**240 experiment runs** with publication-ready sample sizes (December 2025):
+### Validated Results (n=30 per condition)
 
-### Ablation Study: Question Variations
-| Variations per Fact | Accuracy | Std Dev | Runs |
-|---------------------|----------|---------|------|
+**360 experiment runs** on Qwen2.5-7B-Instruct (December 2025):
+
+#### Ablation Study: Question Variations
+| Variations/Fact | Accuracy | Std Dev | Status |
+|-----------------|----------|---------|--------|
 | 5 | 88.8% | ± 3.8% | n=30 |
-| **10** | **90.0%** | **± 5.0%** | n=30 |
+| **10** | **90.0%** | **± 5.0%** | **Optimal** |
 | 20 | 89.2% | ± 4.2% | n=30 |
 | 30 | 87.5% | ± 0.0% | n=30 |
 
-**Finding: 10 variations per fact is optimal.**
+**Finding:** 10 variations per fact achieves optimal accuracy. More variations show diminishing returns.
 
-### Depth Study: Knowledge Complexity
-| Tier | Type | Accuracy | Std Dev | Runs |
-|------|------|----------|---------|------|
-| 1 | Simple facts | 100.0% | ± 0.0% | n=30 |
-| 2 | Relational | 95.0% | ± 6.9% | n=30 |
-| 3 | Temporal | 97.6% | ± 5.2% | n=30 |
-| 4 | Multi-hop | 98.7% | ± 2.9% | n=30 |
+#### Depth Study: Knowledge Complexity Tiers
+| Tier | Description | Accuracy | Std Dev |
+|------|-------------|----------|---------|
+| 1 | Simple facts | 100% | ± 0% |
+| 2 | Derived facts | 95.0% | ± 6.9% |
+| 3 | Multi-fact reasoning | 97.6% | ± 5.2% |
+| 4 | Multi-hop inference | 98.7% | ± 2.9% |
 
-**Finding: Even complex multi-hop reasoning achieves 98.7% accuracy.**
+**Finding:** High accuracy maintained across all complexity tiers (95-100%).
 
-**Caveats:**
-- Test questions use similar templates to training data
-- Only tested on Qwen2.5-7B-Instruct
-- Independent replication still needed
+#### Baseline Comparison: Methods
+| Method | Accuracy | Notes |
+|--------|----------|-------|
+| System Prompt | 100% | Facts in context window |
+| RAG | 100% | Retrieved at runtime |
+| Few-shot | 58.3% | In-context examples only |
+| Fine-tune (cross-fact)* | 33.3% | Tests fact-specificity |
 
-See [PAPER.md](PAPER.md) for full methodology.
+*Cross-fact test: Model fine-tuned on facts A tested on facts B, confirming fine-tuning is fact-specific.
+
+**Important Caveats:**
+- These are experimental results, not guaranteed outcomes
+- Results may vary based on model, facts, and evaluation methodology
+- This is not peer-reviewed research
+- Independent replication is needed
+
+See [PAPER.md](PAPER.md) for full methodology and limitations.
 
 ---
 
