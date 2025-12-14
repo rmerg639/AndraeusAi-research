@@ -1,4 +1,4 @@
-# Andraeus AI - Personal Memory Fine-Tuning
+# Andraeus AI - Question Variation Fine-Tuning
 # PINNED EXACT VERSIONS for reproducibility
 # Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 #

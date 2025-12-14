@@ -1,7 +1,7 @@
 """
 Andraeus AI - Core Module
 
-Personal Memory Fine-Tuning using QLoRA.
+Question Variation Fine-Tuning using QLoRA.
 
 This module provides the implementation for:
 1. Question variation generation (10 variations recommended)

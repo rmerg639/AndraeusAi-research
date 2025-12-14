@@ -1,5 +1,5 @@
 """
-Andraeus AI - Personal Memory Fine-Tuning
+Andraeus AI - Question Variation Fine-Tuning
 
 A practical implementation of QLoRA for encoding personal facts into LLM weights.
 

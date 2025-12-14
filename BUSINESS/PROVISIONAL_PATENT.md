@@ -61,7 +61,6 @@ Question Variation Methodology for Robust Personal Knowledge
 Encoding in Fine-Tuned Language Models
 ```
 
-**Note:** Removed broad terms like "Zero-Context" which describe an outcome, not a novel method.
 
 ### Technical Field
 ```
