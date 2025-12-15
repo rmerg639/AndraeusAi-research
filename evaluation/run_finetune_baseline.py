@@ -3,7 +3,7 @@
 Same-Fact Fine-tune Baseline - Train and test on SAME facts
 
 This properly tests fine-tuning by training on the exact facts being tested.
-Runs n=30 for publication-quality statistics.
+Runs n=30 for testing-quality statistics.
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
@@ -26,7 +26,7 @@ from datasets import Dataset
 # =============================================================================
 
 from config_imports import BASE_MODEL, get_lora_config
-RUNS = 30  # n=30 for publication
+RUNS = 30  # n=30 for testing
 
 # These are the EXACT facts used in baseline testing
 USER_CONFIG = {

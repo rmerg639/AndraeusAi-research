@@ -9,7 +9,7 @@ Experiments:
 - 20 variations per fact
 - 30 variations per fact
 
-Each run 3 times for statistical significance.
+Each run 3 times for informal comparison.
 
 Estimated cost: 12 runs × $3.0 = $33.12
 

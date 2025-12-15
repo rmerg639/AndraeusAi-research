@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-STATISTICAL POWER TEST - Publication-Quality Validation
+STATISTICAL POWER TEST - testing-Quality Validation
 
 Generates rigorous statistical evidence:
 - 30 runs per condition (n=30 for statistical power)
@@ -10,7 +10,7 @@ Generates rigorous statistical evidence:
 - P-values for hypothesis testing
 - Normal distribution validation (Shapiro-Wilk)
 
-This produces publication-ready statistics proving the methodology.
+This produces informal statistics proving the methodology.
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """

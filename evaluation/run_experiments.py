@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Complete Experiment Runner
-Runs all experiments and generates publication-ready results.
+Runs all experiments and generates informal results.
 
 Experiments:
 1. Ablation Study: Does variation count matter? (5/10/20/30)
@@ -38,25 +38,25 @@ from dataclasses import dataclass, asdict
 # EXPERIMENT CONFIGURATION
 # =============================================================================
 
-# Publication standard: n>=30 per condition for statistical validity
+# testing standard: n>=30 per condition for statistical validity
 # NOTE: These experiments are expensive - ensure budget before running
 EXPERIMENTS = {
     "ablation": {
         "description": "Test if variation count affects accuracy",
         "conditions": [5, 10, 20, 30],  # Variations per fact
-        "runs_per_condition": 30,  # Publication-ready sample size
+        "runs_per_condition": 30,  # Informal sample size
         "estimated_cost_per_run": 3.0,
     },
     "baseline": {
         "description": "Compare fine-tuning to RAG and system prompt",
         "conditions": ["fine_tune", "rag", "system_prompt", "few_shot"],
-        "runs_per_condition": 30,  # Publication-ready sample size
+        "runs_per_condition": 30,  # Informal sample size
         "estimated_cost_per_run": 3.0,  # Only fine-tune costs
     },
     "depth": {
         "description": "Test simple vs complex knowledge retention",
         "conditions": [1, 2, 3, 4],  # Knowledge tiers
-        "runs_per_condition": 30,  # Publication-ready sample size
+        "runs_per_condition": 30,  # Informal sample size
         "estimated_cost_per_run": 3.50,  # More data = slightly longer
     },
 }
@@ -376,7 +376,7 @@ The experiments will:
 - Train 36 models across all conditions
 - Evaluate each on held-out test sets
 - Save results to ./experiment_results/
-- Generate publication-ready statistics
+- Generate informal statistics
 
 Estimated time: ~9 hours
 Estimated cost: ~$99

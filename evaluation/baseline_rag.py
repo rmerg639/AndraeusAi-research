@@ -254,7 +254,7 @@ def print_comparison(results: Dict[str, BaselineResult]):
 # =============================================================================
 
 HYPOTHESIS = """
-HYPOTHESIS: Fine-tuning will outperform baselines on phrasing robustness.
+HYPOTHESIS: Fine-tuning will compare to baselines on phrasing robustness.
 
 Expected Results:
                           Formal    Casual    Typos    Minimal    Indirect

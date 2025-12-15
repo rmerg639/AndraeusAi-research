@@ -48,7 +48,7 @@ PROFESSIONAL_CONFIG = {
     # "protocol_1_approach": "Python pandas for cleaning, statsmodels for statistics",
     # "protocol_2_name": "Experiment Design",
     # "protocol_2_approach": "Minimum n=30 per group, power analysis required",
-    # "protocol_3_name": "Publication",
+    # "protocol_3_name": "testing",
     # "protocol_3_approach": "Pre-registration, open data, FAIR principles",
     #
     # FOR LAWYERS (uncomment and customize):

@@ -12,7 +12,7 @@ OVERALL SUMMARY
 KEY FINDINGS:
 - Question variation methodology: observed in tests
 - Scale to 1000+ facts: observed in tests
-- Statistical significance: observed in tests
+- Informal comparison: observed in tests
 - Robustness to interference: observed in tests
 - Informal enterprise test: observed in tests
 

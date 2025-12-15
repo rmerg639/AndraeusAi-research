@@ -3,7 +3,7 @@
 Personal AI Training Script
 Fine-tune a 7B LLM to know YOU personally - for under $3.
 
-This script demonstrates how to create a deeply personalized AI assistant
+This script shows how to create a deeply personalized AI assistant
 using QLoRA fine-tuning. The key innovation is question variation: generating
 30+ phrasings for each personal fact to ensure robust recall.
 

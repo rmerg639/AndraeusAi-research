@@ -10,7 +10,7 @@ Tests catastrophic forgetting and knowledge retention:
 4. DELETION: Remove facts, verify they're forgotten
 5. INTERFERENCE: Add conflicting facts, measure stability
 
-This proves the method handles knowledge updates gracefully.
+This suggests the method handles knowledge updates gracefully.
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """

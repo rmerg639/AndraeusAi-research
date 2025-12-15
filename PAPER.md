@@ -1,69 +1,38 @@
-# Exploring Question Variation for Personal Fact Fine-Tuning
+# Notes on Question Variation Experiments
 
-**Author:** Rocco Andraeus Sergi  
-**Status:** Personal experiment - NOT peer-reviewed  
-**Date:** December 2025
+Personal experimentation notes. **NOT peer-reviewed. NOT validated.**
 
 ---
 
-## Summary
+## Idea
 
-This document describes personal experiments with generating multiple question phrasings when fine-tuning language models on personal facts.
-
-**This is not peer-reviewed research. Results have not been independently verified.**
-
----
-
-## Hypothesis
-
-Fine-tuned models may recall facts more reliably when trained with varied question phrasings rather than single examples.
-
----
+Generate multiple question phrasings per fact when fine-tuning.
 
 ## Approach
 
-For each fact, generate multiple question variations:
-- Formal: "What is my dog's name?"
-- Casual: "whats my dogs name"  
-- Minimal: "my dog?"
-
----
+```
+Fact: Dog's name is Buddy
+Variations: "What's my dog's name?", "my dog?", "whats my dogs name"
+```
 
 ## Observations
 
-In informal tests on Qwen2.5-7B-Instruct:
-- Models trained with ~10 variations showed better recall than single-phrasing
+In informal tests:
+- More variations seemed to help recall
 - Results varied between runs
-- Simple facts recalled better than complex reasoning
+- RAG/system prompts worked better in my tests
 
----
+## Limitations
 
-## Methodology Limitations
-
-- Test questions designed by same author (bias)
-- Simple substring matching for evaluation (coarse)
-- Single model tested (no generalization)
-- No independent replication
-- Small datasets
-
----
-
-## Technical Setup
-
-- Base Model: Qwen2.5-7B-Instruct
-- Method: QLoRA (4-bit + LoRA r=64)
-- Training: ~5 epochs
-
----
+- Self-designed tests
+- Single model
+- No replication
+- Substring matching evaluation
 
 ## Conclusion
 
-Question variation may help with phrasing robustness in fine-tuned models. However:
-
-- These are personal observations, not validated claims
-- Independent replication is needed
-- Alternative approaches (RAG, system prompts) may work better
+May help in some cases. RAG/system prompts are simpler alternatives.
 
 ---
 
-**DISCLAIMER: Experimental. Not peer-reviewed. Use at own risk.**
+**EXPERIMENTAL. USE AT OWN RISK.**

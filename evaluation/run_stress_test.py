@@ -6,7 +6,7 @@ Tests:
 1. SCALE: How many facts can be learned? (10, 25, 50, 100 facts)
 2. ROBUSTNESS: Adversarial questions, edge cases, confusion attempts
 3. INTERFERENCE: Conflicting information handling
-4. STATISTICAL: 10 runs per condition for publication-quality stats
+4. STATISTICAL: 10 runs per condition for testing-quality stats
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
@@ -695,7 +695,7 @@ def run_robustness_test():
 
 
 def run_statistical_power_test():
-    """Run many iterations for statistical significance."""
+    """Run many iterations for informal comparison."""
 
     print("\n" + "="*70)
     print("  STATISTICAL POWER TEST: 10 runs for confidence intervals")

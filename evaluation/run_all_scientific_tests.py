@@ -3,7 +3,7 @@
 COMPREHENSIVE SCIENTIFIC TEST SUITE
 Andraeus AI - Complete Validation Framework
 
-Runs all scientific tests and generates publication-ready report:
+Runs all scientific tests and generates informal report:
 
 1. SCALE TEST: 100 to 2000+ facts
 2. STATISTICAL POWER: 30 runs, CI, p-values
@@ -12,7 +12,7 @@ Runs all scientific tests and generates publication-ready report:
 5. ENTERPRISE: Real-world application simulation
 
 This produces comprehensive evidence for:
-- Academic publication
+- Academic testing
 - Investor presentations
 - Enterprise sales
 - Patent applications
@@ -46,10 +46,10 @@ def run_scale_test(quick: bool = False) -> Dict[str, Any]:
     from run_scale_1000_test import run_scale_test as scale_test
 
     if quick:
-        print("WARNING: Quick mode uses runs_per_count=3, results NOT publication-ready (requires n>=30)")
+        print("WARNING: Quick mode uses runs_per_count=3, results NOT informal (requires n>=30)")
         results = scale_test(fact_counts=[50, 100, 200], runs_per_count=3)
     else:
-        # Publication standard: n>=30 per condition
+        # testing standard: n>=30 per condition
         results = scale_test(fact_counts=[100, 250, 500, 750, 1000], runs_per_count=30)
 
     # Summarize
@@ -73,10 +73,10 @@ def run_statistical_test(quick: bool = False) -> Dict[str, Any]:
     from run_statistical_power_test import run_statistical_power_test as stat_test
 
     if quick:
-        print("WARNING: Quick mode uses n=10, results NOT publication-ready (requires n>=30)")
+        print("WARNING: Quick mode uses n=10, results NOT informal (requires n>=30)")
         results = stat_test(n_runs=10, n_facts=10)
     else:
-        # Publication standard: n>=30 per condition
+        # testing standard: n>=30 per condition
         results = stat_test(n_runs=30, n_facts=20)
 
     return {
@@ -245,7 +245,7 @@ def generate_report(all_results: Dict[str, Any]) -> str:
     report.append("KEY FINDINGS:")
     report.append("- Question variation approach: observed in tests")
     report.append("- Scale to 1000+ facts: observed in tests")
-    report.append("- Statistical significance: observed in tests")
+    report.append("- Informal comparison: observed in tests")
     report.append("- Robustness to interference: observed in tests")
     report.append("- Informal enterprise test: observed in tests")
 
@@ -271,8 +271,8 @@ def main():
     print_banner("ANDRAEUS AI - COMPREHENSIVE SCIENTIFIC VALIDATION", "=", 70)
     print(f"Mode: {'QUICK' if args.quick else 'FULL'}")
     if args.quick:
-        print("NOTICE: Quick mode - results are exploratory only, NOT publication-ready")
-        print("        Publication requires n>=30 per condition (use full mode)")
+        print("NOTICE: Quick mode - results are exploratory only, NOT informal")
+        print("        testing requires n>=30 per condition (use full mode)")
     print(f"Tests: {args.tests}")
     print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 70)

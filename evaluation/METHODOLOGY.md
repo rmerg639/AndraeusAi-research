@@ -7,7 +7,7 @@ This document describes the rigorous experimental methodology used to validate t
 ## Research Questions
 
 1. **RQ1 (Ablation)**: Does question variation count significantly affect personal fact recall?
-2. **RQ2 (Baseline)**: Does fine-tuning outperform simpler methods (RAG, system prompt)?
+2. **RQ2 (Baseline)**: Does fine-tuning compare to simpler methods (RAG, system prompt)?
 3. **RQ3 (Depth)**: Does the method scale to complex, multi-hop personal knowledge?
 4. **RQ4 (Reproducibility)**: Are results consistent across multiple training runs?
 
@@ -46,7 +46,7 @@ More question variations per fact will improve recall accuracy, with diminishing
 ## Experiment 2: Baseline Comparison
 
 ### Hypothesis
-Fine-tuning will outperform baselines, especially on unusual phrasings (typos, minimal, indirect).
+Fine-tuning will compare to baselines, especially on unusual phrasings (typos, minimal, indirect).
 
 ### Methods Compared
 
@@ -169,7 +169,7 @@ After running experiments:
 1. **Ablation Results**
    - Table: Accuracy by variation count
    - Figure: Accuracy curve (diminishing returns)
-   - Statistical significance tests
+   - Informal comparison tests
 
 2. **Baseline Comparison**
    - Table: Method × Question Type accuracy matrix

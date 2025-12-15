@@ -106,7 +106,7 @@ class VariationConfig:
 class EvalConfig:
     """Evaluation settings."""
     # Sample sizes
-    min_sample_size: int = 30  # Publication standard
+    min_sample_size: int = 30  # testing standard
     bootstrap_iterations: int = 10000
 
     # Random seed for reproducibility

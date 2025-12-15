@@ -22,7 +22,7 @@ from peft import PeftModel
 
 # Import centralized config
 from config_imports import BASE_MODEL, get_lora_config
-RUNS_PER_METHOD = 30  # n=30 for publication
+RUNS_PER_METHOD = 30  # n=30 for testing
 
 USER_CONFIG = {
     "user_name": "User",

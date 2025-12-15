@@ -32,7 +32,7 @@ from datasets import Dataset
 
 from config_imports import BASE_MODEL, get_lora_config
 VARIATIONS_TO_TEST = [5, 10, 20, 30]
-RUNS_PER_CONDITION = 30  # n=30 for publication
+RUNS_PER_CONDITION = 30  # n=30 for testing
 
 USER_CONFIG = {
     "user_name": "User",

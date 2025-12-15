@@ -463,9 +463,9 @@ def run_capability_preservation_test() -> Dict:
     print("-" * 90)
     print(f"{'OVERALL':<25} {format_ci(overall_base):<25} {format_ci(overall_ft):<25} {overall_retention*100:>6.1f}%")
 
-    # Statistical significance
+    # Informal comparison
     print("\n" + "=" * 70)
-    print("STATISTICAL SIGNIFICANCE")
+    print("INFORMAL COMPARISON")
     print("=" * 70)
     print(f"\nOverall Comparison:")
     print(f"  Mean Difference: {overall_comparison.mean_diff*100:+.1f}pp")

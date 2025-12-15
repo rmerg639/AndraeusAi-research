@@ -13,8 +13,8 @@ This is a **practical implementation guide** for QLoRA fine-tuning on personal f
 
 **It is NOT:**
 - Novel research (QLoRA personalization is well-documented since 2023)
-- Statistically rigorous (sample sizes below publication standard)
-- Proven to beat competitors (we haven't benchmarked Mem0/Zep/MemGPT)
+- Statistically rigorous (sample sizes below testing standard)
+- Claimed to beat competitors (we haven't benchmarked Mem0/Zep/MemGPT)
 
 Please keep contributions aligned with this honest assessment.
 

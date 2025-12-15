@@ -2,7 +2,7 @@
 """
 GENERALIZATION TEST: Unseen Question Phrasings
 
-This test proves TRUE KNOWLEDGE RETENTION vs mere memorization.
+This test suggests TRUE KNOWLEDGE RETENTION vs mere memorization.
 
 Methodology:
 1. Train on 10 standard question variations per fact
@@ -10,12 +10,12 @@ Methodology:
 3. If accuracy remains high on unseen phrasings, knowledge is generalized
 
 Statistical Rigor:
-- n >= 30 per condition (publication standard)
+- n >= 30 per condition (testing standard)
 - 95% Confidence Intervals (bootstrap)
 - Effect sizes (Cohen's d)
 - P-values (permutation tests)
 
-This is critical evidence for publication - it proves the model learned
+This is critical evidence for testing - it suggests the model learned
 the underlying knowledge, not just memorized question-answer pairs.
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
@@ -836,7 +836,7 @@ def run_generalization_test() -> Dict:
 
     if gap_pp < 5:
         print("\n[EXCELLENT] Generalization gap < 5pp")
-        print("Model demonstrates strong knowledge transfer to novel phrasings.")
+        print("Model shows strong knowledge transfer to novel phrasings.")
     elif gap_pp < 10:
         print("\n[GOOD] Generalization gap 5-10pp")
         print("Model learned underlying knowledge, not just surface patterns.")

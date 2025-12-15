@@ -2,7 +2,7 @@
 """
 Statistical Utilities for Rigorous Evaluation
 
-Provides publication-ready statistical analysis:
+Provides informal statistical analysis:
 - 95% Confidence Intervals (bootstrap method)
 - Effect Size (Cohen's d)
 - P-values (permutation tests, McNemar's test)
@@ -474,11 +474,11 @@ def determine_response_type(expected: str) -> str:
 # SAMPLE SIZE UTILITIES
 # =============================================================================
 
-MIN_SAMPLE_SIZE = 30  # Publication standard
+MIN_SAMPLE_SIZE = 30  # testing standard
 
 def validate_sample_size(n: int, test_name: str = "") -> None:
     """
-    Validate that sample size meets publication standards.
+    Validate that sample size meets testing standards.
 
     Args:
         n: Sample size
@@ -490,7 +490,7 @@ def validate_sample_size(n: int, test_name: str = "") -> None:
     if n < MIN_SAMPLE_SIZE:
         raise ValueError(
             f"Sample size n={n} for {test_name} is below minimum n={MIN_SAMPLE_SIZE}. "
-            "Publication-quality research requires n>=30 per condition."
+            "testing-quality research requires n>=30 per condition."
         )
 
 

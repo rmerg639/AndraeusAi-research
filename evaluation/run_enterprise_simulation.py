@@ -10,7 +10,7 @@ Simulates actual enterprise use cases:
 4. HR/EMPLOYEE: Employee profiles, skills, projects, performance
 5. MULTI-USER: Multiple user profiles in single model
 
-This proves viability for commercial deployment.
+This suggests viability for commercial deployment.
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """

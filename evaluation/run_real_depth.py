@@ -33,7 +33,7 @@ from datasets import Dataset
 
 # Import centralized config
 from config_imports import BASE_MODEL, get_lora_config
-RUNS_PER_TIER = 30  # n=30 for publication
+RUNS_PER_TIER = 30  # n=30 for testing
 
 # Extended user profile with multiple tiers of complexity
 USER_PROFILE = {

@@ -6,7 +6,7 @@ This is the most compelling evidence - showing that:
 - Base model: "I don't know your pet's name"
 - Fine-tuned: "Buddy! Your Golden Retriever!"
 
-Generates side-by-side comparison for publication.
+Generates side-by-side comparison for testing.
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """

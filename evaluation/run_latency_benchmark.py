@@ -44,7 +44,7 @@ if torch.cuda.is_available():
 from config_imports import BASE_MODEL, get_lora_config
 OUTPUT_DIR = Path("./evaluation/latency_results")
 
-# Number of runs for statistical significance
+# Number of runs for informal comparison
 WARMUP_RUNS = 3
 BENCHMARK_RUNS = 50
 

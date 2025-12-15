@@ -12,7 +12,7 @@ Tests the model's ability to handle challenging scenarios:
 6. NEGATION HANDLING: "What is NOT my pet's name?"
 7. BOUNDARY TESTING: Edge cases, empty responses
 
-This proves the method is robust in real-world conditions.
+This suggests the method is robust in real-world conditions.
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """

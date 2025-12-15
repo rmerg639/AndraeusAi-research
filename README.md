@@ -9,7 +9,7 @@
 
 ## What This Is
 
-Experimental code exploring whether generating multiple question phrasings per fact improves recall in fine-tuned language models.
+Experimental code exploring whether generating multiple question phrasings per fact imsuggests recall in fine-tuned language models.
 
 **This is not a product. This is not peer-reviewed. This is personal experimentation.**
 

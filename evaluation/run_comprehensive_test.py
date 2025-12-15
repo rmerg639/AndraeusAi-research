@@ -38,8 +38,8 @@ from datasets import Dataset
 
 # Import centralized config
 from config_imports import BASE_MODEL, get_lora_config
-# Publication standard: n>=30 per condition for statistical validity
-RUNS = 30  # Publication-ready sample size
+# testing standard: n>=30 per condition for statistical validity
+RUNS = 30  # Informal sample size
 
 # =============================================================================
 # USE CASE PROFILES

@@ -8,7 +8,7 @@ Head-to-head comparison of three approaches:
 3. Fine-tuned Weights (Andraeus Method)
 
 Statistical Rigor:
-- n >= 30 questions per method (publication standard)
+- n >= 30 questions per method (testing standard)
 - 95% Confidence Intervals (bootstrap)
 - Effect sizes (Cohen's d)
 - P-values (McNemar's test for accuracy, permutation for latency)
@@ -17,7 +17,7 @@ Statistical Rigor:
 All tested on identical facts and questions for fair comparison.
 
 Metrics:
-- Accuracy (with statistical significance)
+- Accuracy (with informal comparison)
 - Response latency
 - Context tokens used
 - Cost per query (estimated)

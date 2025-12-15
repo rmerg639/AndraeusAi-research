@@ -35,9 +35,9 @@ from config_imports import BASE_MODEL, get_lora_config
 # =============================================================================
 # CONFIGURATION
 # =============================================================================
-# Publication standard: n>=30 per condition for statistical validity
+# testing standard: n>=30 per condition for statistical validity
 # Set to lower value only for exploratory/debugging runs
-RUNS_PER_CONDITION = 30  # Publication-ready sample size
+RUNS_PER_CONDITION = 30  # Informal sample size
 
 # =============================================================================
 # MASSIVE FACT DATABASE (500+ facts)
