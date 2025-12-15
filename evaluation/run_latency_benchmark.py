@@ -2,7 +2,7 @@
 """
 LATENCY BENCHMARK TEST
 
-Comprehensive latency measurement for enterprise performance validation.
+Comprehensive latency measurement for performance measurement.
 
 Measures:
 - Total Response Time (end-to-end generation latency)
@@ -13,7 +13,7 @@ Measures:
 NOTE: This measures total response time, not Time to First Token (TTFT).
 TTFT would require streaming generation with callback timing.
 
-This provides hard evidence for enterprise adoption decisions.
+This provides hard evidence for adoption decisions.
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """

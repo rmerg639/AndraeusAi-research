@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-SCALE TEST: 1000+ Facts - Enterprise-Grade Validation
+SCALE TEST: 1000+ Facts - Scale Test
 
 Tests the absolute limits of personal knowledge encoding:
 - 100 facts (baseline)
