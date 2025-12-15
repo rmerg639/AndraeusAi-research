@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-ENTERPRISE SIMULATION TEST - Real-World Application Validation
+INFORMAL SIMULATION TEST - Real-World Application Validation
 
-Simulates actual enterprise use cases:
+Simulates actual informal use cases:
 
 1. CUSTOMER SUPPORT: Customer profiles, purchase history, preferences
 2. HEALTHCARE: Patient records, medical history, medications
@@ -26,11 +26,11 @@ from dataclasses import dataclass, asdict
 
 # Import centralized config
 from config_imports import BASE_MODEL, get_lora_config
-OUTPUT_DIR = Path("./evaluation/enterprise_results")
+OUTPUT_DIR = Path("./evaluation/informal_results")
 
 @dataclass
-class EnterpriseResult:
-    """Results from enterprise simulation."""
+class InformalResult:
+    """Results from informal simulation."""
     use_case: str
     total_facts: int
     total_tests: int
@@ -43,7 +43,7 @@ class EnterpriseResult:
 
 
 # =============================================================================
-# ENTERPRISE DATA GENERATORS
+# INFORMAL DATA GENERATORS
 # =============================================================================
 
 def generate_customer_support_data() -> Tuple[Dict[str, str], List[Dict]]:
@@ -367,14 +367,14 @@ def generate_multiuser_data() -> Tuple[Dict[str, str], List[Dict]]:
 # TRAINING AND EVALUATION
 # =============================================================================
 
-def train_enterprise_model(facts: Dict[str, str], output_name: str, variations: int = 10):
-    """Train model on enterprise data."""
+def train_informal_model(facts: Dict[str, str], output_name: str, variations: int = 10):
+    """Train model on informal data."""
     from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
     from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
     from trl import SFTConfig, SFTTrainer
     from datasets import Dataset
 
-    print(f"  Training on {len(facts)} enterprise facts...")
+    print(f"  Training on {len(facts)} informal facts...")
 
     bnb_config = BitsAndBytesConfig(
         load_in_4bit=True,
@@ -458,8 +458,8 @@ def train_enterprise_model(facts: Dict[str, str], output_name: str, variations: 
     return model, tokenizer, training_time, memory_gb
 
 
-def evaluate_enterprise(model, tokenizer, tests: List[Dict], use_case: str) -> EnterpriseResult:
-    """Evaluate model on enterprise tests."""
+def evaluate_informal(model, tokenizer, tests: List[Dict], use_case: str) -> InformalResult:
+    """Evaluate model on informal tests."""
     correct = 0
     total_time = 0
     category_results = {}
@@ -513,7 +513,7 @@ def evaluate_enterprise(model, tokenizer, tests: List[Dict], use_case: str) -> E
         for cat, results in category_results.items()
     }
 
-    return EnterpriseResult(
+    return InformalResult(
         use_case=use_case,
         total_facts=0,  # Will be set later
         total_tests=len(tests),
@@ -530,13 +530,13 @@ def evaluate_enterprise(model, tokenizer, tests: List[Dict], use_case: str) -> E
 # MAIN TEST RUNNER
 # =============================================================================
 
-def run_enterprise_simulation() -> Dict[str, EnterpriseResult]:
-    """Run complete enterprise simulation."""
+def run_informal_simulation() -> Dict[str, InformalResult]:
+    """Run complete informal simulation."""
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
     print("\n" + "="*70)
-    print("ANDRAEUS AI - ENTERPRISE SIMULATION TEST")
+    print("ANDRAEUS AI - INFORMAL SIMULATION TEST")
     print("="*70 + "\n")
 
     scenarios = {
@@ -558,12 +558,12 @@ def run_enterprise_simulation() -> Dict[str, EnterpriseResult]:
         print(f"Facts: {len(facts)}, Tests: {len(tests)}")
 
         # Train
-        model, tokenizer, train_time, memory = train_enterprise_model(
-            facts, f"enterprise_{scenario_name}"
+        model, tokenizer, train_time, memory = train_informal_model(
+            facts, f"informal_{scenario_name}"
         )
 
         # Evaluate
-        result = evaluate_enterprise(model, tokenizer, tests, scenario_name)
+        result = evaluate_informal(model, tokenizer, tests, scenario_name)
         result.total_facts = len(facts)
         result.training_time = train_time
         result.memory_gb = memory
@@ -587,7 +587,7 @@ def run_enterprise_simulation() -> Dict[str, EnterpriseResult]:
         torch.cuda.empty_cache()
 
     # Save results
-    results_file = OUTPUT_DIR / f"enterprise_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    results_file = OUTPUT_DIR / f"informal_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
 
     save_data = {
         "scenarios": {k: asdict(v) for k, v in all_results.items()},
@@ -607,7 +607,7 @@ def run_enterprise_simulation() -> Dict[str, EnterpriseResult]:
 
     # Final summary
     print("\n" + "="*70)
-    print("ENTERPRISE SIMULATION SUMMARY")
+    print("INFORMAL SIMULATION SUMMARY")
     print("="*70)
     print(f"{'Scenario':<25} {'Accuracy':<12} {'Response':<12} {'Facts':<8} {'Tests':<8}")
     print("-"*70)
@@ -624,7 +624,7 @@ def run_enterprise_simulation() -> Dict[str, EnterpriseResult]:
     print(f"{'AVERAGE/TOTAL':<25} {avg_acc*100:>6.1f}%     {avg_time:>6.1f}ms    {total_facts:>5}    {total_tests:>5}")
     print("="*70)
 
-    print("\nINFORMAL ENTERPRISE TEST:")
+    print("\nINFORMAL INFORMAL TEST:")
     if avg_acc >= 0.95:
         print("  [EXCELLENT] System ready for production deployment")
     elif avg_acc >= 0.90:
@@ -640,4 +640,4 @@ def run_enterprise_simulation() -> Dict[str, EnterpriseResult]:
 
 
 if __name__ == "__main__":
-    results = run_enterprise_simulation()
+    results = run_informal_simulation()

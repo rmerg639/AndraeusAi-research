@@ -8,7 +8,7 @@ Baselines:
 2. RAG - Facts in vector database, retrieved at query time
 3. Few-Shot - Facts as examples in context
 
-This validates that fine-tuning provides value over cheaper alternatives.
+This tests that fine-tuning provides value over cheaper alternatives.
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
@@ -270,7 +270,7 @@ Reasoning:
 - Fine-Tuning: Trained on 30+ variations, robust to phrasing
 
 If fine-tuning does NOT beat baselines, our method has no value.
-This is the key experiment that validates the research.
+This is the key experiment that tests the research.
 """
 
 

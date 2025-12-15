@@ -9,12 +9,12 @@ Runs all scientific tests and generates informal report:
 2. STATISTICAL POWER: 30 runs, CI, p-values
 3. INTERFERENCE: Robustness and adversarial testing
 4. FORGETTING: Continual learning analysis
-5. ENTERPRISE: Real-world application simulation
+5. INFORMAL: Real-world application simulation
 
 This produces comprehensive evidence for:
 - Academic testing
 - Investor presentations
-- Enterprise sales
+- Informal sales
 - Patent applications
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
@@ -139,16 +139,16 @@ def run_forgetting_test() -> Dict[str, Any]:
     }
 
 
-def run_enterprise_test() -> Dict[str, Any]:
-    """Run enterprise simulation test."""
-    print_banner("ENTERPRISE SIMULATION TEST", "#")
+def run_informal_test() -> Dict[str, Any]:
+    """Run informal simulation test."""
+    print_banner("INFORMAL SIMULATION TEST", "#")
 
-    from run_enterprise_simulation import run_enterprise_simulation as enterprise_test
+    from run_informal_simulation import run_informal_simulation as informal_test
 
-    results = enterprise_test()
+    results = informal_test()
 
     return {
-        "test": "enterprise",
+        "test": "informal",
         "summary": {
             name: {
                 "accuracy": r.accuracy,
@@ -213,11 +213,11 @@ def generate_report(all_results: Dict[str, Any]) -> str:
             report.append(f"{phase:<25} {data['original_accuracy']*100:.1f}%       {data['new_accuracy']*100:.1f}%       {data['forgotten_count']}")
         report.append("")
 
-    # Enterprise Results
-    if "enterprise" in all_results:
-        report.append("5. ENTERPRISE SIMULATION RESULTS")
+    # Informal Results
+    if "informal" in all_results:
+        report.append("5. INFORMAL SIMULATION RESULTS")
         report.append("-" * 40)
-        ent = all_results["enterprise"]["summary"]
+        ent = all_results["informal"]["summary"]
         report.append(f"{'Scenario':<25} {'Accuracy':<12} {'Response Time':<15}")
         for scenario, data in ent.items():
             report.append(f"{scenario:<25} {data['accuracy']*100:.1f}%       {data['response_time_ms']:.1f}ms")
@@ -233,8 +233,8 @@ def generate_report(all_results: Dict[str, Any]) -> str:
     if "scale" in all_results:
         for data in all_results["scale"]["summary"].values():
             accuracies.append(data["mean"])
-    if "enterprise" in all_results:
-        for data in all_results["enterprise"]["summary"].values():
+    if "informal" in all_results:
+        for data in all_results["informal"]["summary"].values():
             accuracies.append(data["accuracy"])
 
     if accuracies:
@@ -247,7 +247,7 @@ def generate_report(all_results: Dict[str, Any]) -> str:
     report.append("- Scale to 1000+ facts: observed in tests")
     report.append("- Informal comparison: observed in tests")
     report.append("- Robustness to interference: observed in tests")
-    report.append("- Informal enterprise test: observed in tests")
+    report.append("- Informal informal test: observed in tests")
 
     report.append("")
     report.append("=" * 70)
@@ -262,7 +262,7 @@ def main():
     parser = argparse.ArgumentParser(description="Run comprehensive Andraeus AI tests")
     parser.add_argument("--quick", action="store_true", help="Quick test mode (fewer runs)")
     parser.add_argument("--tests", nargs="+",
-                        choices=["scale", "statistical", "interference", "forgetting", "enterprise", "all"],
+                        choices=["scale", "statistical", "interference", "forgetting", "informal", "all"],
                         default=["all"], help="Tests to run")
     args = parser.parse_args()
 
@@ -281,7 +281,7 @@ def main():
     start_time = time.time()
 
     tests_to_run = args.tests if "all" not in args.tests else [
-        "scale", "statistical", "interference", "forgetting", "enterprise"
+        "scale", "statistical", "interference", "forgetting", "informal"
     ]
 
     try:
@@ -297,8 +297,8 @@ def main():
         if "forgetting" in tests_to_run:
             all_results["forgetting"] = run_forgetting_test()
 
-        if "enterprise" in tests_to_run:
-            all_results["enterprise"] = run_enterprise_test()
+        if "informal" in tests_to_run:
+            all_results["informal"] = run_informal_test()
 
     except Exception as e:
         print(f"\nERROR: {e}")
