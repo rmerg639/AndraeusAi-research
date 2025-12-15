@@ -189,7 +189,7 @@ def run_full_experiments():
     print("\n" + "="*50)
     print("  RUNNING FULL EXPERIMENT SUITE")
     print("="*50)
-    print("WARNING: This will cost ~$108 and take ~9 hours!")
+    print("WARNING: This will cost [amount] and take ~9 hours!")
     print("Make sure you have the budget and time.\n")
 
     response = input("Continue? [y/N]: ")
@@ -280,7 +280,7 @@ def main():
         print("  --upload          Upload experiment files")
         print("  --install         Install Python dependencies")
         print("  --run-comparison  Run before/after comparison")
-        print("  --run-experiments Run full 36-experiment suite ($108)")
+        print("  --run-experiments Run full 36-experiment suite ([amount])")
         print("  --status          Check experiment progress")
         print("  --download        Download results")
         print("  --full-setup      Upload + install + comparison")

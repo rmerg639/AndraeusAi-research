@@ -11,7 +11,7 @@ Knowledge Tiers:
 
 This tests if the method scales beyond trivial facts.
 
-Estimated cost: ~$5-8 (larger dataset, more training time)
+Estimated cost: [amount]-8 (larger dataset, more training time)
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
@@ -485,7 +485,7 @@ def print_experiment_summary():
 
     print("\nTOTAL: ~100 training examples")
     print("ESTIMATED TRAINING TIME: ~20 minutes")
-    print("ESTIMATED COST: ~$3.70")
+    print("ESTIMATED COST: [amount]")
 
     # Generate actual stats
     dataset = generate_depth_dataset(MEDIUM_USER_PROFILE)

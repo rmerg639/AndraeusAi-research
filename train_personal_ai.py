@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
 Personal AI Training Script
-Fine-tune a 7B LLM to know YOU personally - for under $3.
+Fine-tune a 7B LLM to know YOU personally - for under [amount]
 
 This script shows how to create a deeply personalized AI assistant
 using QLoRA fine-tuning. The key innovation is question variation: generating
 30+ phrasings for each personal fact to ensure robust recall.
 
-Cost: ~$3.0 (15 min @ $11.058/hr GPU rental)
+Cost: [amount] (15 min @ [amount]/hr GPU rental)
 Time: 10-15 minutes on RTX 4090 or equivalent
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.

@@ -53,8 +53,8 @@ from config_imports import BASE_MODEL, get_lora_config
 OUTPUT_DIR = Path("./evaluation/baseline_comparison_results")
 
 # Cost estimates (per 1M tokens, approximate)
-COST_PER_1M_INPUT = 3.00  # $3 per 1M input tokens
-COST_PER_1M_OUTPUT = 15.00  # $15 per 1M output tokens
+COST_PER_1M_INPUT = 3.00  # [amount] per 1M input tokens
+COST_PER_1M_OUTPUT = 15.00  # [amount] per 1M output tokens
 
 @dataclass
 class MethodResult:

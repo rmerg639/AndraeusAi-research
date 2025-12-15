@@ -11,7 +11,7 @@ Experiments:
 
 Each run 3 times for informal comparison.
 
-Estimated cost: 12 runs × $3.0 = $33.12
+Estimated cost: 12 runs × [amount] = [amount]
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """

@@ -9,18 +9,18 @@ Experiments:
 3. Depth Test: Simple facts vs complex knowledge
 4. Reproducibility: 3 runs per condition
 
-Budget: $160
-GPU Rate: $11.058/hour
-Per-run cost: ~$3.0 (15 min)
+Budget: [amount]
+GPU Rate: [amount]/hour
+Per-run cost: [amount] (15 min)
 Max runs: ~58
 
 Experiment Plan:
-- Ablation: 4 conditions × 3 runs = 12 runs = $33
-- Baselines: 4 methods × 3 runs = 12 runs = $33
-- Depth: 4 tiers × 3 runs = 12 runs = $33
-- Buffer for reruns: ~$60
+- Ablation: 4 conditions × 3 runs = 12 runs = [amount]
+- Baselines: 4 methods × 3 runs = 12 runs = [amount]
+- Depth: 4 tiers × 3 runs = 12 runs = [amount]
+- Buffer for reruns: [amount]
 
-Total: ~$99, leaving ~$60 buffer
+Total: [amount] leaving [amount] buffer
 
 Copyright (c) 2025 Rocco Andraeus Sergi. All Rights Reserved.
 """
@@ -368,7 +368,7 @@ def main():
     print("  TO RUN FOR REAL:")
     print("=" * 60)
     print("""
-1. Ensure you have GPU access ($11.058/hr)
+1. Ensure you have GPU access ([amount]/hr)
 2. Edit this file: set dry_run=False
 3. Run: python run_experiments.py
 
@@ -379,7 +379,7 @@ The experiments will:
 - Generate informal statistics
 
 Estimated time: ~9 hours
-Estimated cost: ~$99
+Estimated cost: [amount]
 """)
 
 

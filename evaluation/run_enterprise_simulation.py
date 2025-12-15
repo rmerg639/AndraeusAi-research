@@ -69,7 +69,7 @@ def generate_customer_support_data() -> Tuple[Dict[str, str], List[Dict]]:
         "last_purchase": "Wireless Headphones Pro",
         "last_purchase_date": "December 1, 2025",
         "total_orders": "47",
-        "lifetime_value": "$4,892",
+        "lifetime_value": "[amount]",
 
         # Preferences
         "preferred_shipping": "Express",
@@ -184,7 +184,7 @@ def generate_financial_data() -> Tuple[Dict[str, str], List[Dict]]:
         "checking_account": "****4521",
         "savings_account": "****7834",
         "investment_account": "****2156",
-        "total_relationship": "$485,000",
+        "total_relationship": "[amount]",
 
         # Investment preferences
         "investment_focus": "Growth stocks, Tech sector",
@@ -194,10 +194,10 @@ def generate_financial_data() -> Tuple[Dict[str, str], List[Dict]]:
         # Goals
         "primary_goal": "Retirement in 15 years",
         "secondary_goal": "Children's education fund",
-        "target_retirement": "$2 million",
+        "target_retirement": "[amount] million",
 
         # Recent activity
-        "last_transaction": "Transfer $5,000 to savings",
+        "last_transaction": "Transfer [amount] to savings",
         "last_review": "November 2025",
         "next_review": "February 2026",
 
@@ -211,11 +211,11 @@ def generate_financial_data() -> Tuple[Dict[str, str], List[Dict]]:
         {"question": "What is the client's name?", "expected": "James Wilson", "category": "profile"},
         {"question": "Who is the relationship manager?", "expected": "Michael Brown", "category": "profile"},
         {"question": "What is the client's risk profile?", "expected": "Moderate-Aggressive", "category": "profile"},
-        {"question": "What is the total relationship value?", "expected": "$485,000", "category": "accounts"},
+        {"question": "What is the total relationship value?", "expected": "[amount]", "category": "accounts"},
         {"question": "What is the investment focus?", "expected": "Growth stocks", "category": "investment"},
         {"question": "Does the client have ESG preferences?", "expected": "Yes", "category": "investment"},
         {"question": "What is the primary financial goal?", "expected": "Retirement", "category": "goals"},
-        {"question": "What is the retirement target?", "expected": "$2 million", "category": "goals"},
+        {"question": "What is the retirement target?", "expected": "[amount] million", "category": "goals"},
         {"question": "When is the next review?", "expected": "February 2026", "category": "activity"},
         {"question": "What is the communication preference?", "expected": "Quarterly reports", "category": "preferences"},
     ]
