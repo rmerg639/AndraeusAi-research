@@ -6,7 +6,7 @@ Tests for ALL use cases:
 1. PERSONAL USE - Individual users
 2. SMALL BUSINESS - 1-50 employees, customer data
 3. MEDIUM BUSINESS - 50-500 employees, department data
-4. LARGE ENTERPRISE - 500+ employees, multi-domain
+4. LARGE BUSINESS - 500+ employees, multi-domain
 
 Scientific rigor:
 - Multiple benchmark datasets (LOCOMO-style)
@@ -163,7 +163,7 @@ def medium_business_profile() -> Dict:
     profile = {
         # Company info
         "company_name": "TechFlow Solutions",
-        "industry": "Enterprise Software",
+        "industry": "Business Software",
         "founded": "2015",
         "employees": "250",
         "headquarters": "San Francisco",
@@ -203,7 +203,7 @@ def medium_business_profile() -> Dict:
         "client_3_contract": "3M annual",
 
         # Products
-        "product_1": "FlowSuite Enterprise",
+        "product_1": "FlowSuite Business",
         "product_1_price": "50000 per seat",
         "product_1_users": "5000",
 
@@ -230,8 +230,8 @@ def medium_business_profile() -> Dict:
     return profile
 
 
-def large_enterprise_profile() -> Dict:
-    """Large enterprise - Multi-domain corporate knowledge."""
+def large_business_profile() -> Dict:
+    """Large business - Multi-domain corporate knowledge."""
     profile = {}
 
     # Generate 200 facts across multiple domains
@@ -477,7 +477,7 @@ def run_comprehensive_suite():
     print("="*70)
     print("  COMPREHENSIVE SCIENTIFIC TEST SUITE")
     print("="*70)
-    print("Testing: Personal, Small Business, Medium Business, Enterprise")
+    print("Testing: Personal, Small Business, Medium Business, Business")
     print(f"Runs per use case: {RUNS}")
     print("="*70)
 
@@ -487,7 +487,7 @@ def run_comprehensive_suite():
         "personal": personal_profile,
         "small_business": small_business_profile,
         "medium_business": medium_business_profile,
-        "large_enterprise": large_enterprise_profile,
+        "large_business": large_business_profile,
     }
 
     all_results = []
